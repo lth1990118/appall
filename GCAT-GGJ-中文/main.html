@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="600" id="refresh">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<link rel="stylesheet" type="text/css" href="css/cust.css" />
+		<style>
+			.self-content {
+			margin-top: 44px;
+		}
+		body{
+			background-color: #fff;
+		}
+		.mui-table-view-chevron .mui-table-view-cell {
+			padding-right: 20px;
+		}
+		#parent {
+			height: 80px;
+			width:80px;
+			
+			 background-position:center;
+			 background-repeat:no-repeat;
+			  background-size:contain;			  
+			 /* border: #2AC845 solid;
+			  border-radius: 50%; */
+			/* background:#00FF00 url(images/qq.png) no-repeat fixed top; */
+		}
+		
+		 #head-img {
+			height: 80px;
+			width:80px;
+			max-width: 80px;
+			vertical-align: middle;
+			text-align: center;
+			/* border: #2AC845 solid; */
+			/* border-radius: 50%; */
+		}
+	</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">会员主页</h1>
+		</header>
+		<ul class="mui-table-view mui-table-view-chevron self-content">
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-row">
+					<div class="mui-row">
+						<div class="mui-col-xs-3">
+							<div id="parent">
+								<a><img class="mui-media-object head-img" id="head-img" src="http://apitest.yzj1999.com/ico/def.jpg"></a>
+							</div>
+
+						</div>
+						<div class="mui-col-xs-9">
+							<div class="mui-row">
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>登录名:</p>
+								</div>
+								<div class="mui-col-xs-9">
+									<b id="UserName"></b>
+								</div>
+								<!-- <div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>级别:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='SumBuy'></b>
+								</div> -->
+							</div>
+							<div class="mui-row">
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>我的ID:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id="UserID"></b>
+								</div>
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>验证码:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='VerifyCode'></b>
+								</div>
+							</div>
+							<div class="mui-row">
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>收入:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='SumBonus'></b>
+								</div>
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>余额:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='LeftCash'></b>
+								</div>
+							</div>
+							<div class="mui-row">
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>级别:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='UserLevel'></b>
+								</div>
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis'>库存:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='LeftSell'></b>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="html/agent.html">
+				<span class="mui-icon-extra mui-icon-extra-peoples"></span>
+				<span class="mui-tab-label">代理</span>
+			</a>
+			<a class="mui-tab-item" href="html/sale.html">
+				<span class="mui-icon-extra mui-icon-extra-cart"></span>
+				<span class="mui-tab-label">销售</span>
+			</a>
+
+			<a class="mui-tab-item" href="html/bonus.html">
+				<span class="mui-icon-extra mui-icon-extra-prech"></span>
+				<span class="mui-tab-label">钱包</span>
+			</a>
+			<a class="mui-tab-item" href="html/menu.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">菜单</span>
+			</a>
+
+			<a class="mui-tab-item" style="display:none;" href="html/purchase.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">采购</span>
+			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/myTeam.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">我的团队</span>
+			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/purchase.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">我的采购</span>
+			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/loginPassword.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">登陆密码</span>
+			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/cashPassword.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">提现密码</span>
+			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/info.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">我的信息</span>
+			</a>
+		</nav>
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a tag="camera" href="#">拍照或录像</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a tag="picture" href="#">选取现有的</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/app.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/sha1.js"></script>
+
+		<script src="js/config.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui('#parent').on('tap', 'img', function() {
+				//mui.toast(this.src);
+				mui.openWindow({
+					url: 'head.html',
+					extras: { //新窗口的额外扩展参数,可用来处理页面间传值  
+						src: this.src //$(this).css('background-image').replace('url(', '').replace(')', '')
+					},
+				});
+			});
+			var subpages = ['html/agent.html', 'html/sale.html',
+				'html/bonus.html', 'html/menu.html'
+			];
+			var activeTab = subpages[0];
+			window.onload = function() {
+				userInfo = app.getSettings();
+				console.log(JSON.stringify(userInfo));
+				init();
+			}
+			var currentWebview;
+			var subpage_style = {
+				top: '150px',
+				bottom: '50px'
+			}
+			mui.plusReady(function() {
+				if (!self.userInfo.UserID) {
+					mui.openWindow({
+						url: 'login.html',
+						id: 'login.html'
+					});
+				} else {
+					userInfo = app.getSettings();
+					console.log(JSON.stringify(userInfo));
+					init();
+				}
+				currentWebview = plus.webview.currentWebview();
+				var targetWebview = plus.webview.getWebviewById(activeTab);
+				if (!targetWebview) {
+					targetWebview = plus.webview.create(activeTab, activeTab,
+						subpage_style);
+					currentWebview.append(targetWebview);
+				}
+				targetWebview.show('fade-in', 300);
+			});
+
+			mui('.mui-bar-tab').on('tap', 'a', function() {
+				var targetTab = this.getAttribute('href');
+				tabChange(targetTab);
+			})
+
+			function tabChange() {
+				console.log(JSON.stringify(arguments));
+				var targetTab = arguments[0];
+				var isBack = arguments[1];
+				if (!targetTab) {
+					return;
+				}
+				if (targetTab == "exit") {
+					app.setSettings({});
+					mui.openWindow({
+						url: 'login.html',
+						id: 'login.html'
+					});
+					plus.webview.currentWebview().close();
+					return;
+				}
+				if (targetTab == activeTab) {
+					return;
+				}
+				mui.each(mui('.mui-bar-tab a'), function(index, item) {
+					var targetEach = this.getAttribute('href');
+					if (targetEach == targetTab) {
+						$(this).addClass("mui-active").siblings().removeClass("mui-active");
+					}
+				});
+				var targetWebview = plus.webview.getWebviewById(targetTab);
+				if (!targetWebview) {
+					targetWebview = plus.webview.create(targetTab, targetTab,
+						subpage_style);
+					currentWebview.append(targetWebview);
+				}
+				targetWebview.show('fade-in', 300);
+				plus.webview.close(activeTab);
+				if (!isBack) {
+					pageOpen.push(activeTab);
+					console.log(JSON.stringify(pageOpen));
+					index++;
+				}
+				activeTab = targetTab;
+			}
+			var mui_old_back = mui.back;
+			var index = 0;
+			var pageOpen = [];
+			mui.back = function() {
+				console.log(JSON.stringify(pageOpen));
+				console.log(index);
+				if (index == -1) {
+					mui.toast("再按一次退出应用");
+				} else if (index == -2) {
+					plus.runtime.quit();
+				}
+				tabChange(pageOpen[index - 1], true);
+				plus.webview.show(pageOpen[index - 1]);
+				pageOpen.pop();
+				index--;
+				console.log(index);
+			}
+			window.addEventListener('tabChange', function(e) {
+				console.log(JSON.stringify(e.detail));
+				tabChange(e.detail.href);
+			});
+			var userInfo = {};
+
+			function init() {
+				mui('#UserID')[0].innerHTML = userInfo.UserID;
+				mui('#UserName')[0].innerHTML = userInfo.UserName;
+				mui('#LeftSell')[0].innerHTML = userInfo.SumStock;
+				mui('#LeftCash')[0].innerHTML = userInfo.SumSurplus; //SumSurplus
+				mui('#SumBonus')[0].innerHTML = userInfo.SumIncome;
+				//mui('#SumBuy')[0].innerHTML = userInfo.SumBuy;
+				mui('#UserLevel')[0].innerHTML = userInfo.UserLevel;
+
+				mui('#VerifyCode')[0].innerHTML = userInfo.VerifyCode;
+				mui("#head-img")[0].src = config.urlPicRoot + userInfo.UserIco;
+				if (userInfo.MoneyFlag > 0) {
+					player();
+				}
+				//mui("#parent")[0].style.backgroundImage = "url(" + userInfo.UserIco + ")";
+			}
+
+			function refresh() {
+				if (userInfo == null || userInfo.UserID == null) {
+					return;
+				}
+				console.log(JSON.stringify(userInfo));
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "UserGet",
+					"ReqData": {}
+				};
+				console.log(JSON.stringify(data));
+				//执行刷新
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							console.log(data.RetInfo);
+						} else {
+
+							var option = data.RetData[0];
+							console.log(JSON.stringify(option));
+							userInfo.UserID = option.UserID;
+							userInfo.UserName = option.UserName;
+							userInfo.SumStock = option.SumStock;
+							userInfo.SumIncome = option.SumIncome;
+							userInfo.SumBonus = option.SumBonus;
+							//userInfo.SumBuy = option.SumBuy;
+							userInfo.UserLevel = option.UserLevel;
+							userInfo.PwdTmp = option.PwdTmp || userInfo.PwdTmp;
+							userInfo.VerifyCode = option.VerifyCode;
+							userInfo.UserIco = option.UserIco;
+							userInfo.MoneyFlag = option.MoneyFlag || 0; //1;
+							init();
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+					}
+				});
+			}
+			//setInterval(refresh, 600000); //600000
+			 var meta = document.getElementById("refresh");			
+			setInterval(refresh, parseInt(meta.content) * 1000);
+			function player() { //播放音乐 
+				var s = plus.audio.createPlayer("MP3/voice.mp3");
+				var num = s.getDuration(); //获取音频总长度number 
+				setTimeout(function() { //延时获取，否则可能没有返回长度 
+					var num = s.getDuration();
+				}, 100)
+
+				s.play(function() { //播放完成回调 
+
+				}, function(e) { //失败回调 
+
+				});
+			}
+			(function($, doc) {
+				window.addEventListener('refresh', refresh);
+
+			})(mui, document);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>purchase</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/jquery.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-scroll-wrapper{
+				top:40px
+			}
+			.title{
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+			ul li {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1">Mes achats</a>
+		</div>			
+		<div>			
+			<div id="item1" class="mui-control-content mui-active">
+				<div class="title">
+					<div class="mui-row">
+						<div class="mui-col-xs-4">Date</div> 
+						<div class="mui-col-xs-5">Agent</div> 
+						<div class="mui-col-xs-3">Quantité</div> 
+					</div>
+				</div>
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="contain2" class="mui-table-view">
+												
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			document.getElementById("scroll").style.height=window.innerHeight - 80+"px";
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#scroll',
+					up: {
+						auto: true,
+						contentrefresh: 'Chargement...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			function pullupRefresh(){
+				setTimeout(function() {
+					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+					purchaseList();
+				}, 1500);
+			}
+			var pageIndex=0;
+			function purchaseList() {
+				var userInfo = app.getSettings();
+				var data={
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "SellSel_Buy",
+					"ReqData": pageIndex                                         
+				};
+				console.log(JSON.stringify(data));
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {					
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+						} else {
+							var BonusIncomeData=[];
+							if(data.RetData.length==0){
+								mui.toast(tempJson.msgNoData);
+								return;
+							}
+							var table = document.getElementById('contain2');
+							for (var i = 0; i < data.RetData.length; i++) {							
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								var div = document.createElement('div');
+								div.className = 'mui-row';			
+								var titleHtml="";
+								
+								titleHtml+='	<div class="mui-col-xs-4">' +
+											'		<b>'+data.RetData[i].CreateTime+'</b>' +
+											'	</div>';
+								titleHtml+='	<div class="mui-col-xs-4">' +
+											'		<b>'+data.RetData[i].UserInfo+'</b>' +
+											'	</div>';
+								titleHtml+='	<div class="mui-col-xs-4">' +
+											'		<b>'+data.RetData[i].SellNum+'</b>' +
+											'	</div>';
+															
+								div.innerHTML=titleHtml;
+								li.appendChild(div);
+								table.appendChild(li);
+							}
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast("Erreur");
+					}
+				});
+				pageIndex++;
+			}
+		</script>
+	</body>
+</html>

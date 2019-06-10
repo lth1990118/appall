@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>myTeam</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/jquery.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-scroll-wrapper{
+				top:40px
+			}
+			.title{
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+			ul li{
+				text-align: center;
+			}
+			#backToTop{
+				position:absolute;
+				left:10px;	
+				top:0px;
+				line-height: 40px;
+				color:white;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="segmentedControl" class="mui-segmented-control">
+			
+			<a class="mui-control-item mui-active" href="#item1">我的团队</a>
+		</div>
+		<label id="backToTop">返回</label>
+		<div>			
+			<div id="item1" class="mui-control-content mui-active">
+				<div class="title">
+					<div class="mui-row">
+						<div class="mui-col-xs-4">日期</div> 
+						<div class="mui-col-xs-4">代理</div> 
+						<div class="mui-col-xs-4">级别</div> 
+					</div>
+				</div>
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view" id="contain2">
+						
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			document.getElementById("scroll").style.height=window.innerHeight - 80+"px";
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#scroll',
+					up: {
+						auto: true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			function pullupRefresh(){
+				setTimeout(function() {
+					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+					myTeamList();
+				}, 1500);
+			}
+			var pageIndex=0;
+			var IntroID=0;
+			var pushID=[];
+			document.getElementById("backToTop").addEventListener("click", function(){
+				 console.log(JSON.stringify(pushID));
+				 var table = document.getElementById('contain2');
+				 var IntroIDNew=pushID.pop();
+				 if(IntroIDNew==IntroID){
+					 IntroID=pushID.pop();
+				 }else{
+					 IntroID=IntroIDNew;
+				 }
+				 pageIndex=0;				 
+				 table.innerHTML="";
+				 myTeamList();
+			});
+			function myTeamList() {
+				var userInfo = app.getSettings();
+					var data={
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "UserSel_Team",
+					"ReqData": {
+						"PageID": pageIndex,
+						"IntroID": IntroID
+					}
+				};
+				if(IntroID==0){
+					$("#backToTop").hide();
+				}else{
+					$("#backToTop").show();
+				}
+				pushID.push(IntroID);
+				console.log(JSON.stringify(data));
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {					
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+						} else {
+							if(data.RetData.length==0){
+								mui.toast(tempJson.msgNoData);
+								return;
+							}			
+							var table = document.getElementById('contain2');
+							for (var i = 0; i < data.RetData.length; i++) {	
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								var div = document.createElement('div');
+								div.className = 'mui-row';			
+								var titleHtml="";
+								
+								titleHtml+='	<div class="mui-col-xs-4" data-id="'+data.RetData[i].UserID+'">' +
+											'		<span>'+data.RetData[i].CreateTime+'</span>' +
+											'	</div>';
+								titleHtml+='	<div class="mui-col-xs-4">' +
+											'		<span>'+data.RetData[i].UserInfo+'</span>' +
+											'	</div>';
+								titleHtml+='	<div class="mui-col-xs-4">' +
+											'		<span>'+data.RetData[i].UserLevel+'</span>' +
+											'	</div>';
+															
+								div.innerHTML=titleHtml;
+								li.appendChild(div);
+								table.appendChild(li);
+							}
+							$("#contain2 li").off("tap");
+							$("#contain2 li").on("tap",function(){
+								pageIndex=0;
+								IntroID=$(this).find(".mui-row div:first").attr("data-id");	
+								table.innerHTML="";
+								myTeamList();
+							});
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast("我的团队接口异常，联系管理员(UserSel_Team)");
+					}
+				});
+				pageIndex++;
+			}
+			
+		</script>
+	</body>
+</html>
