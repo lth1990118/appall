@@ -229,6 +229,13 @@
 					
 					var main=plus.webview.currentWebview().parent();
 					mui.fire(main, 'refresh'); 
+					
+					console.log("init");
+					pageIndex = 0;
+					flag = false;
+					var table = document.getElementById('contain2');
+					table.innerHTML = "";
+					pullupRefresh();
 				}
 
 				mui('#item2').off('tap', '#submit2');

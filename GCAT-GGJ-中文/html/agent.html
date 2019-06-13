@@ -197,7 +197,7 @@
 					}
 					var  re= /^[a-zA-z]\w{3,15}$/;
 					if(!re.test(UserName)){
-						mui.toast("账号由数字和密码组成，且字母开头")
+						mui.toast("账号由字母和数字组成，且以字母开头，长度不能小于6")
 						return ;
 					}
 					if(UserName.length<6||PwdLogin.length<6){

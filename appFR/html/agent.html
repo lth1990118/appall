@@ -197,7 +197,7 @@
 					}
 					var  re= /^[a-zA-z]\w{3,15}$/;
 					if(!re.test(UserName)){
-						mui.toast("Le numéro de compte est composé de nombres et de mots de passe et commence par des lettres")
+						mui.toast("Le numéro de compte est composé de lettres et de nombres et commence par des lettres dont la longueur ne doit pas être inférieure à 6")
 						return ;
 					}
 					if(UserName.length<6||PwdLogin.length<6){

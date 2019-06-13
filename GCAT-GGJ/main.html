@@ -275,6 +275,7 @@
 					index++;
 				}
 				activeTab = targetTab;
+				refresh();
 			}
 			var mui_old_back = mui.back;
 			var index = 0;
@@ -351,7 +352,7 @@
 							userInfo.SumStock = option.SumStock;
 							userInfo.SumIncome = option.SumIncome;
 							userInfo.SumBonus = option.SumBonus;
-							//userInfo.SumBuy = option.SumBuy;
+							userInfo.SumSurplus = option.SumSurplus;
 							userInfo.UserLevel = option.UserLevel;
 							userInfo.PwdTmp = option.PwdTmp || userInfo.PwdTmp;
 							userInfo.VerifyCode = option.VerifyCode;
