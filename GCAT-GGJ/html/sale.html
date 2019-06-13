@@ -277,7 +277,7 @@
 				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
 				mui('#item2').off('tap', '#submit3');
 				mui('#item2').on('tap', '#submit3', function() {
-					if(mui('#salerID')[0].value==''){
+					if(mui('#salerID3')[0].value==''){
 						mui.toast("Entrez les informations nécessaires.！");
 						return;
 					}
@@ -341,7 +341,11 @@
 						"ReqType": "SellAdd_2",
 						"ReqData": option
 					};
-					jqAjax(data, tempJson.msgSale, init);
+					var msg=tempJson.msgSale;
+					if(option.SellNum==0){
+						msg=tempJson.msgSaleLevel;
+					}
+					jqAjax(data, msg, init);
 				}
 
 				function submitSale() {

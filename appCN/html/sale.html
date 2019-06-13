@@ -56,27 +56,27 @@
 					<!-- display: none; -->
 					<div class="mui-input-row">
 						<label>消费代理ID</label>
-						<input id="salerID2" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID" readonly>
+						<input id="salerID2" type="text" class="mui-numbox-input" placeholder="消费代理ID" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>消费代理姓名</label>
-						<input id="salerName2" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理姓名" readonly>
+						<input id="salerName2" type="text" class="mui-numbox-input" placeholder="消费代理姓名" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>消费代理级别</label>
-						<input id="salerLevel2" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理级别" readonly>
+						<input id="salerLevel2" type="text" class="mui-numbox-input" placeholder="消费代理级别" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>每盒单价</label>
-						<input id="price2" type="text" class="mui-numbox-input mui-input-clear" placeholder="每盒单价" readonly>
+						<input id="price2" type="text" class="mui-numbox-input" placeholder="每盒单价" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>销售套盒数</label>
-						<input id="saleCount2" type="text" class="mui-numbox-input mui-input-clear" placeholder="销售套盒数" readonly>
+						<input id="saleCount2" type="text" class="mui-numbox-input" placeholder="销售套盒数" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>销售总价</label>
-						<input id="totalPrice2" type="text" class="mui-numbox-input mui-input-clear" placeholder="销售总价" readonly>
+						<input id="totalPrice2" type="text" class="mui-numbox-input" placeholder="销售总价" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left" style="display: none;">
 						<label>升级为三级代理</label>
@@ -111,27 +111,27 @@
 					<!-- display: none; -->
 					<div class="mui-input-row">
 						<label>消费代理ID</label>
-						<input id="salerID4" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID" readonly>
+						<input id="salerID4" type="text" class="mui-numbox-input " placeholder="消费代理ID" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>消费代理姓名</label>
-						<input id="salerName4" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理姓名" readonly>
+						<input id="salerName4" type="text" class="mui-numbox-input " placeholder="消费代理姓名" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>消费代理级别</label>
-						<input id="salerLevel4" type="text" class="mui-numbox-input mui-input-clear" placeholder="消费代理级别" readonly>
+						<input id="salerLevel4" type="text" class="mui-numbox-input " placeholder="消费代理级别" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>每盒单价</label>
-						<input id="price4" type="text" class="mui-numbox-input mui-input-clear" placeholder="每盒单价" readonly>
+						<input id="price4" type="text" class="mui-numbox-input " placeholder="每盒单价" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>销售套盒数</label>
-						<input id="saleCount4" type="text" class="mui-numbox-input mui-input-clear" placeholder="销售套盒数" readonly>
+						<input id="saleCount4" type="text" class="mui-numbox-input " placeholder="销售套盒数" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>销售总价</label>
-						<input id="totalPrice4" type="text" class="mui-numbox-input mui-input-clear" placeholder="销售总价" readonly>
+						<input id="totalPrice4" type="text" class="mui-numbox-input " placeholder="销售总价" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left">
 						<label>升级为三级代理</label>
@@ -277,7 +277,7 @@
 				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
 				mui('#item2').off('tap', '#submit3');
 				mui('#item2').on('tap', '#submit3', function() {
-					if(mui('#salerID')[0].value==''){
+					if(mui('#salerID3')[0].value==''){
 						mui.toast("请输入必要信息！");
 						return;
 					}
@@ -341,7 +341,11 @@
 						"ReqType": "SellAdd_2",
 						"ReqData": option
 					};
-					jqAjax(data, tempJson.msgSale, init);
+					var msg=tempJson.msgSale;
+					if(option.SellNum==0){
+						msg=tempJson.msgSaleLevel;
+					}
+					jqAjax(data, msg, init);
 				}
 
 				function submitSale() {

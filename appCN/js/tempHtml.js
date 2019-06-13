@@ -471,6 +471,7 @@ var tempJson = {
 	},
 	system:"CN",
 	msgAgent:"代理添加成功！",
+	msgSaleLevel:"销售代理升级成功！",
 	msgSale:"销售添加成功！",
 	msgNoData:"没有相关数据了！",
 	msgBonus:"提现申请提交成功！",

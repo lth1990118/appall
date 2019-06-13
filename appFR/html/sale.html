@@ -56,27 +56,27 @@
 					<!-- display: none; -->
 					<div class="mui-input-row">
 						<label>Agent id</label>
-						<input id="salerID2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Consumer agent id" readonly>
+						<input id="salerID2" type="text" class="mui-numbox-input " placeholder="Consumer agent id" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Agent Nom</label>
-						<input id="salerName2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Agent Nom" readonly>
+						<input id="salerName2" type="text" class="mui-numbox-input " placeholder="Agent Nom" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Level</label>
-						<input id="salerLevel2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Level" readonly>
+						<input id="salerLevel2" type="text" class="mui-numbox-input " placeholder="Level" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Monovalent</label>
-						<input id="price2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Monovalent" readonly>
+						<input id="price2" type="text" class="mui-numbox-input " placeholder="Monovalent" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Quantité</label>
-						<input id="saleCount2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Quantité" readonly>
+						<input id="saleCount2" type="text" class="mui-numbox-input " placeholder="Quantité" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Prix total</label>
-						<input id="totalPrice2" type="text" class="mui-numbox-input mui-input-clear" placeholder="Prix total" readonly>
+						<input id="totalPrice2" type="text" class="mui-numbox-input " placeholder="Prix total" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left" style="display: none;">
 						<label>Devenir agent de niveau 3</label>
@@ -111,27 +111,27 @@
 					<!-- display: none; -->
 					<div class="mui-input-row">
 						<label>Agent id</label>
-						<input id="salerID4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Consumer agent id" readonly>
+						<input id="salerID4" type="text" class="mui-numbox-input " placeholder="Consumer agent id" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Agent Nom</label>
-						<input id="salerName4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Agent Nom" readonly>
+						<input id="salerName4" type="text" class="mui-numbox-input " placeholder="Agent Nom" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Level</label>
-						<input id="salerLevel4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Level" readonly>
+						<input id="salerLevel4" type="text" class="mui-numbox-input " placeholder="Level" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Monovalent</label>
-						<input id="price4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Monovalent" readonly>
+						<input id="price4" type="text" class="mui-numbox-input " placeholder="Monovalent" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Quantité</label>
-						<input id="saleCount4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Quantité" readonly>
+						<input id="saleCount4" type="text" class="mui-numbox-input " placeholder="Quantité" readonly>
 					</div>
 					<div class="mui-input-row">
 						<label>Prix total</label>
-						<input id="totalPrice4" type="text" class="mui-numbox-input mui-input-clear" placeholder="Prix total" readonly>
+						<input id="totalPrice4" type="text" class="mui-numbox-input " placeholder="Prix total" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left">
 						<label>Devenir agent de niveau 3</label>
@@ -277,7 +277,7 @@
 				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
 				mui('#item2').off('tap', '#submit3');
 				mui('#item2').on('tap', '#submit3', function() {
-					if(mui('#salerID')[0].value==''){
+					if(mui('#salerID3')[0].value==''){
 						mui.toast("Entrez les informations nécessaires.！");
 						return;
 					}
