@@ -59,7 +59,7 @@ mui.plusReady(function() {
 			var data = {
 				"ReqKey": "basoft_ws",
 				"ReqPwd": "basoft_wspwd",
-				"ReqSys": "cn01",
+				"ReqSys": config.reqSys,
 				"ReqType": "GetLastVersion",
 				"ReqData": null
 			};
