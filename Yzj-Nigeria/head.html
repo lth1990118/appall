@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="js/plugins/cropper/css/cropper.min.css" />
+		<style type="text/css">
+			.mui-bar {
+				/* background-color: #007aff; */
+			}
+
+			.mui-title {
+				color: #FAFAFA;
+			}
+
+			#imgBox {
+				height: 300px !important;
+				width: 300px !important;
+				margin: 30px auto;
+				background: url('js/plugins/cropper/images/bg.png');
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style></a>
+			<h1 class="mui-title" style="color: #000000;">Head portrait</h1>
+			<a id="moreMenus" class="mui-icon mui-icon-compose mui-pull-right" style="color:#007aff;font-weight: bold;"></a>
+		</header>
+		<div class="mui-content">
+			<div id="imgBox">
+				<img id="userImage_id" width="300" height="300" src="http://apitest.yzj1999.com/ico/def.jpg"/>
+			</div>
+			<table align="center">
+				<tr>
+					<td style="padding:2px 5px;"><button type="button"  id="scaleX_id" class="mui-btn mui-btn-green toolbutton">Left-right</button></td>
+					<td style="padding:2px 5px;"><button type="button"  id="scaleY_id" class="mui-btn mui-btn-green toolbutton">Up-down</button></td>
+					<td style="padding:2px 5px;"><button type="button"  id="rotateMax_id" class="mui-btn mui-btn-green toolbutton">rotate 90°</button></td>
+				</tr>
+				<tr>
+					<td colspan="3" style="padding:5px 5px;"><button type="button" id="confirm_id" class="mui-btn mui-btn-primary mui-btn-block toolbutton">save</button>
+					</td>
+				</tr>
+			</table>
+			<div style="padding: 10px; color:red;">
+				<span id="imagePath_div"></span>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/plugins/jquery-3.1.1.slim.min.js"></script>
+		<script type="text/javascript" src="js/plugins/cropper/js/cropper.min.js"></script>
+		<script src="js/config.js"></script>
+			<script src="js/app.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var userInfo={};
+			mui.plusReady(function() {
+				userInfo = app.getSettings();
+				plus.navigator.setStatusBarBackground("#007aff");
+				var self = plus.webview.currentWebview();
+				console.log(self.src);
+				$('#userImage_id').attr("src", self.src);
+				console.log($('#userImage_id').attr("src"));
+				document.getElementById("moreMenus").addEventListener("tap", function() {
+					var editButtons = new Array();
+					editButtons.push({
+						title: "Photo upload",
+						style: "default"
+					});
+					editButtons.push({
+						title: "Select from the album",
+						style: "default"
+					});
+					plus.nativeUI.actionSheet({
+						cancel: "cancel",
+						buttons: editButtons
+					}, function(e) {
+						var index = e.index;
+						switch (index) {
+							case 1:
+								captureImage(); //拍照
+								break;
+							case 2:
+								selectImage(); //相册选择
+								break;
+						}
+					});
+				});
+				document.getElementById("scaleX_id").addEventListener("tap", function() {
+					window._scaleX = window._scaleX * -1;
+					$("#userImage_id").cropper("scaleX", window._scaleX);
+
+				});
+				document.getElementById("scaleY_id").addEventListener("tap", function() {
+					window._scaleY = window._scaleY * -1;
+					$("#userImage_id").cropper("scaleY", window._scaleY);
+				});
+				document.getElementById("rotateMax_id").addEventListener("tap", function() {
+					$("#userImage_id").cropper("rotate", 90);
+				});
+				//确定裁切
+				document.getElementById("confirm_id").addEventListener("tap", function(e) {
+					var dataURL = $("#userImage_id").cropper("getCroppedCanvas", {
+						width: 300,
+						height: 300
+					});
+					var imgUrl = dataURL.toDataURL("image/png", 1);
+					//		$("#userImage_id").attr("src" , imgUrl);
+					$("#userImage_id").cropper("replace", imgUrl);
+					$("#userImage_id").cropper("clear"); //裁切完成取消显示裁切框
+					$("#userImage_id").cropper("disable");
+					//确定裁切后销毁裁切组件，标记一下，下次继续裁切时需要初始化一下裁切组件
+					window.imageDisable = true;
+					//禁用几个功能按钮
+					$("button.toolbutton").prop("disabled", true);
+					//向后台提供数据
+					uploadFile(imgUrl);
+				});
+				//初始化裁切组件
+				initImageCropper();
+			});
+
+			//拍照
+			function captureImage() {
+				var cmr = plus.camera.getCamera(2);
+				cmr.captureImage(
+					function(path) {
+						//将图片地址转换
+						plus.io.resolveLocalFileSystemURL(path, function(entry) {
+							var newPath = entry.toLocalURL() + "?version=" + Math.random();
+							loadImage(newPath);
+						});
+					},
+					function(error) {
+						mui.toast(error.message);
+					}, {
+						filename: "_documents/"
+					}
+				);
+
+			}
+
+			//文件上传
+			function uploadFile(image) {
+				var url = config.urlPic;
+				console.log(url);
+				console.log(image);
+				mui.ajax(url, {
+					dataType: "json",
+					type: "post",
+					data: {
+						imgDatas: image,
+						UserID:userInfo.UserID
+					},
+					success: function(data) {
+						console.log(JSON.stringify(data));
+						if (data.RetFlag == 0) {
+							mui.toast("Success!");
+							//document.getElementById("imagePath_div").innerText = rootPath + "/" + data.message + ".image";
+							return;
+						}
+					},
+					error: function(a, b, c) {
+						console.log(JSON.stringify(a));
+						console.log(b);
+						console.log(c);
+						mui.toast("Error!");
+					}
+				});
+			}
+
+			function initImageCropper() {
+				//初始化组件
+				$("#userImage_id").cropper({
+					aspectRatio: 3 / 3,
+					autoCropArea: 1,
+					dragMode: "move", //设置移动图片、重新绘制选图区域
+					cropBoxResizable: false,
+					//movable: true,//是否允许移动裁切框
+					zoomable: true, //是否允许放大图片
+					guides: true, //取消显示裁切线中间的虚线网格
+					minContainerWidth: 300,
+					minContainerHeight: 300,
+					minCanvasWidth: 300,
+					minCanvasHeight: 300,
+					crop: function(data) {
+						//初始化
+						window._scaleX = data.scaleX;
+						window._scaleY = data.scaleY;
+					}
+				});
+			}
+
+			//选择图片
+			function selectImage() {
+				plus.gallery.pick(function(path) {
+					loadImage(path);
+				}, function(e) {
+					mui.toast("No image.");
+				});
+			}
+
+			//确定选择图片
+			function loadImage(path) {
+				var img = document.getElementById("userImage_id");
+				img.src = path;
+				if (window.imageDisable == true) {
+					$("#userImage_id").cropper("enable");
+				}
+				$("#userImage_id").cropper("replace", path);
+				//启用几个功能按钮
+				$("button.toolbutton").prop("disabled", false);
+				document.getElementById("userImage_id").onclick = function() {
+					plus.runtime.openFile(path);
+				}
+			}
+			
+			 mui.init({ beforeback: function() {　　
+			 //获得父页面的webview 
+				 var main = plus.webview.currentWebview().opener();　　 
+				 //触发父页面的自定义事件(refresh),从而进行刷新 
+				 mui.fire(main, 'refresh'); 
+				 //返回true,继续页面关闭逻辑 
+				 return true; 
+			 }
+			 });
+		</script>
+	</body>
+</html>

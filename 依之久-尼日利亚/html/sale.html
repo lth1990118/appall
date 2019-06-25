@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>mySale</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/jquery.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/icons-extra.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-scroll-wrapper {
+				top: 40px
+			}
+
+			.title {
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+
+			ul li {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1">添加销售</a>
+			<a class="mui-control-item" href="#item2">升级代理</a>
+			<a class="mui-control-item" href="#item3">销售记录</a>
+		</div>
+
+		<div class="mui-slider-group">
+
+			<div id="item1" class="mui-control-content mui-active">
+				<form id="submitForm" class="mui-input-group">
+					<div class="mui-input-row">
+						<label>消费代理ID</label>
+						<input id="salerID" type="number" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID">
+					</div>
+					<div class="mui-input-row">
+						<label>销售套盒数</label>
+						<input id="saleCount" type="number" class="mui-numbox-input mui-input-clear" placeholder="销售套盒数">
+					</div>
+
+					<div class="mui-button-row">
+						<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+					</div>
+				</form>
+				<form id="makesureForm" class="mui-input-group" style="display: none">
+					<!-- display: none; -->
+					<div class="mui-input-row">
+						<label>消费代理ID</label>
+						<input id="salerID2" type="text" class="mui-numbox-input" placeholder="消费代理ID" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>消费代理姓名</label>
+						<input id="salerName2" type="text" class="mui-numbox-input" placeholder="消费代理姓名" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>消费代理级别</label>
+						<input id="salerLevel2" type="text" class="mui-numbox-input" placeholder="消费代理级别" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>每盒单价</label>
+						<input id="price2" type="text" class="mui-numbox-input" placeholder="每盒单价" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>销售套盒数</label>
+						<input id="saleCount2" type="text" class="mui-numbox-input" placeholder="销售套盒数" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>销售总价</label>
+						<input id="totalPrice2" type="text" class="mui-numbox-input" placeholder="销售总价" readonly>
+					</div>
+					<div class="mui-input-row mui-checkbox mui-left" style="display: none;">
+						<label>升级为三级代理</label>
+						<input id="isStepIn2" name="" type="checkbox" onclick="return false">
+					</div>
+					<div class="mui-button-row">
+						 <div class="mui-row">
+							<div class="mui-col-xs-6" style="padding:0px 5px ;">
+															<button id="cancel2" type="button" class=" mui-btn-block mui-btn mui-btn-blue" 
+															style="padding:  6px 12px;font-weight: bolder;font-size: 16px;">返回修改</button>
+							</div>
+							<div class="mui-col-xs-6" style="padding: 0px 5px ;">
+															<button id="submit2" type="button" class=" mui-btn-block mui-btn mui-btn-blue"
+															style="padding:  6px 12px;font-weight: bolder;font-size: 16px;">确认</button>
+							</div>
+						</div>
+						<!-- <button id="submit2" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button> -->
+					</div>
+				</form>
+			</div>
+			<div id="item2" class="mui-control-content ">
+				<form id="submitForm2" class="mui-input-group">
+					<div class="mui-input-row">
+						<label>消费代理ID</label>
+						<input id="salerID3" type="number" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID">
+					</div>
+					<div class="mui-button-row">
+						<button id="submit3" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+					</div>
+				</form>
+				<form id="makesureForm2" class="mui-input-group" style="display: none;">
+					<!-- display: none; -->
+					<div class="mui-input-row">
+						<label>消费代理ID</label>
+						<input id="salerID4" type="text" class="mui-numbox-input " placeholder="消费代理ID" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>消费代理姓名</label>
+						<input id="salerName4" type="text" class="mui-numbox-input " placeholder="消费代理姓名" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>消费代理级别</label>
+						<input id="salerLevel4" type="text" class="mui-numbox-input " placeholder="消费代理级别" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>每盒单价</label>
+						<input id="price4" type="text" class="mui-numbox-input " placeholder="每盒单价" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>销售套盒数</label>
+						<input id="saleCount4" type="text" class="mui-numbox-input " placeholder="销售套盒数" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>销售总价</label>
+						<input id="totalPrice4" type="text" class="mui-numbox-input " placeholder="销售总价" readonly>
+					</div>
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>升级为三级代理</label>
+						<input id="isStepIn4" type="checkbox" onclick="return false">
+					</div>
+					<div class="mui-button-row">
+						<div class="mui-row">
+							<div class="mui-col-xs-6" style="padding: 0px 5px;">
+								<button id="cancel4" type="button" class="mui-btn mui-btn-blue mui-btn-block mui-icon" style="padding:  6px 12px;font-weight: bolder;font-size: 16px;">返回修改</button>
+							</div>
+							<div class="mui-col-xs-6" style="padding: 0px 5px;">
+								<button id="submit4" type="button" class="mui-btn mui-btn-blue mui-btn-block mui-icon" style="padding:  6px 12px;font-weight: bolder;font-size: 16px;">确认</button>
+							</div>
+						</div>
+						<!-- <button id="submit4" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button> -->
+					</div>
+				</form>
+			</div>
+
+			<div id="item3" class="mui-control-content">
+				<div class="title">
+					<div class="mui-row">
+						<div class="mui-col-xs-4">日期</div>
+						<div class="mui-col-xs-4">代理</div>
+						<div class="mui-col-xs-4">数量</div>
+					</div>
+				</div>
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="contain2" class="mui-table-view">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			//选择卡 切换事件
+
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#scroll',
+					up: {
+						auto: true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			var flag = false;
+
+			function pullupRefresh() {			
+				setTimeout(function() {
+					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+					if(flag){
+						console.log(tempJson.msgNoData);
+						mui.toast(tempJson.msgNoData);
+						return;
+					}
+					saleList();
+				}, 1500);
+			}
+			var pageIndex = 0;
+
+			function saleList() {
+				var userInfo = app.getSettings();
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "SellSel_Sell",
+					"ReqData": pageIndex
+				};
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+						} else {
+							var agentData = [];
+							if (data.RetFlag < pageIndex * 10) {
+								flag = true;
+							}
+							if (data.RetData.length == 0) {
+								flag = true;
+								if(pageIndex>1){
+								mui.toast(tempJson.msgNoData);
+								}
+								return;
+							}
+							var table = document.getElementById('contain2');
+							for (var i = 0; i < data.RetData.length; i++) {
+								agentData.push({
+									date: data.RetData[i].CreateTime,
+									agent: data.RetData[i].UserInfo,
+									level: data.RetData[i].UserLevel
+								});
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								var div = document.createElement('div');
+								div.className = 'mui-row';
+								var titleHtml = "";
+
+								titleHtml += '	<div class="mui-col-xs-4">' +
+									'		<b>' + data.RetData[i].CreateTime + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-4">' +
+									'		<b>' + data.RetData[i].UserInfo + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-4">' +
+									'		<b>' + data.RetData[i].SellNum + '</b>' +
+									'	</div>';
+
+								div.innerHTML = titleHtml;
+								li.appendChild(div);
+								table.appendChild(li);
+							}
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast("销售记录接口异常，联系管理员(SellSel_Sell)");
+					}
+				});
+				pageIndex++;
+			}
+			(function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条
+
+				});
+
+				var userInfo = app.getSettings();
+				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
+				mui('#item2').off('tap', '#submit3');
+				mui('#item2').on('tap', '#submit3', function() {
+					if(mui('#salerID3')[0].value==''){
+						mui.toast("请输入必要信息！");
+						return;
+					}
+					var option = {
+						"UserID": mui("#salerID3")[0].value,
+						"SellNum": 0,
+						"UpLevel": 3
+					};
+					submitSale(option);
+				});
+				mui('#item1').off('tap', '#cancel2');
+				mui('#item1').on('tap', '#cancel2', function() {
+					document.getElementById("submitForm").style.display = "block";
+					document.getElementById("makesureForm").style.display = "none";
+					document.getElementById("makesureForm").reset();
+				});
+				mui('#item2').off('tap', '#cancel4');
+				mui('#item2').on('tap', '#cancel4', function() {
+					document.getElementById("submitForm2").style.display = "block";
+					document.getElementById("makesureForm2").style.display = "none";
+					document.getElementById("makesureForm2").reset();
+				});
+				mui('#item2').off('tap', '#submit4');
+				mui('#item2').on('tap', '#submit4', function() {
+					var option = {
+						"UserID": mui("#salerID3")[0].value,
+						"SellNum": 0,
+						"UpLevel": 3
+					}
+					makesureSale(option);
+				});
+				mui('#item1').off('tap', '#submit');
+				mui('#item1').on('tap', '#submit', function() {
+					if(mui('#salerID')[0].value==''||mui('#saleCount')[0].value==''){
+						mui.toast("请输入必要信息！");
+						return;
+					}
+					var option = {
+						"UserID": mui("#salerID")[0].value,
+						"SellNum": mui("#saleCount")[0].value,
+						"UpLevel": 0
+					};
+					submitSale(option);
+				});
+				mui('#item1').off('tap', '#submit2');
+				mui('#item1').on('tap', '#submit2', function() {
+					var option = {
+						"UserID": mui("#salerID")[0].value,
+						"SellNum": mui("#saleCount")[0].value,
+						"UpLevel": 0
+					}
+					makesureSale(option);
+				});
+
+				function makesureSale() {
+					var option = arguments[0];
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "SellAdd_2",
+						"ReqData": option
+					};
+					var msg=tempJson.msgSale;
+					if(option.SellNum==0){
+						msg=tempJson.msgSaleLevel;
+					}
+					jqAjax(data, msg, init);
+				}
+
+				function submitSale() {
+					var option = arguments[0];
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "SellAdd_1",
+						"ReqData": option
+					};
+					$.ajax({
+						async: true, //表示请求是否异步处理
+						timeout: 50000,
+						type: "post", //请求类型
+						url: config.url, //请求的 URL地址
+						data: JSON.stringify(data),
+						contentType: "application/json",
+						dataType: "json", //返回的数据类型
+						success: function(data) {
+							document.activeElement.blur();
+							console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+							if (data.RetFlag < 0) {
+								mui.toast(data.RetInfo);
+							} else {
+								var option = data.RetData[0];
+								console.log(option.UserLevel);
+								if (option.UpLevel == 3) {
+									document.getElementById("submitForm2").style.display = "none";
+									document.getElementById("makesureForm2").style.display = "block";
+									mui("#salerID4")[0].value = option.UserID || '';
+									mui("#salerName4")[0].value = option.FullName || '';
+									mui("#price4")[0].value = option.SellPrice || '';
+									mui("#saleCount4")[0].value = option.SellNum || '';
+									mui("#totalPrice4")[0].value = option.SellSum || '';
+									mui("#salerLevel4")[0].value = option.UserLevel;
+									mui("#isStepIn4")[0].checked = option.UpLevel == 3 ? true : false;
+								} else {
+									document.getElementById("submitForm").style.display = "none";
+									document.getElementById("makesureForm").style.display = "block";
+									mui("#salerID2")[0].value = option.UserID || '';
+									mui("#salerName2")[0].value = option.FullName || '';
+									mui("#price2")[0].value = option.SellPrice || '';
+									mui("#saleCount2")[0].value = option.SellNum || '';
+									mui("#totalPrice2")[0].value = option.SellSum || '';
+									mui("#salerLevel2")[0].value = option.UserLevel;
+									mui("#isStepIn2")[0].checked = option.UpLevel == 3 ? true : false;
+								}
+							}
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+							mui.toast("请求接口异常，请联系管理员（SellAdd_1）");
+						}
+					});
+				}
+
+				function init() {
+					document.getElementById("submitForm").style.display = "block";
+					document.getElementById("makesureForm").style.display = "none";
+					document.getElementById("submitForm").reset();
+					document.getElementById("makesureForm").reset();
+
+					document.getElementById("submitForm2").style.display = "block";
+					document.getElementById("makesureForm2").style.display = "none";
+					document.getElementById("submitForm2").reset();
+					document.getElementById("makesureForm2").reset();
+					
+					var main=plus.webview.currentWebview().parent();
+					mui.fire(main, 'refresh'); 
+
+					console.log("init");
+					pageIndex = 0;
+					flag = false;
+					var table = document.getElementById('contain2');
+					table.innerHTML = "";
+					pullupRefresh();
+				}
+
+				function jqAjax() {
+					//var jq = jQuery.noConflict();
+					var arg = arguments;
+					$.ajax({
+						async: true, //表示请求是否异步处理
+						timeout: 50000,
+						type: "post", //请求类型
+						url: config.url, //请求的 URL地址
+						data: JSON.stringify(arg[0]),
+						contentType: "application/json",
+						dataType: "json", //返回的数据类型
+						success: function(data) {
+							document.activeElement.blur();
+							console.log(JSON.stringify(arg)); //在控制台打印服务器端返回的数据
+							document.getElementById('submit').setAttribute("enabled", true);
+							if (data.RetFlag < 0) {
+								mui.toast(data.RetInfo);
+								return;
+							} else {
+								//console.log(JSON.stringify(arg[1]));
+								mui.toast(arg[1]);
+								if (typeof arg[2] === "function") {
+									//调用它，既然我们已经确定了它是可调用的
+									callback = arg[2];
+									callback();
+								}
+							}
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+							mui.toast("请求接口异常，请联系管理员（" + arg[0].ReqType + "）");
+						}
+					});
+				}
+			})(mui);
+		</script>
+	</body>
+</html>

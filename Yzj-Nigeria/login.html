@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="ui-page-login">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			.area {
+				margin: 20px auto 0px auto;
+			}
+			
+			.mui-input-group {
+				margin-top: 10px;
+			}
+			
+			.mui-input-group:first-child {
+				margin-top: 20px;
+			}
+			
+			.mui-input-group label {
+				width: 30%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~select,
+			.mui-input-row label~textarea {
+				width: 70%;
+			}
+			
+			.mui-checkbox input[type=checkbox],
+			.mui-radio input[type=radio] {
+				top: 6px;
+			}
+			
+			.mui-content-padded {
+				margin-top: 25px;
+			}
+			
+			.mui-btn {
+				padding: 10px;
+			}
+			
+			.link-area {
+				display: block;
+				margin-top: 25px;
+				text-align: center;
+			}
+			
+			.spliter {
+				color: #bbb;
+				padding: 0px 8px;
+			}
+			
+			.oauth-area {
+				position: absolute;
+				bottom: 20px;
+				left: 0px;
+				text-align: center;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.oauth-area .oauth-btn {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-size: 30px 30px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				margin: 0px 20px;
+				/*-webkit-filter: grayscale(100%); */
+				border: solid 1px #ddd;
+				border-radius: 25px;
+			}
+			
+			.oauth-area .oauth-btn:active {
+				border: solid 1px #aaa;
+			}
+			
+			.oauth-area .oauth-btn.disabled {
+				background-color: #ddd;
+			}
+			#slider{
+				height: 150px;
+			}
+			
+			#popover {
+				min-width: 282px;
+				
+				top: 50% !important;
+				margin-top: -150px;
+				left: 50% !important;
+				margin-left: -141px;
+				text-align: center;
+				vertical-align: middle;
+			}
+			
+			@media (min-width: 400px) {
+				#popover {
+					width: 80%;
+					margin-left: -40%;
+				}
+			}
+			
+			.mui-popover .mui-popover-arrow {
+				display: none !important;
+			}
+			
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">login</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=575b36d70d3b5bb5a1d726fe06d2d523/a6efce1b9d16fdfad03ef192ba8f8c5494ee7b7f.jpg">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=575b36d70d3b5bb5a1d726fe06d2d523/a6efce1b9d16fdfad03ef192ba8f8c5494ee7b7f.jpg">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=10da86d6df43ad4bb92e40c0b2035a89/03087bf40ad162d93b3a196f1fdfa9ec8b13cde9.jpg">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="https://ss0.baidu.com/7Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=575b36d70d3b5bb5a1d726fe06d2d523/a6efce1b9d16fdfad03ef192ba8f8c5494ee7b7f.jpg">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+			<div id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>Account</label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="Account">
+				</div>
+				<div class="mui-input-row">
+					<label>Password</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="password">
+				</div>
+			</div>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">Submit</button>
+				<div class="link-area"><a id='reg'>Register</a>
+					<!-- <span class="spliter">|</span> <a id='forgetPassword'>忘记密码</a> -->
+				</div>
+			</div>
+			<div id="popover" class="mui-popover">
+				<a>
+					<span class="mui-spinner"></span>
+				</a>
+				<h4>Downloading the latest version</h4>
+			</div>
+		</div>
+		<script src="js/jquery.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.enterfocus.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/install.js"></script>
+		<script src="js/sha1.js"></script>
+		<script>
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 2000 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+
+			//(function($, doc,jq) {
+			mui.init({
+				statusBarBackground: '#f00'
+			});
+			var firsts = null;
+			mui.back = function back() {
+				//首次按键，提示‘再按一次退出应用’
+				if (!firsts) {
+					firsts = new Date().getTime();
+					mui.toast('Press once more to exit the application');
+					setTimeout(function() {
+						firsts = null;
+					}, 2000);
+				} else {
+					if (new Date().getTime() - firsts < 1000) {
+						plus.runtime.quit();
+					}
+				}
+			}
+
+			window.onload = function() {
+				var toMain = function() {
+					var arg = arguments[0];
+					console.log(JSON.stringify(arg));
+					//使用定时器的原因：
+					//可能执行太快，main页面loaded事件尚未触发就执行自定义事件，此时必然会失败
+					var id = setInterval(function() {
+						clearInterval(id);
+						mui.openWindow({
+							url: 'main.html',
+							id: 'main.html',
+							extras: {
+								userInfo: arg
+							}
+						});
+						app.setSettings(arg);
+					}, 20);
+				};
+				var loginButton = document.getElementById('login');
+				var reg = document.getElementById("reg");
+				loginButton.addEventListener('tap', function(event) {
+					//$.toast($('#account')[0].value);
+					var data = {
+						"ReqKey": "basoft_ws",
+						"ReqPwd": "basoft_wspwd",
+						"ReqSys": config.reqSys,
+						"ReqType": "AppLogin",
+						"ReqData": {
+							"UserName": mui('#account')[0].value,
+							"PwdLogin": hex_sha1(mui('#password')[0].value)
+						}
+					};
+
+					var jq = jQuery.noConflict();
+					jq.ajax({
+						async: true, //表示请求是否异步处理
+						timeout: 50000,
+						type: "post", //请求类型
+						url: config.url, //请求的 URL地址
+						data: JSON.stringify(data),
+						contentType: "application/json",
+						dataType: "json", //返回的数据类型
+						success: function(data) {
+							aa = data;
+							console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+							if (data.RetFlag < 0) {
+								mui.toast(data.RetInfo);
+							} else {
+								toMain(data.RetData[0]);
+							}
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+							//alert(data.result);
+						}
+					});
+				});
+				reg.addEventListener('tap', function(event) {
+					mui.openWindow({
+						url: 'reg.html',
+						id: 'reg',
+						preload: true,
+						show: {
+							aniShow: 'pop-in'
+						},
+						styles: {
+							popGesture: 'hide'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+			};
+
+
+			//}(mui, document,$));
+			//引导页
+			mui.plusReady(function() {
+				//player();
+				//读取本地存储，检查是否为首次启动
+				var showGuide = plus.storage.getItem("lauchFlag");
+				//			console.log(showGuide);
+				//仅支持竖屏显示
+				plus.screen.lockOrientation("portrait-primary");
+				if (showGuide) {
+					//有值，说明已经显示过了，无需显示；
+					//关闭splash页面；
+					plus.navigator.closeSplashscreen();
+					plus.navigator.setFullscreen(false);
+				} else {
+					//显示启动导航
+					mui.openWindow({
+						id: 'guide',
+						url: 'guide.html',
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: 'none'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
+			});
+			
+		</script>
+	</body>
+
+</html>
