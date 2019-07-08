@@ -101,21 +101,21 @@
 						}
 						var  re= /^[a-zA-z]\w{3,15}$/;
 						if(!re.test(accountBox.value)){
-							mui.toast("账号由字母和数字组成，且以字母开头，长度不能小于6")
+							mui.toast("Accounts are made up of letters and numbers, beginning with letters and not less than 6 in length.")
 							return ;
 						}
 						if(accountBox.value.length<6||passwordBox.value.length<6){
-							mui.toast("账号或密码不应小于6位数")
+							mui.toast("Account or password should not be less than 6 digits")
 							return;
 						}
 						var passwordConfirm = passwordConfirmBox.value;
 						console.log("passwordConfirm："+passwordConfirm+"   password:"+passwordBox.value);
 						if (passwordConfirm != passwordBox.value) {
-							plus.nativeUI.toast('密码两次输入不一致');
+							plus.nativeUI.toast('Two inconsistencies in password input');
 							return;
 						}
 						if(isNaN(regInfoCheck.IntroID)||isNaN(regInfoCheck.IntroVC)){
-							mui.toast("推荐人ID或推荐人验证码不合法");
+							mui.toast("Recommender ID or Validation Code is not valid");
 							return;
 						}						
 						var regInfo={
