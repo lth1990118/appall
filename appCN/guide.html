@@ -188,8 +188,17 @@
 				</div>
 			</div>		
 		</div>
+		<script src="js/jquery.js"></script>
 		<script src="js/mui.min.js"></script>
+		<script src="js/data.js"></script>
+		<script src="js/config.js"></script>
 		<script>
+			function initHTML(){
+				$("#close").text(tempJson.guide.close[config.reqSys]);
+			}
+			window.onload = function() {
+				initHTML();
+			}
 			mui.back = function() {};
 			mui.plusReady(function() {
 // 				if(mui.os.ios){

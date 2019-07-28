@@ -116,7 +116,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">登录</h1>
+			<h1 class="mui-title" id="header"></h1>
 		</header>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider">
@@ -153,11 +153,11 @@
 			</div>
 			<div id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
-					<label>账号</label>
+					<label id="accountLabel">账号</label>
 					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
 				</div>
 				<div class="mui-input-row">
-					<label>密码</label>
+					<label id="passwordLabel">密码</label>
 					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
 			</div>
@@ -171,7 +171,7 @@
 				<a>
 					<span class="mui-spinner"></span>
 				</a>
-				<h4>正在下载最新版本</h4>
+				<h4 id="download">正在下载最新版本</h4>
 			</div>
 		</div>
 		<script src="js/jquery.js"></script>
@@ -181,6 +181,7 @@
 		<script src="js/config.js"></script>
 		<script src="js/install.js"></script>
 		<script src="js/sha1.js"></script>
+		<script src="js/data.js"></script>
 		<script>
 			var gallery = mui('.mui-slider');
 			gallery.slider({
@@ -206,8 +207,17 @@
 					}
 				}
 			}
-
+			function initHTML(){
+				$("#header").text(tempJson.login.header[config.reqSys]);
+				$("#login").text(tempJson.login.login[config.reqSys]);
+				$("#accountLabel").text(tempJson.login.accountLabel[config.reqSys]);
+				$("#account").attr("placeholder",tempJson.login.accountPL[config.reqSys]);
+				$("#passwordLabel").text(tempJson.login.passwordLabel[config.reqSys]);
+				$("#password").attr("placeholder",tempJson.login.passwordPL[config.reqSys]);
+				$("#reg").text(tempJson.login.reg[config.reqSys]);
+			}
 			window.onload = function() {
+				initHTML();
 				var toMain = function() {
 					var arg = arguments[0];
 					console.log(JSON.stringify(arg));

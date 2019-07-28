@@ -39,28 +39,28 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">注册</h1>
+			<h1 class="mui-title" id="header">注册</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-group">
 				<div class="mui-input-row">
-					<label>推荐人ID：</label>
+					<label id="IntroIDLabel">推荐人ID：</label>
 					<input id='IntroID' type="number" class="mui-numbox-input mui-input-clear" data-numbox-min=0 placeholder="请输入推荐人ID">
 				</div>
 				<div class="mui-input-row">
-					<label>验证码：</label>
+					<label id="VerifyCodeLabel">验证码：</label>
 					<input id='VerifyCode' type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入验证码">
 				</div>
 				<div class="mui-input-row">
-					<label>登录名：</label>
+					<label id="UserNameLabel">登录名：</label>
 					<input id='UserName' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
 				</div>
 				<div class="mui-input-row">
-					<label>登录密码：</label>
+					<label id="PwdLoginLabel">登录密码：</label>
 					<input id='PwdLogin' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
 				<div class="mui-input-row">
-					<label>确认密码：</label>
+					<label id="PwdLoginConfirmLabel">确认密码：</label>
 					<input id='PwdLoginConfirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
 				</div>
 			</div>
@@ -74,7 +74,26 @@
 		<script src="js/jquery.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/sha1.js"></script>
+		<script src="js/data.js"></script>
 		<script>
+			function initHTML(){
+				$("#header").text(tempJson.reg.header[config.reqSys]);
+				$("#IntroIDLabel").text(tempJson.reg.IntroIDLabel[config.reqSys]);
+				$("#IntroID").attr("placeholder",tempJson.reg.IntroIDPL[config.reqSys]);
+				$("#VerifyCodeLabel").text(tempJson.reg.VerifyCodeLabel[config.reqSys]);
+				$("#VerifyCode").attr("placeholder",tempJson.reg.VerifyCodePL[config.reqSys]);
+				$("#UserNameLabel").text(tempJson.reg.UserNameLabel[config.reqSys]);
+				$("#UserName").attr("placeholder",tempJson.reg.UserNamePL[config.reqSys]);
+				$("#PwdLoginLabel").text(tempJson.reg.PwdLoginLabel[config.reqSys]);
+				$("#PwdLogin").attr("placeholder",tempJson.reg.PwdLoginPL[config.reqSys]);
+				$("#PwdLoginConfirmLabel").text(tempJson.reg.PwdLoginConfirmLabel[config.reqSys]);
+				$("#PwdLoginConfirm").attr("placeholder",tempJson.reg.PwdLoginConfirmPL[config.reqSys]);
+				
+				$("#reg").text(tempJson.reg.reg[config.reqSys]);
+			}
+			window.onload = function() {
+				initHTML();
+			}
 			(function($, doc) {
 				$.init();
 				$.plusReady(function() {
