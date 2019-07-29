@@ -26,7 +26,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style></a>
-			<h1 class="mui-title" style="color: #000000;">头像</h1>
+			<h1 class="mui-title" style="color: #000000;" id="header">头像</h1>
 			<a id="moreMenus" class="mui-icon mui-icon-compose mui-pull-right" style="color:#007aff;font-weight: bold;"></a>
 		</header>
 		<div class="mui-content">
@@ -53,7 +53,19 @@
 		<script type="text/javascript" src="js/plugins/cropper/js/cropper.min.js"></script>
 		<script src="js/config.js"></script>
 			<script src="js/app.js"></script>
+			<script src="js/data.js"></script>
 		<script type="text/javascript" charset="utf-8">
+			function initHTML(){
+				$("#header").text(tempJson.head.header[config.reqSys]);
+				$("#scaleX_id").text(tempJson.head.scaleX_id[config.reqSys]);				
+				$("#scaleY_id").text(tempJson.head.scaleY_id[config.reqSys]);
+				$("#rotateMax_id").text(tempJson.head.rotateMax_id[config.reqSys]);
+				$("#confirm_id").text(tempJson.head.confirm_id[config.reqSys]);
+			
+			}
+			window.onload = function() {
+				initHTML();
+			}
 			mui.init();
 			var userInfo={};
 			mui.plusReady(function() {
@@ -66,15 +78,15 @@
 				document.getElementById("moreMenus").addEventListener("tap", function() {
 					var editButtons = new Array();
 					editButtons.push({
-						title: "拍照上传",
+						title: tempJson.head.photo[config.reqSys],
 						style: "default"
 					});
 					editButtons.push({
-						title: "从相册选择",
+						title: tempJson.head.picture[config.reqSys],
 						style: "default"
 					});
 					plus.nativeUI.actionSheet({
-						cancel: "取消",
+						cancel: tempJson.head.cancel[config.reqSys],
 						buttons: editButtons
 					}, function(e) {
 						var index = e.index;
@@ -157,7 +169,7 @@
 					success: function(data) {
 						console.log(JSON.stringify(data));
 						if (data.RetFlag == 0) {
-							mui.toast("上传成功!");
+							mui.toast(tempJson.head.success[config.reqSys]);
 							//document.getElementById("imagePath_div").innerText = rootPath + "/" + data.message + ".image";
 							return;
 						}
@@ -166,7 +178,7 @@
 						console.log(JSON.stringify(a));
 						console.log(b);
 						console.log(c);
-						mui.toast("上传头像出现错误，请稍后再试!");
+						mui.toast(tempJson.head.error[config.reqSys]);
 					}
 				});
 			}
@@ -198,7 +210,7 @@
 				plus.gallery.pick(function(path) {
 					loadImage(path);
 				}, function(e) {
-					mui.toast("没有选择图片.");
+					mui.toast(tempJson.head.noPic[config.reqSys]);
 				});
 			}
 
