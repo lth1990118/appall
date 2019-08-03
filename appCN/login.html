@@ -21,13 +21,13 @@
 			}
 			
 			.mui-input-group label {
-				width: 22%;
+				width: 30%;
 			}
 			
 			.mui-input-row label~input,
 			.mui-input-row label~select,
 			.mui-input-row label~textarea {
-				width: 78%;
+				width: 70%;
 			}
 			
 			.mui-checkbox input[type=checkbox],
@@ -117,6 +117,10 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title" id="header"></h1>
+			<a id="moreMenus" class="mui-pull-right" style="height: 44px; color:#fff;font-weight: bold;background-color: #007aff;border-radius:3px;padding: 2px;">
+				<b style="font-size: 12px;">语言</b><br/>
+				<b style="font-size: 12px;">Langue</b>
+			</a>
 		</header>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider">
@@ -174,6 +178,7 @@
 				<h4 id="download">正在下载最新版本</h4>
 			</div>
 		</div>
+		
 		<script src="js/jquery.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/mui.enterfocus.js"></script>
@@ -181,7 +186,8 @@
 		<script src="js/config.js"></script>
 		<script src="js/install.js"></script>
 		<script src="js/sha1.js"></script>
-		<script src="js/data.js"></script>
+		<script src="js/data.js"></script>		
+		<script src="js/app.js"></script>
 		<script>
 			var gallery = mui('.mui-slider');
 			gallery.slider({
@@ -208,15 +214,22 @@
 				}
 			}
 			function initHTML(){
+				var $ = jQuery.noConflict();
+				//console.log($);
+				config.reqSys=app.getLanguage().language;
 				$("#header").text(tempJson.login.header[config.reqSys]);
+				console.log(config.reqSys);
+				//console.log($("#header").text());
 				$("#login").text(tempJson.login.login[config.reqSys]);
 				$("#accountLabel").text(tempJson.login.accountLabel[config.reqSys]);
 				$("#account").attr("placeholder",tempJson.login.accountPL[config.reqSys]);
 				$("#passwordLabel").text(tempJson.login.passwordLabel[config.reqSys]);
 				$("#password").attr("placeholder",tempJson.login.passwordPL[config.reqSys]);
 				$("#reg").text(tempJson.login.reg[config.reqSys]);
+				
 			}
 			window.onload = function() {
+				
 				initHTML();
 				var toMain = function() {
 					var arg = arguments[0];
@@ -292,37 +305,62 @@
 				});
 			};
 
-
-			//}(mui, document,$));
+			
 			//引导页
 			mui.plusReady(function() {
-				//player();
-				//读取本地存储，检查是否为首次启动
-				var showGuide = plus.storage.getItem("lauchFlag");
-				//			console.log(showGuide);
-				//仅支持竖屏显示
-				plus.screen.lockOrientation("portrait-primary");
-				if (showGuide) {
-					//有值，说明已经显示过了，无需显示；
-					//关闭splash页面；
-					plus.navigator.closeSplashscreen();
-					plus.navigator.setFullscreen(false);
-				} else {
-					//显示启动导航
-					mui.openWindow({
-						id: 'guide',
-						url: 'guide.html',
-						styles: {
-							popGesture: "none"
-						},
-						show: {
-							aniShow: 'none'
-						},
-						waiting: {
-							autoShow: false
-						}
+				document.getElementById("moreMenus").addEventListener("tap", function() {
+					var editButtons = new Array();
+					editButtons.push({
+						title: tempJson.common.CN[config.reqSys],
+						style: "default"
 					});
-				}
+					editButtons.push({
+						title: tempJson.common.FR[config.reqSys],
+						style: "default"
+					});
+					editButtons.push({
+						title: tempJson.common.EN[config.reqSys],
+						style: "default"
+					});
+					console.log(config.reqSys);
+					console.log(tempJson.common.CN[config.reqSys]);
+					console.log(JSON.stringify(editButtons));
+					plus.nativeUI.actionSheet({
+						cancel: tempJson.head.cancel[config.reqSys],
+						buttons: editButtons
+					}, function(e) {
+						var index = e.index;
+						console.log(index);
+						var obj={};
+						switch (index) {
+							case 1:
+								obj={
+									language:"CN"
+								};
+								
+								break;
+							case 2:
+								obj={
+									language:"FR"
+								};
+								break;
+							case 3:
+								obj={
+									language:"EN"
+								};
+								break;
+							default:
+								obj=app.getLanguage();
+								break;
+						}
+						
+						console.log(JSON.stringify(obj));
+						app.setLanguage(obj);
+						
+						initHTML();
+					});
+				});
+				
 			});
 			
 		</script>

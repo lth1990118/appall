@@ -73,7 +73,8 @@
 				</div>
 			</div>
 		</div>
-
+		
+		<script src="../js/app.js"></script>
 		<script>
 			function initHTML(){
 				$("#addAgent").text(tempJson.agent.addAgent[config.reqSys]);
@@ -93,8 +94,10 @@
 				$("#submit").text(tempJson.common.submit[config.reqSys]);
 			}
 			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
 				initHTML();
 			}
+	
 			mui.init({
 				swipeBack: true, //启用右滑关闭功能
 				pullRefresh: {
@@ -113,7 +116,7 @@
 					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
 					if (flag) {
 						console.log(tempJson.msgNoData);
-						mui.toast(tempJson.msgNoData);
+						mui.toast(tempJson.msgNoData[config.reqSys]);
 						return;
 					}
 					agentList();

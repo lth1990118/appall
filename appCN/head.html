@@ -53,7 +53,8 @@
 		<script type="text/javascript" src="js/plugins/cropper/js/cropper.min.js"></script>
 		<script src="js/config.js"></script>
 			<script src="js/app.js"></script>
-			<script src="js/data.js"></script>
+			<script src="js/data.js"></script>		
+		<script src="js/app.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			function initHTML(){
 				$("#header").text(tempJson.head.header[config.reqSys]);
@@ -64,6 +65,7 @@
 			
 			}
 			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
 				initHTML();
 			}
 			mui.init();

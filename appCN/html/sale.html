@@ -30,9 +30,9 @@
 	<body>
 
 		<div id="segmentedControl" class="mui-segmented-control">
-			<a class="mui-control-item mui-active" href="#item1">添加销售</a>
-			<a class="mui-control-item" href="#item2">升级代理</a>
-			<a class="mui-control-item" href="#item3">销售记录</a>
+			<a class="mui-control-item mui-active" href="#item1" id="item1Label">添加销售</a>
+			<a class="mui-control-item" href="#item2" id="item2Label">升级代理</a>
+			<a class="mui-control-item" href="#item3" id="item3Label">销售记录</a>
 		</div>
 
 		<div class="mui-slider-group">
@@ -40,11 +40,11 @@
 			<div id="item1" class="mui-control-content mui-active">
 				<form id="submitForm" class="mui-input-group">
 					<div class="mui-input-row">
-						<label>消费代理ID</label>
+						<label id="salerIDLabel">消费代理ID</label>
 						<input id="salerID" type="number" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID">
 					</div>
 					<div class="mui-input-row">
-						<label>销售套盒数</label>
+						<label id="saleCountLabel">销售套盒数</label>
 						<input id="saleCount" type="number" class="mui-numbox-input mui-input-clear" placeholder="销售套盒数">
 					</div>
 
@@ -55,31 +55,31 @@
 				<form id="makesureForm" class="mui-input-group" style="display: none">
 					<!-- display: none; -->
 					<div class="mui-input-row">
-						<label>消费代理ID</label>
-						<input id="salerID2" type="text" class="mui-numbox-input" placeholder="消费代理ID" readonly>
+						<label id="salerID2Label">消费代理ID</label>
+						<input id="salerID2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>消费代理姓名</label>
-						<input id="salerName2" type="text" class="mui-numbox-input" placeholder="消费代理姓名" readonly>
+						<label id="salerName2Label">消费代理姓名</label>
+						<input id="salerName2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>消费代理级别</label>
-						<input id="salerLevel2" type="text" class="mui-numbox-input" placeholder="消费代理级别" readonly>
+						<label id="salerLevel2Label">消费代理级别</label>
+						<input id="salerLevel2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>每盒单价</label>
-						<input id="price2" type="text" class="mui-numbox-input" placeholder="每盒单价" readonly>
+						<label id="price2Label">每盒单价</label>
+						<input id="price2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>销售套盒数</label>
-						<input id="saleCount2" type="text" class="mui-numbox-input" placeholder="销售套盒数" readonly>
+						<label id="saleCount2Label">销售套盒数</label>
+						<input id="saleCount2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>销售总价</label>
-						<input id="totalPrice2" type="text" class="mui-numbox-input" placeholder="销售总价" readonly>
+						<label id="totalPrice2Label">销售总价</label>
+						<input id="totalPrice2" type="text" class="mui-numbox-input" placeholder="" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left" style="display: none;">
-						<label>升级为三级代理</label>
+						<label id="isStepIn2Label">升级为三级代理</label>
 						<input id="isStepIn2" name="" type="checkbox" onclick="return false">
 					</div>
 					<div class="mui-button-row">
@@ -100,7 +100,7 @@
 			<div id="item2" class="mui-control-content ">
 				<form id="submitForm2" class="mui-input-group">
 					<div class="mui-input-row">
-						<label>消费代理ID</label>
+						<label id="salerID3Label">消费代理ID</label>
 						<input id="salerID3" type="number" class="mui-numbox-input mui-input-clear" placeholder="消费代理ID">
 					</div>
 					<div class="mui-button-row">
@@ -110,31 +110,31 @@
 				<form id="makesureForm2" class="mui-input-group" style="display: none;">
 					<!-- display: none; -->
 					<div class="mui-input-row">
-						<label>消费代理ID</label>
-						<input id="salerID4" type="text" class="mui-numbox-input " placeholder="消费代理ID" readonly>
+						<label id="salerID4Label">消费代理ID</label>
+						<input id="salerID4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>消费代理姓名</label>
-						<input id="salerName4" type="text" class="mui-numbox-input " placeholder="消费代理姓名" readonly>
+						<label id="salerName4Label">消费代理姓名</label>
+						<input id="salerName4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>消费代理级别</label>
-						<input id="salerLevel4" type="text" class="mui-numbox-input " placeholder="消费代理级别" readonly>
+						<label id="salerLevel4Label">消费代理级别</label>
+						<input id="salerLevel4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>每盒单价</label>
-						<input id="price4" type="text" class="mui-numbox-input " placeholder="每盒单价" readonly>
+						<label id="price4Label">每盒单价</label>
+						<input id="price4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>销售套盒数</label>
-						<input id="saleCount4" type="text" class="mui-numbox-input " placeholder="销售套盒数" readonly>
+						<label id="saleCount4Label">销售套盒数</label>
+						<input id="saleCount4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row">
-						<label>销售总价</label>
-						<input id="totalPrice4" type="text" class="mui-numbox-input " placeholder="销售总价" readonly>
+						<label id="totalPrice4Label">销售总价</label>
+						<input id="totalPrice4" type="text" class="mui-numbox-input " placeholder="" readonly>
 					</div>
 					<div class="mui-input-row mui-checkbox mui-left">
-						<label>升级为三级代理</label>
+						<label id="isStepIn4Label">升级为三级代理</label>
 						<input id="isStepIn4" type="checkbox" onclick="return false">
 					</div>
 					<div class="mui-button-row">
@@ -154,9 +154,9 @@
 			<div id="item3" class="mui-control-content">
 				<div class="title">
 					<div class="mui-row">
-						<div class="mui-col-xs-4">日期</div>
-						<div class="mui-col-xs-4">代理</div>
-						<div class="mui-col-xs-4">数量</div>
+						<div class="mui-col-xs-4" id="date">日期</div>
+						<div class="mui-col-xs-4" id="agent">代理</div>
+						<div class="mui-col-xs-4" id="num">数量</div>
 					</div>
 				</div>
 				<div id="scroll" class="mui-scroll-wrapper">
@@ -169,16 +169,61 @@
 			</div>
 		</div>
 
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/jquery.js"></script>
 		<script>
-			//选择卡 切换事件
-
+			function initHTML(){
+				$("#item1Label").text(tempJson.sale.item1Label[config.reqSys]);
+				$("#item2Label").text(tempJson.sale.item1Label[config.reqSys]);
+				$("#item3Label").text(tempJson.sale.item1Label[config.reqSys]);
+				
+				$("#salerIDLabel").text(tempJson.sale.salerIDLabel[config.reqSys]);
+				$("#salerID").attr("placeholder",tempJson.sale.salerID[config.reqSys]);
+				$("#saleCountLabel").text(tempJson.sale.saleCountLabel[config.reqSys]);
+				$("#saleCount").attr("placeholder",tempJson.sale.saleCount[config.reqSys]);
+				
+				$("#salerID2Label").text(tempJson.sale.salerID2Label[config.reqSys]);
+				$("#salerName2Label").text(tempJson.sale.salerName2Label[config.reqSys]);
+				$("#salerLevel2Label").text(tempJson.sale.salerLevel2Label[config.reqSys]);
+				$("#price2Label").text(tempJson.sale.price2Label[config.reqSys]);
+				$("#saleCount2Label").text(tempJson.sale.saleCount2Label[config.reqSys]);
+				$("#totalPrice2Label").text(tempJson.sale.totalPrice2Label[config.reqSys]);
+				
+				$("#salerID3Label").text(tempJson.sale.salerID3Label[config.reqSys]);
+				$("#salerID3").attr("placeholder",tempJson.sale.salerID3[config.reqSys]);
+				$("#salerID4Label").text(tempJson.sale.salerID4Label[config.reqSys]);
+				$("#salerName4Label").text(tempJson.sale.salerName4Label[config.reqSys]);
+				$("#salerLevel4Label").text(tempJson.sale.salerLevel4Label[config.reqSys]);
+				$("#price4Label").text(tempJson.sale.price4Label[config.reqSys]);
+				$("#saleCount4Label").text(tempJson.sale.saleCount4Label[config.reqSys]);
+				$("#totalPrice4Label").text(tempJson.sale.totalPrice4Label[config.reqSys]);
+				$("#isStepIn4Label").text(tempJson.sale.isStepIn4Label[config.reqSys]);
+								
+				
+				$("#agent").text(tempJson.sale.agent[config.reqSys]);
+				$("#date").text(tempJson.sale.date[config.reqSys]);
+				$("#num").text(tempJson.sale.num[config.reqSys]);
+				
+				$("#submit").text(tempJson.common.submit[config.reqSys]);
+				$("#submit2").text(tempJson.common.submit[config.reqSys]);
+				$("#submit3").text(tempJson.common.submit[config.reqSys]);
+				$("#submit4").text(tempJson.common.submit[config.reqSys]);
+				
+				$("#cancel4").text(tempJson.common.backToUpdate[config.reqSys]);
+				$("#cancel2").text(tempJson.common.backToUpdate[config.reqSys]);
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			}
 			mui.init({
 				swipeBack: true, //启用右滑关闭功能
 				pullRefresh: {
 					container: '#scroll',
 					up: {
 						auto: true,
-						contentrefresh: '正在加载...',
+						contentrefresh: tempJson.common.loading[config.reqSys],
 						callback: pullupRefresh
 					}
 				}
@@ -262,7 +307,7 @@
 					},
 					error: function(data) {
 						console.log(JSON.stringify(data));
-						mui.toast("销售记录接口异常，联系管理员(SellSel_Sell)");
+						mui.toast(tempJson.common.error[config.reqSys]+"(SellSel_Sell)");
 					}
 				});
 				pageIndex++;
@@ -278,7 +323,7 @@
 				mui('#item2').off('tap', '#submit3');
 				mui('#item2').on('tap', '#submit3', function() {
 					if(mui('#salerID3')[0].value==''){
-						mui.toast("请输入必要信息！");
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
 						return;
 					}
 					var option = {
@@ -312,7 +357,7 @@
 				mui('#item1').off('tap', '#submit');
 				mui('#item1').on('tap', '#submit', function() {
 					if(mui('#salerID')[0].value==''||mui('#saleCount')[0].value==''){
-						mui.toast("请输入必要信息！");
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
 						return;
 					}
 					var option = {
@@ -398,7 +443,7 @@
 						},
 						error: function(data) {
 							console.log(JSON.stringify(data));
-							mui.toast("请求接口异常，请联系管理员（SellAdd_1）");
+							mui.toast(tempJson.common.error[config.reqSys]+"（SellAdd_1）");
 						}
 					});
 				}
@@ -455,7 +500,7 @@
 						},
 						error: function(data) {
 							console.log(JSON.stringify(data));
-							mui.toast("请求接口异常，请联系管理员（" + arg[0].ReqType + "）");
+							mui.toast(tempJson.common.error[config.reqSys]+"（" + arg[0].ReqType + "）");
 						}
 					});
 				}

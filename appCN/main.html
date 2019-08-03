@@ -164,6 +164,10 @@
 				<span class="mui-icon-extra mui-icon-extra-class"></span>
 				<span class="mui-tab-label">我的信息</span>
 			</a>
+			<a class="mui-tab-item" style="display:none;" href="html/bind.html">
+				<span class="mui-icon-extra mui-icon-extra-class"></span>
+				<span class="mui-tab-label">绑定信息</span>
+			</a>
 		</nav>
 		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
 			<ul class="mui-table-view">
@@ -185,7 +189,8 @@
 		<script src="js/sha1.js"></script>
 
 		<script src="js/config.js"></script>
-		<script src="js/data.js"></script>
+		<script src="js/data.js"></script>		
+		<script src="js/app.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			mui('#parent').on('tap', 'img', function() {
@@ -221,6 +226,7 @@
 				$("#cancel").text(tempJson.main.cancel[config.reqSys]);
 			}
 			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
 				initHTML();
 				userInfo = app.getSettings();
 				console.log(JSON.stringify(userInfo));

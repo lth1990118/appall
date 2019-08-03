@@ -94,7 +94,21 @@
 		}
 		return callback(null, '新的随机密码已经发送到您的邮箱，请查收邮件。');
 	};
-
+	
+	/**
+	 * 应用本地配置语言
+	 **/
+	owner.setLanguage = function(Language) {
+		Language = Language || {};
+		localStorage.setItem('$Language', JSON.stringify(Language));
+	}
+	/**
+	 * 设置应用本地配置
+	 **/
+	owner.getLanguage = function() {
+		var settingsText = localStorage.getItem('$Language') || "{\"language\":\"FR\"}";
+		return JSON.parse(settingsText);
+	}
 	/**
 	 * 获取应用本地配置
 	 **/

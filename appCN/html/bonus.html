@@ -31,20 +31,20 @@
 	<body>
 
 		<div id="segmentedControl" class="mui-segmented-control">
-			<a class="mui-control-item mui-active" href="#item1">我要提现</a>
-			<a class="mui-control-item" href="#item2">我要转账</a>
-			<a class="mui-control-item" href="#item3">钱包记录</a>
+			<a class="mui-control-item mui-active" href="#item1" id="item1Label">我要提现</a>
+			<a class="mui-control-item" href="#item2" id="item2Label">我要转账</a>
+			<a class="mui-control-item" href="#item3" id="item3Label">钱包记录</a>
 		</div>
 		<div>
 
 			<div id="item1" class="mui-control-content mui-active">
 				<form class="mui-input-group">
 					<div class="mui-input-row">
-						<label>提现金额</label>
+						<label id="moneyLabel">提现金额</label>
 						<input id="money" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入提现金额">
 					</div>
 					<div class="mui-input-row">
-						<label>提现密码</label>
+						<label id="passwordLabel">提现密码</label>
 						<input id="password" type="password" class="mui-input-password" placeholder="请输入密码">
 					</div>
 
@@ -56,19 +56,19 @@
 			<div id="item2" class="mui-control-content ">
 				<form class="mui-input-group">
 					<div class="mui-input-row">
-						<label>转入代理ID</label>
+						<label id="payUserID2Label">转入代理ID</label>
 						<input id="payUserID2" name="payUserID" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转入代理ID">
 					</div>
 					<div class="mui-input-row">
-						<label>代理验证码</label>
+						<label id="payUserCode2Label">代理验证码</label>
 						<input id="payUserCode2" name="payUserCode" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转入代理验证码">
 					</div>
 					<div class="mui-input-row">
-						<label>转账金额</label>
+						<label id="money2Label">转账金额</label>
 						<input id="money2" name="money" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转帐金额">
 					</div>
 					<div class="mui-input-row">
-						<label>提现密码</label>
+						<label id="password2Label">提现密码</label>
 						<input id="password2" name="password" type="password" class="mui-input-clear mui-input-password" placeholder="请输入您的支付密码">
 					</div>
 					<div class="mui-button-row">
@@ -80,9 +80,9 @@
 			<div id="item3" class="mui-control-content">
 				<div class="title">
 					<div class="mui-row">
-						<div class="mui-col-xs-4">日期</div>
-						<div class="mui-col-xs-3">金额</div>
-						<div class="mui-col-xs-5">说明</div>
+						<div class="mui-col-xs-4"  id="date">日期</div>
+						<div class="mui-col-xs-3"  id="moneyList">金额</div>
+						<div class="mui-col-xs-5" id="desc">说明</div>
 					</div>
 				</div>
 				<div id="scroll" class="mui-scroll-wrapper">
@@ -94,15 +94,46 @@
 				</div>
 			</div>
 		</div>
-
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
 		<script>
+			function initHTML(){
+				$("#item1Label").text(tempJson.bonus.item1Label[config.reqSys]);
+				$("#item2Label").text(tempJson.bonus.item2Label[config.reqSys]);
+				$("#item3Label").text(tempJson.bonus.item3Label[config.reqSys]);
+								
+				$("#moneyLabel").text(tempJson.bonus.moneyLabel[config.reqSys]);
+				$("#money").attr("placeholder",tempJson.bonus.money[config.reqSys]);				
+				$("#passwordLabel").text(tempJson.bonus.passwordLabel[config.reqSys]);
+				$("#password").attr("placeholder",tempJson.bonus.password[config.reqSys]);
+				
+				$("#payUserID2Label").text(tempJson.bonus.payUserID2Label[config.reqSys]);
+				$("#payUserID2").attr("placeholder",tempJson.bonus.payUserID2[config.reqSys]);
+				$("#payUserCode2Label").text(tempJson.bonus.payUserCode2Label[config.reqSys]);
+				$("#payUserCode2").attr("placeholder",tempJson.bonus.payUserCode2[config.reqSys]);
+				$("#money2Label").text(tempJson.bonus.money2Label[config.reqSys]);
+				$("#money2").attr("placeholder",tempJson.bonus.money2[config.reqSys]);
+				$("#password2Label").text(tempJson.bonus.password2Label[config.reqSys]);
+				$("#password2").attr("placeholder",tempJson.bonus.password2[config.reqSys]);
+				
+				$("#date").text(tempJson.bonus.date[config.reqSys]);				
+				$("#moneyList").text(tempJson.bonus.moneyList[config.reqSys]);				
+				$("#desc").text(tempJson.bonus.desc[config.reqSys]);				
+				
+				$("#submit").text(tempJson.common.submit[config.reqSys]);
+				$("#submit2").text(tempJson.common.submit[config.reqSys]);
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			}
 			mui.init({
 				swipeBack: true, //启用右滑关闭功能
 				pullRefresh: {
 					container: '#scroll',
 					up: {
 						auto: true,
-						contentrefresh: '正在加载...',
+						contentrefresh: tempJson.common.loading[config.reqSys],
 						callback: pullupRefresh
 					}
 				}
@@ -186,7 +217,7 @@
 					},
 					error: function(data) {
 						console.log(JSON.stringify(data));
-						mui.toast("代理记录接口异常，联系管理员(BonusSel)");
+						mui.toast(tempJson.common.error[config.reqSys]+"(BonusSel)");
 					}
 				});
 				pageIndex++;
@@ -205,7 +236,7 @@
 				mui('#item1').off('tap', '#submit');
 				mui('#item1').on('tap', '#submit', function() {
 					if(mui('#money')[0].value==''||mui('#password')[0].value==''){
-						mui.toast("请输入必要信息！");
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
 						return;
 					}
 					var data = {
@@ -241,7 +272,7 @@
 				mui('#item2').off('tap', '#submit2');
 				mui('#item2').on('tap', '#submit2', function() {
 					if(mui('#money2')[0].value==''||mui('#password2')[0].value==''||mui('#payUserID2')[0].value==''||mui('#payUserCode2')[0].value==''){
-						mui.toast("请输入必要信息！");
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
 						return;
 					}
 					var data = {
@@ -303,7 +334,7 @@
 						},
 						error: function(data) {
 							console.log(JSON.stringify(data));
-							mui.toast("请求接口异常，请联系管理员（" + arg[0].ReqType + "）");
+							mui.toast(tempJson.common.error[config.reqSys]+"（" + arg[0].ReqType + "）");
 						}
 					});
 				}

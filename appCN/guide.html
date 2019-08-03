@@ -191,12 +191,14 @@
 		<script src="js/jquery.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/data.js"></script>
-		<script src="js/config.js"></script>
+		<script src="js/config.js"></script>		
+		<script src="js/app.js"></script>
 		<script>
 			function initHTML(){
 				$("#close").text(tempJson.guide.close[config.reqSys]);
 			}
 			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
 				initHTML();
 			}
 			mui.back = function() {};
