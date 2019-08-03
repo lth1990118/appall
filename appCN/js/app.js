@@ -106,7 +106,7 @@
 	 * 设置应用本地配置
 	 **/
 	owner.getLanguage = function() {
-		var settingsText = localStorage.getItem('$Language') || "{\"language\":\"FR\"}";
+		var settingsText = localStorage.getItem('$Language') || "{\"language\":\""+config.reqSys+"\"}";
 		return JSON.parse(settingsText);
 	}
 	/**
