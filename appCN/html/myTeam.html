@@ -139,7 +139,7 @@
 							mui.toast(data.RetInfo);
 						} else {
 							if(data.RetData.length==0){
-								mui.toast(tempJson.msgNoData);
+								mui.toast(tempJson.msgNoData[config.reqSys]);
 								return;
 							}			
 							var table = document.getElementById('contain2');

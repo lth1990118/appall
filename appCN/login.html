@@ -203,7 +203,7 @@
 				//首次按键，提示‘再按一次退出应用’
 				if (!firsts) {
 					firsts = new Date().getTime();
-					mui.toast('再按一次退出应用');
+					mui.toast(tempJson.common.exitMsg[config.reqSys]);
 					setTimeout(function() {
 						firsts = null;
 					}, 2000);

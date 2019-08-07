@@ -175,8 +175,8 @@
 		<script>
 			function initHTML(){
 				$("#item1Label").text(tempJson.sale.item1Label[config.reqSys]);
-				$("#item2Label").text(tempJson.sale.item1Label[config.reqSys]);
-				$("#item3Label").text(tempJson.sale.item1Label[config.reqSys]);
+				$("#item2Label").text(tempJson.sale.item2Label[config.reqSys]);
+				$("#item3Label").text(tempJson.sale.item3Label[config.reqSys]);
 				
 				$("#salerIDLabel").text(tempJson.sale.salerIDLabel[config.reqSys]);
 				$("#salerID").attr("placeholder",tempJson.sale.salerID[config.reqSys]);
@@ -234,8 +234,8 @@
 				setTimeout(function() {
 					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
 					if(flag){
-						console.log(tempJson.msgNoData);
-						mui.toast(tempJson.msgNoData);
+						console.log(tempJson.msgNoData[config.reqSys]);
+						mui.toast(tempJson.msgNoData[config.reqSys]);
 						return;
 					}
 					saleList();
@@ -272,7 +272,7 @@
 							if (data.RetData.length == 0) {
 								flag = true;
 								if(pageIndex>1){
-								mui.toast(tempJson.msgNoData);
+								mui.toast(tempJson.msgNoData[config.reqSys]);
 								}
 								return;
 							}

@@ -496,12 +496,12 @@ var tempJson = {
 		},
 		loginPassword:{
 			CN:"登录密码",
-			EN:"Password",
+			EN:"Login password",
 			FR:"Mot de passe"
 		},
 		cashPassword:{
 			CN:"提现密码",
-			EN:"Password",
+			EN:"Payment password",
 			FR:"Argent passe"
 		},
 		info:{
@@ -701,8 +701,8 @@ var tempJson = {
 	cashPassword:{
 		item1Label:{
 			CN:"提现密码",
-			EN:"Password",
-			FR:"Ajouter agent"
+			EN:"Payment password",
+			FR:"Withdrawal password"
 		},		
 		oldPasswordLabel:{
 			CN:"提现密码",
@@ -738,8 +738,8 @@ var tempJson = {
 	loginPassword:{
 		item1Label:{
 			CN:"登陆密码",
-			EN:"Password",
-			FR:"Password"
+			EN:"Login password",
+			FR:"Code d 'accès"
 		},		
 		oldPasswordLabel:{
 			CN:"登陆密码",
@@ -784,7 +784,7 @@ var tempJson = {
 			FR:"Compte"
 		},
 		BankNameLabel:{
-			CN:"开户银行名称",
+			CN:"开户银行",
 			EN:"Bank Name",
 			FR:"bancaire"
 		},

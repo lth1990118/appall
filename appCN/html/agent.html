@@ -115,7 +115,7 @@
 				setTimeout(function() {
 					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
 					if (flag) {
-						console.log(tempJson.msgNoData);
+						console.log(tempJson.msgNoData[config.reqSys]);
 						mui.toast(tempJson.msgNoData[config.reqSys]);
 						return;
 					}
@@ -158,7 +158,7 @@
 							if (data.RetData.length == 0) {
 								flag = true;
 								if (pageIndex > 1) {
-									mui.toast(tempJson.msgNoData);
+									mui.toast(tempJson.msgNoData[config.reqSys]);
 								}
 								return;
 							}
@@ -167,7 +167,7 @@
 							}
 							if (data.RetData.length == 0) {
 								flag = true;
-								mui.toast(tempJson.msgNoData);
+								mui.toast(tempJson.msgNoData[config.reqSys]);
 								return;
 							}
 							var table = document.getElementById('contain2');
@@ -243,7 +243,7 @@
 							"PwdLogin": hex_sha1(PwdLogin)
 						}
 					};
-					jqAjax(data, tempJson.msgAgent, init);
+					jqAjax(data, tempJson.msgAgent[config.reqSys], init);
 				});
 
 				function init() {

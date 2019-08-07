@@ -144,8 +144,8 @@
 				setTimeout(function() {
 					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
 					if (flag) {
-						console.log(tempJson.msgNoData);
-						mui.toast(tempJson.msgNoData);					
+						console.log(tempJson.msgNoData[config.reqSys]);
+						mui.toast(tempJson.msgNoData[config.reqSys]);					
 						return;
 					}
 					bonusList();
@@ -182,13 +182,13 @@
 							if (data.RetData.length == 0) {
 								flag = true;
 								if (pageIndex > 1) {
-									mui.toast(tempJson.msgNoData);
+									mui.toast(tempJson.msgNoData[config.reqSys]);
 								}
 								return;
 							}
 							var BonusIncomeData = [];
 							if (data.RetData.length == 0) {
-								mui.toast(tempJson.msgNoData);
+								mui.toast(tempJson.msgNoData[config.reqSys]);
 								return;
 							}
 							var table = document.getElementById('contain2');
@@ -251,7 +251,7 @@
 							"EUserVC": 0
 						}
 					};
-					jqAjax(data, tempJson.msgBonus, init);
+					jqAjax(data, tempJson.msgBonus[config.reqSys], init);
 				});
 
 				function init() {
@@ -287,7 +287,7 @@
 							"EUserVC": mui('#payUserCode2')[0].value
 						}
 					};
-					jqAjax(data, tempJson.msgBonusForOther, init2);
+					jqAjax(data, tempJson.msgBonusForOther[config.reqSys], init2);
 				});
 
 				function init2() {
