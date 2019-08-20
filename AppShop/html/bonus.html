@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>myBonus</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/sha1.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/icons-extra.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-scroll-wrapper {
+				top: 40px
+			}
+
+			.title {
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+
+			ul li {
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1" id="item1Label">我要提现</a>
+			<a class="mui-control-item" href="#item2" id="item2Label">我要转账</a>
+			<a class="mui-control-item" href="#item3" id="item3Label">钱包记录</a>
+		</div>
+		<div>
+
+			<div id="item1" class="mui-control-content mui-active">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label id="moneyLabel">提现金额</label>
+						<input id="money" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入提现金额">
+					</div>
+					<div class="mui-input-row">
+						<label id="passwordLabel">提现密码</label>
+						<input id="password" type="password" class="mui-input-password" placeholder="请输入密码">
+					</div>
+
+					<div class="mui-button-row">
+						<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+					</div>
+				</form>
+			</div>
+			<div id="item2" class="mui-control-content ">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label id="payUserID2Label">转入代理ID</label>
+						<input id="payUserID2" name="payUserID" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转入代理ID">
+					</div>
+					<div class="mui-input-row">
+						<label id="payUserCode2Label">代理验证码</label>
+						<input id="payUserCode2" name="payUserCode" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转入代理验证码">
+					</div>
+					<div class="mui-input-row">
+						<label id="money2Label">转账金额</label>
+						<input id="money2" name="money" type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入转帐金额">
+					</div>
+					<div class="mui-input-row">
+						<label id="password2Label">提现密码</label>
+						<input id="password2" name="password" type="password" class="mui-input-clear mui-input-password" placeholder="请输入您的支付密码">
+					</div>
+					<div class="mui-button-row">
+						<button id="submit2" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+					</div>
+				</form>
+			</div>
+
+			<div id="item3" class="mui-control-content">
+				<div class="title">
+					<div class="mui-row">
+						<div class="mui-col-xs-4"  id="date">日期</div>
+						<div class="mui-col-xs-3"  id="moneyList">金额</div>
+						<div class="mui-col-xs-5" id="desc">说明</div>
+					</div>
+				</div>
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="contain2" class="mui-table-view">
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+			function initHTML(){
+				$("#item1Label").text(tempJson.bonus.item1Label[config.reqSys]);
+				$("#item2Label").text(tempJson.bonus.item2Label[config.reqSys]);
+				$("#item3Label").text(tempJson.bonus.item3Label[config.reqSys]);
+								
+				$("#moneyLabel").text(tempJson.bonus.moneyLabel[config.reqSys]);
+				$("#money").attr("placeholder",tempJson.bonus.money[config.reqSys]);				
+				$("#passwordLabel").text(tempJson.bonus.passwordLabel[config.reqSys]);
+				$("#password").attr("placeholder",tempJson.bonus.password[config.reqSys]);
+				
+				$("#payUserID2Label").text(tempJson.bonus.payUserID2Label[config.reqSys]);
+				$("#payUserID2").attr("placeholder",tempJson.bonus.payUserID2[config.reqSys]);
+				$("#payUserCode2Label").text(tempJson.bonus.payUserCode2Label[config.reqSys]);
+				$("#payUserCode2").attr("placeholder",tempJson.bonus.payUserCode2[config.reqSys]);
+				$("#money2Label").text(tempJson.bonus.money2Label[config.reqSys]);
+				$("#money2").attr("placeholder",tempJson.bonus.money2[config.reqSys]);
+				$("#password2Label").text(tempJson.bonus.password2Label[config.reqSys]);
+				$("#password2").attr("placeholder",tempJson.bonus.password2[config.reqSys]);
+				
+				$("#date").text(tempJson.bonus.date[config.reqSys]);				
+				$("#moneyList").text(tempJson.bonus.moneyList[config.reqSys]);				
+				$("#desc").text(tempJson.bonus.desc[config.reqSys]);				
+				
+				$("#submit").text(tempJson.common.submit[config.reqSys]);
+				$("#submit2").text(tempJson.common.submit[config.reqSys]);
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			}
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#scroll',
+					up: {
+						auto: true,
+						contentrefresh: tempJson.common.loading[config.reqSys],
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			function pullupRefresh() {
+			
+				setTimeout(function() {
+					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+					if (flag) {
+						console.log(tempJson.msgNoData[config.reqSys]);
+						mui.toast(tempJson.msgNoData[config.reqSys]);					
+						return;
+					}
+					bonusList();
+				}, 1500);
+			}
+			var pageIndex = 0;
+			var flag = false;
+
+			function bonusList() {
+				var userInfo = app.getSettings();
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "WalletSel",
+					"ReqData": pageIndex
+				};
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+						} else {
+							if (data.RetFlag < pageIndex * 10) {
+								flag = true;
+							}
+							if (data.RetData.length == 0) {
+								flag = true;
+								if (pageIndex > 1) {
+									mui.toast(tempJson.msgNoData[config.reqSys]);
+								}
+								return;
+							}
+							var BonusIncomeData = [];
+							if (data.RetData.length == 0) {
+								mui.toast(tempJson.msgNoData[config.reqSys]);
+								return;
+							}
+							var table = document.getElementById('contain2');
+							for (var i = 0; i < data.RetData.length; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								var div = document.createElement('div');
+								div.className = 'mui-row';
+								var titleHtml = "";
+
+								titleHtml += '	<div class="mui-col-xs-4">' +
+									'		<b>' + data.RetData[i].CreateTime + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-3">' +
+									'		<b>' + data.RetData[i].WMoney + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-5">' +
+									'		<b>' + data.RetData[i].WName + '</b>' +
+									'	</div>';
+
+								div.innerHTML = titleHtml;
+								li.appendChild(div);
+								table.appendChild(li);
+							}
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast(tempJson.common.error[config.reqSys]+"(BonusSel)");
+					}
+				});
+				pageIndex++;
+			}
+
+
+			(function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条
+
+				});
+
+				var userInfo = app.getSettings();
+				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
+
+				mui('#item1').off('tap', '#submit');
+				mui('#item1').on('tap', '#submit', function() {
+					if(mui('#money')[0].value==''||mui('#password')[0].value==''){
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
+						return;
+					}
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "CashAdd",
+						"ReqData": {
+							"CashM": mui('#money')[0].value,
+							"PwdPay": hex_sha1(mui('#password')[0].value),
+							"EUserID": 0,
+							"EUserVC": 0
+						}
+					};
+					jqAjax(data, tempJson.msgBonus[config.reqSys], init);
+				});
+
+				function init() {
+					mui('#money')[0].value = '';
+					mui('#password')[0].value = '';
+					
+					var main=plus.webview.currentWebview().parent();
+					mui.fire(main, 'refresh'); 
+					
+					console.log("init");
+					pageIndex = 0;
+					flag = false;
+					var table = document.getElementById('contain2');
+					table.innerHTML = "";
+					pullupRefresh();
+				}
+
+				mui('#item2').off('tap', '#submit2');
+				mui('#item2').on('tap', '#submit2', function() {
+					if(mui('#money2')[0].value==''||mui('#password2')[0].value==''||mui('#payUserID2')[0].value==''||mui('#payUserCode2')[0].value==''){
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
+						return;
+					}
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "CashAdd",
+						"ReqData": {
+							"CashM": mui('#money2')[0].value,
+							"PwdPay": hex_sha1(mui('#password2')[0].value),
+							"EUserID": mui('#payUserID2')[0].value,
+							"EUserVC": mui('#payUserCode2')[0].value
+						}
+					};
+					jqAjax(data, tempJson.msgBonusForOther[config.reqSys], init2);
+				});
+
+				function init2() {
+					mui('#money2')[0].value = '';
+					mui('#password2')[0].value = '';
+					mui('#payUserID2')[0].value = '';
+					mui('#payUserCode2')[0].value = '';
+					
+					var main=plus.webview.currentWebview().parent();
+					mui.fire(main, 'refresh'); 
+					
+					console.log("init");
+					pageIndex = 0;
+					flag = false;
+					var table = document.getElementById('contain2');
+					table.innerHTML = "";
+					pullupRefresh();
+				}
+
+				function jqAjax() {
+					var arg = arguments;
+					$.ajax({
+						async: true, //表示请求是否异步处理
+						timeout: 50000,
+						type: "post", //请求类型
+						url: config.url, //请求的 URL地址
+						data: JSON.stringify(arg[0]),
+						contentType: "application/json",
+						dataType: "json", //返回的数据类型
+						success: function(data) {
+							document.activeElement.blur();
+							console.log(JSON.stringify(arg)); //在控制台打印服务器端返回的数据
+							document.getElementById('submit').setAttribute("enabled", true);
+							if (data.RetFlag < 0) {
+								mui.toast(data.RetInfo);
+								return;
+							} else {
+								mui.toast(arg[1]);
+								if (typeof arg[2] === "function") {
+									callback = arg[2];
+									callback();
+								}
+							}
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+							mui.toast(tempJson.common.error[config.reqSys]+"（" + arg[0].ReqType + "）");
+						}
+					});
+				}
+			})(mui);
+		</script>
+	</body>
+</html>
