@@ -110,6 +110,18 @@
 				mui('#item1').off('tap', '#submit');
 				mui('#item1').on('tap', '#submit', function() {
 					console.log("submit");
+					if(mui('#BankName')[0].value=''){
+						mui.toast(tempJson.bind.BankNameValidate[config.reqSys]);
+						return;
+					}
+					if(mui('#BAccountCode')[0].value=''){
+						mui.toast(tempJson.bind.BAccountCodeValidate[config.reqSys]);
+						return;
+					}
+					if(mui('#BAccountName')[0].value=''){
+						mui.toast(tempJson.bind.BAccountNameValidate[config.reqSys]);
+						return;
+					}
 					var data = {
 						"ReqSys": config.reqSys,
 						"ReqKey": userInfo.UserID,
@@ -135,6 +147,14 @@
 
 				mui('#item2').off('tap', '#submit2');
 				mui('#item2').on('tap', '#submit2', function() {
+					if(mui('#ZxUserNo')[0].value=''){
+						mui.toast(tempJson.bind.ZxUserNoValidate[config.reqSys]);
+						return;
+					}
+					if(mui('#ZxUserName')[0].value=''){
+						mui.toast(tempJson.bind.ZxUserNameValidate[config.reqSys]);
+						return;
+					}
 					var data = {
 						"ReqSys": config.reqSys,
 						"ReqKey": userInfo.UserID,

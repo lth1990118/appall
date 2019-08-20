@@ -842,6 +842,31 @@ var tempJson = {
 			CN:"直销会员姓名",
 			EN:"Name",
 			FR:"Nom"
+		},
+		BankNameValidate:{
+			CN:"开户银行名称不能为空",
+			EN:"The name of bank cannot be empty",
+			FR:"Le nom de la banque dépositaire ne peut pas être vide."
+		},
+		BAccountCodeValidate:{
+			CN:"持卡人姓名不能为空",
+			EN:"The cardholder's name cannot be empty",
+			FR:"Le nom du titulaire ne doit pas être vide."
+		},
+		BAccountNameValidate:{
+			CN:"银行卡号不能为空",
+			EN:"Bank Card Number Can't Be Empty",
+			FR:"Le numéro de carte bancaire ne peut pas être vide."
+		},
+		ZxUserNoValidate:{
+			CN:"直销会员姓名不能为空",
+			EN:"Name cannot be empty",
+			FR:"Le nom ne peut pas être vide."
+		},
+		ZxUserNameValidate:{
+			CN:"直销会员卡号不能为空",
+			EN:"Member cannot be empty",
+			FR:"Le numéro de carte ne peut pas être vide."
 		}
 	},		
 	bonus:{
