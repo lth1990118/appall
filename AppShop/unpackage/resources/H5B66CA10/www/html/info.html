@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录密码</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+
+			.title {
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item1" id="item1Label">我的信息</a>
+		</div>
+		<div>
+
+			<div id="item1" class="mui-control-content mui-active">
+
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<form id="submitForm" class="mui-input-group">
+							<div class="mui-input-row">
+								<label id="IntroIDLabel">推荐人ID</label>
+								<input id="IntroID" name="IntroID" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="idLabel">我的ID</label>
+								<input id="id" name="id" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="userNameLabel">我的登录名</label>
+								<input id="userName" name="userName" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="VerifyCodeLabel">推荐码</label>
+								<input id="VerifyCode" name="VerifyCode" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="levelLabel">我的级别</label>
+								<input id="level" name="level" type="text" readonly>
+							</div>
+							<div class="mui-input-row" style="display: none;">
+								<label id="nameLabel">我的姓名</label>
+								<input id="name" name="name" type="text" class="mui-input-clear" placeholder="我的姓名">
+							</div>
+							<div class="mui-input-row" style="display: none;">
+								<label id="telephoneLabel">我的手机</label>
+								<input id="telephone" name="telephone" type="text" class="mui-input-clear" placeholder="我的手机">
+							</div>
+							
+							<div class="mui-input-row">
+								<label id="SumBuyLabel">采购</label>
+								<input id="SumBuy" name="SumBuy" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumSellLabel">销售</label>
+								<input id="SumSell" name="SumSell" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumStockLabel">库存</label>
+								<input id="SumStock" name="SumStock" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumBonusLabel">总奖金</label>
+								<input id="SumBonus" name="SumBonus" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="NewBonusLabel">新奖金</label>
+								<input id="NewBonus" name="NewBonus" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumEarnLabel">总转入</label>
+								<input id="SumEarn" name="SumEarn" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="NewEarnLabel">新转入</label>
+								<input id="NewEarn" name="NewEarn" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumCashLabel">提现</label>
+								<input id="SumCash" name="SumCash" type="text" readonly>
+							</div>
+							<div class="mui-input-row">
+								<label id="SumSurplusLabel">余额</label>
+								<input id="SumSurplus" name="SumSurplus" type="text" readonly>
+							</div>
+							<div class="mui-input-row" style="display: none;">
+								<label id="Quota3Label">累计三级数</label>
+								<input id="Quota3" name="Quota3" type="text" readonly>
+							</div>
+							<div class="mui-input-row" style="display: none;">
+								<label id="Quota_3Label">已用三级数</label>
+								<input id="Quota_3" name="Quota_3" type="text" readonly>
+							</div>
+							<div class="mui-input-row" style="display: none;">
+								<label id="Quota3useLabel">可用三级数</label>
+								<input id="Quota3use" name="Quota3use" type="text" readonly>
+							</div>
+							
+							<div class="mui-button-row" style="display:none">
+								<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- <form id="submitForm" class="mui-input-group">
+					<div class="mui-input-row">
+						<label>推荐人ID</label>
+						<input id="IntroID" name="IntroID" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>我的ID</label>
+						<input id="id" name="id" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>我的登录名</label>
+						<input id="userName" name="userName" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>推荐码</label>
+						<input id="VerifyCode" name="VerifyCode" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>我的级别</label>
+						<input id="level" name="level" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>我的姓名</label>
+						<input id="name" name="name" type="text" class="mui-input-clear" placeholder="我的姓名">
+					</div>
+					<div class="mui-input-row">
+						<label>我的手机</label>
+						<input id="telephone" name="telephone" type="text" class="mui-input-clear" placeholder="我的手机">
+					</div>
+					
+					<div class="mui-input-row">
+						<label>采购</label>
+						<input id="SumBuy" name="SumBuy" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>销售</label>
+						<input id="SumSell" name="SumSell" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>库存</label>
+						<input id="SumStock" name="SumStock" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>总奖金</label>
+						<input id="SumBonus" name="SumBonus" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>新奖金</label>
+						<input id="NewBonus" name="NewBonus" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>总转入</label>
+						<input id="SumEarn" name="SumEarn" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>新转入</label>
+						<input id="NewEarn" name="NewEarn" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>提现</label>
+						<input id="SumCash" name="SumCash" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>余额</label>
+						<input id="SumSurplus" name="SumSurplus" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>累计三级数</label>
+						<input id="Quota3" name="Quota3" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>已用三级数</label>
+						<input id="Quota_3" name="Quota_3" type="text" readonly>
+					</div>
+					<div class="mui-input-row">
+						<label>可用三级数</label>
+						<input id="Quota3use" name="Quota3use" type="text" readonly>
+					</div>
+					<div class="mui-button-row">
+						<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 6px 12px;font-weight: bolder;font-size: 16px;">提交</button>
+					</div>
+				</form> -->
+			</div>
+		</div>
+		
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script>
+			function initHTML(){
+				$("#item1Label").text(tempJson.info.item1Label[config.reqSys]);
+								
+				$("#IntroIDLabel").text(tempJson.info.IntroIDLabel[config.reqSys]);
+				$("#idLabel").text(tempJson.info.idLabel[config.reqSys]);
+				$("#userNameLabel").text(tempJson.info.userNameLabel[config.reqSys]);
+				$("#VerifyCodeLabel").text(tempJson.info.VerifyCodeLabel[config.reqSys]);
+				$("#levelLabel").text(tempJson.info.levelLabel[config.reqSys]);
+				$("#nameLabel").text(tempJson.info.nameLabel[config.reqSys]);
+				$("#telephoneLabel").text(tempJson.info.telephoneLabel[config.reqSys]);
+				$("#SumBuyLabel").text(tempJson.info.SumBuyLabel[config.reqSys]);
+				$("#SumSellLabel").text(tempJson.info.SumSellLabel[config.reqSys]);
+				$("#SumStockLabel").text(tempJson.info.SumStockLabel[config.reqSys]);
+				$("#SumBonusLabel").text(tempJson.info.SumBonusLabel[config.reqSys]);
+				$("#NewBonusLabel").text(tempJson.info.NewBonusLabel[config.reqSys]);
+				$("#SumEarnLabel").text(tempJson.info.SumEarnLabel[config.reqSys]);
+				$("#NewEarnLabel").text(tempJson.info.NewEarnLabel[config.reqSys]);
+				$("#SumCashLabel").text(tempJson.info.SumCashLabel[config.reqSys]);
+				$("#SumSurplusLabel").text(tempJson.info.SumSurplusLabel[config.reqSys]);
+				$("#Quota3Label").text(tempJson.info.Quota3Label[config.reqSys]);
+				$("#Quota_3Label").text(tempJson.info.Quota_3Label[config.reqSys]);
+				$("#Quota3useLabel").text(tempJson.info.Quota3useLabel[config.reqSys]);
+				
+				$("#telephone").attr("placeholder",tempJson.info.telephone[config.reqSys]);
+				$("#name").attr("placeholder",tempJson.info.name[config.reqSys]);
+								
+				$("#submit").text(tempJson.common.submit[config.reqSys]);
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			}
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+
+			(function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条			
+				});
+				document.getElementById("scroll").style.height = window.innerHeight - 40 + "px";
+				var userInfo = app.getSettings();
+
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "UserGet",
+					"ReqData": {}
+				};
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+							return;
+						} else {
+							mui('#id')[0].value = data.RetData[0].UserID;
+							mui('#userName')[0].value = data.RetData[0].UserName;
+							mui('#level')[0].value = data.RetData[0].UserLevel;
+							mui('#name')[0].value = data.RetData[0].FullName;
+							mui('#telephone')[0].value = data.RetData[0].PhoneNo;
+							//mui('#VerifyCode')[0].value=data.RetData[0].VerifyCode;
+							mui('#IntroID')[0].value = data.RetData[0].IntroID;
+							mui('#VerifyCode')[0].value = data.RetData[0].VerifyCode;
+							mui('#SumBuy')[0].value = data.RetData[0].SumBuy;
+							mui('#SumSell')[0].value = data.RetData[0].SumSell;
+							mui('#SumStock')[0].value = data.RetData[0].SumStock;
+							mui('#SumBonus')[0].value = data.RetData[0].SumBonus;
+							mui('#NewBonus')[0].value = data.RetData[0].NewBonus;
+							mui('#SumEarn')[0].value = data.RetData[0].SumEarn;
+							mui('#NewEarn')[0].value = data.RetData[0].NewEarn;
+							mui('#SumCash')[0].value = data.RetData[0].SumCash;
+							mui('#SumSurplus')[0].value = data.RetData[0].SumSurplus;
+							mui('#Quota3')[0].value = data.RetData[0].Quota3;
+							mui('#Quota_3')[0].value = data.RetData[0].Quota_3;
+							mui('#Quota3use')[0].value = data.RetData[0].Quota3use;
+							if(data.RetData[0].MoneyFlag==1){
+								player();
+							}
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast(tempJson.common.error[config.reqSys]+"（UserGet）");
+					}
+				});
+				function player() { //播放音乐 
+					var s = plus.audio.createPlayer("/MP3/voice.mp3");
+					var num = s.getDuration(); //获取音频总长度number 
+					setTimeout(function() { //延时获取，否则可能没有返回长度 
+						var num = s.getDuration();
+					}, 100)
+				
+					s.play(function() { //播放完成回调 
+				
+					}, function(e) { //失败回调 
+				
+					});
+				}
+				mui('#item1').off('tap', '#submit');
+				mui('#item1').on('tap', '#submit', function() {
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "UserUp",
+						"ReqData": {
+							"FullName": mui('#name')[0].value,
+							"PhoneNo": mui('#telephone')[0].value
+						}
+					};
+					jqAjax(data, tempJson.msgInfoUp[config.reqSys], function() {});
+				});
+
+				function jqAjax() {
+					//var jq = jQuery.noConflict();
+					var arg = arguments;
+					$.ajax({
+						async: true, //表示请求是否异步处理
+						timeout: 50000,
+						type: "post", //请求类型
+						url: config.url, //请求的 URL地址
+						data: JSON.stringify(arg[0]),
+						contentType: "application/json",
+						dataType: "json", //返回的数据类型
+						success: function(data) {
+							document.activeElement.blur();
+							console.log(JSON.stringify(arg)); //在控制台打印服务器端返回的数据
+							document.getElementById('submit').setAttribute("enabled", true);
+							if (data.RetFlag < 0) {
+								mui.toast(data.RetInfo);
+								return;
+							} else {
+								//console.log(JSON.stringify(arg[1]));
+								mui.toast(arg[1]);
+								if (typeof arg[2] === "function") {
+									//调用它，既然我们已经确定了它是可调用的
+									callback = arg[2];
+									callback();
+								}
+							}
+						},
+						error: function(data) {
+							console.log(JSON.stringify(data));
+							mui.toast(tempJson.common.error[config.reqSys]+"（" + arg[0].ReqType + "）");
+						}
+					});
+				}
+			})(mui);
+		</script>
+	</body>
+</html>

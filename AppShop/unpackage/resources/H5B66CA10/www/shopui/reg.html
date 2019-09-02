@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>登录</title>
+	
+   <link href="css/mui.min2.css" rel="stylesheet" />
+   <link href="css/style.css" rel="stylesheet" />
+   <style>
+   	.area {
+   		margin: 20px auto 0px auto;
+   	}
+   	.mui-input-group:first-child {
+   		margin-top: 20px;
+   	}
+   	.mui-input-group label {
+   		width: 40%;
+   	}
+   	.mui-input-row label~input,
+   	.mui-input-row label~select,
+   	.mui-input-row label~textarea {
+   		width: 60%;
+   	}
+   	.mui-checkbox input[type=checkbox],
+   	.mui-radio input[type=radio] {
+   		top: 6px;
+   	}
+   	.mui-content-padded {
+   		margin-top: 25px;
+   	}
+   	.mui-btn {
+   		padding: 10px;
+   	}
+   	
+   </style>
+	
+      <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	  <script src="js/mui.min.js"></script>
+    <script type="text/javascript">
+    	$(window).load(function(){
+    		$(".loading").addClass("loader-chanage")
+    		$(".loading").fadeOut(300)
+    	})
+		var firsts=null;
+		mui.back = function back() {
+			//首次按键，提示‘再按一次退出应用’
+			if (!firsts) {
+				firsts = new Date().getTime();
+				mui.toast('再按一次退出应用');
+				setTimeout(function() {
+					firsts = null;
+				}, 2000);
+			} else {
+				if (new Date().getTime() - firsts < 1000) {
+					plus.runtime.quit();
+				}
+			}
+		}
+    </script>
+</head>
+<!--loading页开始-->
+<div class="loading">
+	<div class="loader">
+        <div class="loader-inner pacman">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+	</div>
+</div>
+<!--loading页结束-->
+<body>
+	<header class="top-header">
+		<a class="icona" href="javascript:history.go(-1)">
+				<img src="images/left.png"/>
+			</a>
+		<h3>注册</h3>
+	</header>
+	
+	<div class="mui-content">
+		<div class="mui-input-group">
+			<div class="mui-input-row">
+				<label>国家：</label>
+				<input id='College' type="number" class="mui-numbox-input mui-input-clear" data-numbox-min=0 placeholder="国家">
+			</div>
+			<div class="mui-input-row">
+				<label>推荐人ID：</label>
+				<input id='IntroID' type="number" class="mui-numbox-input mui-input-clear" data-numbox-min=0 placeholder="请输入推荐人ID">
+			</div>
+			<div class="mui-input-row">
+				<label>验证码：</label>
+				<input id='VerifyCode' type="number" class="mui-numbox-input mui-input-clear" placeholder="请输入验证码">
+			</div>
+			<div class="mui-input-row">
+				<label>登录名：</label>
+				<input id='UserName' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+			</div>
+			<div class="mui-input-row">
+				<label>登录密码：</label>
+				<input id='PwdLogin' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+			</div>
+			<div class="mui-input-row">
+				<label>确认密码：</label>
+				<input id='PwdLoginConfirm' type="password" class="mui-input-clear mui-input" placeholder="请确认密码">
+			</div>
+		</div>
+		<div class="mui-content-padded">
+			<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+		</div>	
+	</div>
+
+</body>
+</html>

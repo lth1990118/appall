@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>Menu</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.title{
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="segmentedControl" class="mui-segmented-control">
+			<a class="mui-control-item mui-active" href="#item2" id="item1Label">我的菜单</a>
+		</div>			
+		<div>
+			<div id="item2" class="mui-control-content mui-active">
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll mui-table-view-chevron">
+						<ul class="mui-table-view">
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/agent.html"  id="agent">我的代理</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/sale.html"  id="sale">我的销售</a>
+							</li>							
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/bonus.html"  id="bonus">我的钱包</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/myTeam.html"  id="myTeam">我的团队</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/purchase.html" id="purchase">我的采购</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/loginPassword.html" id="loginPassword">登录密码</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/cashPassword.html" id="cashPassword">提现密码</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/info.html" id="info">我的信息</a>
+							</li>
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="html/bind.html" id="bind">绑定信息</a>
+							</li>	
+							<li class="mui-table-view-cell">
+							<a class="mui-navigate-right" data-href="exit" id="exit">退出</a>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script>
+			function initHTML(){
+				$("#item1Label").text(tempJson.menu.item1Label[config.reqSys]);
+							
+				$("#sale").text(tempJson.menu.sale[config.reqSys]);
+				$("#agent").text(tempJson.menu.agent[config.reqSys]);
+				$("#bonus").text(tempJson.menu.bonus[config.reqSys]);
+				$("#myTeam").text(tempJson.menu.myTeam[config.reqSys]);
+				$("#purchase").text(tempJson.menu.purchase[config.reqSys]);
+				$("#loginPassword").text(tempJson.menu.loginPassword[config.reqSys]);
+				$("#cashPassword").text(tempJson.menu.cashPassword[config.reqSys]);
+				$("#info").text(tempJson.menu.info[config.reqSys]);
+				$("#exit").text(tempJson.menu.exit[config.reqSys]);
+				$("#bind").text(tempJson.menu.bind[config.reqSys]);
+				
+				$("#submit").text(tempJson.common.submit[config.reqSys]);
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			}
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var targetTab = this.getAttribute('data-href');
+				console.log(targetTab);
+				 //获得父页面的webview 
+				 var main = plus.webview.currentWebview().parent();		
+				 //触发父页面的自定义事件(refresh),从而进行刷新 
+				 mui.fire(main, 'tabChange',{ 'href': targetTab}); 
+				 plus.webview.currentWebview().close();
+				//tabChange(targetTab);
+			});
+			(function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条
+				});	
+				document.getElementById("scroll").style.height=window.innerHeight-50 +"px";
+			})(mui);
+		</script>
+	</body>
+</html>
