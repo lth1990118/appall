@@ -1,24 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-		<title>首页</title>
-		<meta name="keywords" content="">
-		<meta name="description" content="">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>男装专区</title>
+		<link rel="stylesheet" type="text/css" href="css/loaders.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="js/rem.js"></script>
 		<link href="iconfont/iconfont.css" rel="stylesheet">
 		<link href="css/mui.min.css" rel="stylesheet">
 		<link href="css/all.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.search{ width: 100%; background-color: #fff;margin: 2% 0; padding:3% 5%; overflow: hidden;}
+		  .search input{ width: 80%; font-size: 1.25em; color: #666; border: none;}
+		  .search label{ width: 5%; float: right; margin-right: 10%;}
+		  .search label img{ width: 100%;}
+	  </style>
+		<script src="js/mui.min.js"></script>
+
+		<script type="text/javascript">
+			$(window).load(function() {
+				$(".loading").addClass("loader-chanage")
+				$(".loading").fadeOut(300)
+			})
+			mui.back = function back() {
+				//首次按键，提示‘再按一次退出应用’
+				history.go(-1)
+			}
+		</script>
 	</head>
+	<!--loading页开始-->
+	<div class="loading">
+		<div class="loader">
+			<div class="loader-inner pacman">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<!--loading页结束-->
 	<body>
+		<!-- 
+		 -->
 		<header class="mui-bar mui-bar-nav" id="header">
 			<div class="top-sch-box flex-col">
 				<div class="centerflex">
 					<i class="fdj iconfont icon-search"></i>
-					<div class="sch-txt">搜索关键字 </div>
+					<div class="sch-txt"  id="searchTxt2" >搜索关键字 </div>
 					<span class="shaomiao"><i class="iconfont icon-saoma"></i></span>
 				</div>
 			</div>
@@ -29,19 +65,17 @@
 				<i class="iconfont icon-cart"></i>
 			</a>
 		</header>
-
-		<div id="main" class="mui-clearfix">
-			<!-- 搜索层 -->
+		<div class="contaniner fixed-conta">
 			<div class="pop-schwrap">
 				<div class="ui-scrollview">
 					<div class="mui-bar mui-bar-nav clone">
 						<a class="btn btn-back" href="javascript:;"></a>
 						<div class="top-sch-box flex-col">
 							<div class="centerflex">
-								<input class="sch-input mui-input-clear" type="text" name="" id="" placeholder="搜索关键字" />
+								<input class="sch-input mui-input-clear" type="text" name="" id="searchTxt" placeholder="搜索关键字" />
 							</div>
 						</div>
-						<a class="mui-btn mui-btn-primary sch-submit" href="search.html">搜索</a>
+						<a class="mui-btn mui-btn-primary sch-submit" >搜索</a>
 					</div>
 					<div class="scroll-wrap">
 						<div class="mui-scroll">
@@ -59,7 +93,7 @@
 									<div class="tags">
 										<!-- <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
 										<span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
-										<span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span> -->
+										<span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span>-->
 									</div>
 								</div>
 							</div>
@@ -71,89 +105,92 @@
 				</div>
 			</div>
 
-			<div class="mui-content">
-				<!-- <div class="banner swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide"><a href="detail.html"><img class="swiper-lazy" data-src="uploads/banner1.jpg" alt=""></a></div>
-						<div class="swiper-slide"><a href="detail.html"><img class="swiper-lazy" data-src="uploads/banner1.jpg" alt=""></a></div>
-						<div class="swiper-slide"><a href="detail.html"><img class="swiper-lazy" data-src="uploads/banner1.jpg" alt=""></a></div>
-						<div class="swiper-slide"><a href="detail.html"><img class="swiper-lazy" data-src="uploads/banner1.jpg" alt=""></a></div>
-					</div>
-					<div class="swiper-pagination"></div>
-				</div>
-				<div class="home-newgoods ui-box"> 
-					<img class="home-imgtit" src="img/hometit1.jpg" alt="" />
-					<div class="list-type1 plist-puzzle">
-						<a class="b" href="detail.html"><img src="uploads/t1.jpg" alt="" /></a>
-						<div class="s ui-flex-vt flex-justify-sb">
-							<a class="box" href="detail.html"><img src="uploads/t2.jpg" alt="" /></a>
-							<a class="box" href="detail.html"><img src="uploads/t2.jpg" alt="" /></a>
-							<a class="box" href="detail.html"><img src="uploads/t2.jpg" alt="" /></a>
-						</div>
-					</div>
-					<img class="home-imgtit" src="img/hometit2.jpg" alt="" />
-					<div class="list-type2 ui-flex flex-justify-sb">
-						<a class="box" href="detail.html"><img class="figure" src="uploads/t3.jpg" alt="" /><span class="tit">情侣穿搭</span></a>
-						<a class="box" href="detail.html"><img class="figure" src="uploads/t3.jpg" alt="" /><span class="tit">约会美搭</span></a>
-						<a class="box" href="detail.html"><img class="figure" src="uploads/t3.jpg" alt="" /><span class="tit">全部新款</span></a>
-					</div>
-				</div>-->
-
-				<!-- <div class="home-fashion ui-box ui-border-t">
-
-					<div class="fastion-plist mui-row">
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
+			<section class="list">
+				<!-- <nav>
+					<ul>
+						<li>
+							<a href="#">
+								<span>全部</span>
 							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
+						</li>
+						<li class="list-active">
+							<a href="#">
+								<span>销量</span>
+								<img src="images/up-red.png" />
 							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
+						</li>
+						<li>
+							<a href="#">
+								<span>价格</span>
 							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
+						</li>
+						<li>
+							<a href="#">
+								<span>评价</span>
 							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
-							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
-							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
-							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
-							</a>
-						</div>
-						<div class="mui-col-xs-4">
-							<a class="item">
-								<img src="uploads/t5.jpg" alt="" class="figure" /><span class="tit">印花卫衣</span>
-							</a>
-						</div>
-					</div> 
-				</div>-->
-			</div>
-			<!--mui-content end-->
+						</li>
+					</ul>
+				</nav> -->
+				<ul class="wall" id="contain">
+					<!-- <li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><middle>积分 538</middle>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph01.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li>
+					<li class="pic">
+						<a href="detail.html">
+							<img src="images/list-ph02.png" />
+							<p>韩版青少年休闲修身长袖紧身衬衫</p>
+							<b>￥58</b><del>￥538</del>
+						</a>
+					</li> -->
+				</ul>
+			</section>
 		</div>
-
-
 		<footer class="page-footer fixed-footer" id="footer">
 			<ul>
 				<li class="active">
@@ -192,41 +229,137 @@
 			</ul>
 		</footer>
 
-	</body>
-	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-	<script src="js/fastclick.js"></script>
-	<script src="js/mui.min.js"></script>
-	<script type="text/javascript" src="js/hmt.js"></script>
-	<!--插件-->
-	<link rel="stylesheet" href="js/swiper/swiper.min.css">
-	<script src="js/swiper/swiper.jquery.min.js"></script>
-	<!--插件-->
-	<script src="js/global.js"></script>
-	<script>
-		$(function() {
-			var banner = new Swiper('.banner', {
-				autoplay: 5000,
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				lazyLoading: true,
-				loop: true
-			});
 
-			mui('.pop-schwrap .sch-input').input();
-			var deceleration = mui.os.ios ? 0.003 : 0.0009;
-			mui('.pop-schwrap .scroll-wrap').scroll({
-				bounce: true,
-				indicators: true,
-				deceleration: deceleration
+
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jaliswall.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/hmt.js"></script>
+		<!--插件-->
+		<link rel="stylesheet" href="js/swiper/swiper.min.css">
+		<script src="js/swiper/swiper.jquery.min.js"></script>
+		<!--插件-->
+		<script src="js/global.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/data.js"></script>
+		<script type="text/javascript">
+			$(window).load(function() {
+				initWall();
 			});
-			$('.top-sch-box .fdj,.top-sch-box .sch-txt,.pop-schwrap .btn-back').on('click', function() {
-				$('html,body').toggleClass('holding');
-				$('.pop-schwrap').toggleClass('on');
-				if ($('.pop-schwrap').hasClass('on')) {;
-					$('.pop-schwrap .sch-input').focus();
+			function initWall(){
+				$('.wall').jaliswall({
+					item: '.pic'
+				});
+			}
+		</script>
+		<script>
+			$(function() {
+				var banner = new Swiper('.banner', {
+					autoplay: 5000,
+					pagination: '.swiper-pagination',
+					paginationClickable: true,
+					lazyLoading: true,
+					loop: true
+				});
+
+				mui('.pop-schwrap .sch-input').input();
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				mui('.pop-schwrap .scroll-wrap').scroll({
+					bounce: true,
+					indicators: true,
+					deceleration: deceleration
+				});
+				$('.top-sch-box .fdj,.top-sch-box .sch-txt,.pop-schwrap .btn-back').on('click', function() {
+					$('html,body').toggleClass('holding');
+					$('.pop-schwrap').toggleClass('on');
+					if ($('.pop-schwrap').hasClass('on')) {;
+						$('.pop-schwrap .sch-input').focus();
+					}
+				});
+				$('.mui-btn.mui-btn-primary.sch-submit').on('click', function() {					
+					$('html,body').removeClass('holding');
+					$('.pop-schwrap').removeClass('on');
+					var txt= mui('#searchTxt')[0].value;
+					$("#searchTxt2").text(txt);
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "ScProdSel",
+						"ReqData": txt
+					};					
+					queryPro(data);
+				});
+			});
+		</script>
+		<script>
+			var userInfo={};
+			(function($) {
+				userInfo = app.getSettings();
+				console.log(JSON.stringify(userInfo));
+				if (!userInfo.UserID) {
+					// 					$.openWindow({
+					// 						url: 'login.html',
+					// 						id: 'login.html'
+					// 					});
+				} else {
+					userInfo = app.getSettings();
+					console.log(JSON.stringify(userInfo));
 				}
-			});
-
-		});
-	</script>
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "ScHome",
+					"ReqData": null
+				};
+				
+				queryPro(data);
+				
+			})(mui);
+			
+			function queryPro(data){
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+							return;
+						} else {
+							//console.log(JSON.stringify(arg[1]));
+							var contain = document.getElementById('contain');
+							contain.innerHTML="";
+							for(var i=0;i<data.RetData.length;i++){
+								var li = document.createElement('li');
+								li.className = 'pic';
+								var html="<a href=\"detail.html?id="+data.RetData[i].ProdID+"\">";
+								html+="<img src=\""+data.RetData[i].PicMain+"\" />";
+								html+="<p>"+data.RetData[i].ProdName+"</p>";
+								html+="<b>￥"+data.RetData[i].PPrice+"</b><middle>积分 "+data.RetData[i].PInteg+"</middle></a>";
+								li.innerHTML=html;
+								
+								//console.log(contain);
+								contain.appendChild(li);
+								console.log(contain.innerHTML);
+							}
+							initWall();
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+					}
+				});
+			}
+		</script>
+	</body>
 </html>
