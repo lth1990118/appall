@@ -253,12 +253,12 @@
 
 
 		<footer class="detail-footer fixed-footer">
-			<a href="#" class="go-car">
-				<input type="button" value="加入购物车" />
+			<a href="#" class="go-car" style="float: right;">
+				<input type="button" id="addShopCar" value="加入购物车" />
 			</a>
-			<a href="buy.html" class="buy">
+			<!-- <a href="buy.html" class="buy">
 				立即购买
-			</a>
+			</a> -->
 		</footer>
 
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -323,6 +323,7 @@
 			$(function() {
 				userInfo = app.getSettings();
 				var id = getQueryVariable("id");
+				localStorage.setItem('$ProdID', id)
 				var data = {
 					"ReqSys": config.reqSys,
 					"ReqKey": userInfo.UserID,
@@ -330,16 +331,54 @@
 					"ReqType": "ScProdGet",
 					"ReqData": id
 				};
-				queryPro(data);
+				jqAjax(data,initPage);
+				
+				$('#addShopCar').on('click', function() {
+					var param = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "ScShopCartUp",
+						"ReqData":   {
+							"ProdID": id,  // 商品ID
+							"ProdNum": 1     // 商品数量，小于等于0时，表示删除，否则表示添加或修改
+						}
+					};				
+					jqAjax(param,msg)
+				});
 			});
-
-			function queryPro(data) {
+			function msg(data){
+				mui.toast("添加购物车："+data.RetInfo);
+			}
+			function initPage(data){
+				console.log(JSON.stringify(data));
+				
+				var contain = document.getElementById('imgContain');
+				contain.innerHTML = "";
+				var li = document.createElement('li');
+				li.className = 'swiper-slide';
+				
+				var html = "<a href=\"#\">";
+				html += "<img src=\"" + data.RetData[0].PicMain + "\" />";
+				html += "</a>";
+				li.innerHTML = html;
+				contain.appendChild(li);
+				
+				var money = document.getElementById('money');
+				money.innerHTML = data.RetData[0].PPrice;
+				var title = document.getElementById('title');
+				title.innerHTML = data.RetData[0].PExplain;
+				var jf = document.getElementById('jf');
+				jf.innerHTML = data.RetData[0].PInteg;
+			}
+			function jqAjax() {
+				var arg = arguments;
 				$.ajax({
 					async: true, //表示请求是否异步处理
 					timeout: 50000,
 					type: "post", //请求类型
 					url: config.url, //请求的 URL地址
-					data: JSON.stringify(data),
+					data: JSON.stringify(arg[0]),
 					contentType: "application/json",
 					dataType: "json", //返回的数据类型
 					success: function(data) {
@@ -348,24 +387,11 @@
 							mui.toast(data.RetInfo);
 							return;
 						} else {
-							console.log(data);
-							var contain = document.getElementById('imgContain');
-							contain.innerHTML = "";
-							var li = document.createElement('li');
-							li.className = 'swiper-slide';
-
-							var html = "<a href=\"#\">";
-							html += "<img src=\"" + data.RetData.PicMain + "\" />";
-							html += "</a>";
-							li.innerHTML = html;
-							contain.appendChild(li);
-							
-							var money = document.getElementById('money');
-							money.innerHTML=data.RetData[0].PPrice;
-							var title = document.getElementById('title');
-							title.innerHTML=data.RetData[0].PExplain;
-							var jf = document.getElementById('jf');
-							jf.innerHTML=data.RetData[0].PInteg;
+							if (typeof arg[1] === "function") {
+								//调用它，既然我们已经确定了它是可调用的
+								callback = arg[1];
+								callback(data);
+							}
 						}
 					},
 					error: function(data) {
