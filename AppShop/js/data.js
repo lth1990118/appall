@@ -1169,6 +1169,11 @@ var tempJson = {
 			EN:"Loading...",
 			FR:"Chargement..."
 		},
+		upper:{
+			CN:"上拉加载更多",
+			EN:"Upper-pull",
+			FR:"Upper-pull"
+		},
 		lessMsg:{
 			CN:"请输入必要信息",
 			EN:"Please enter the necessary information",

@@ -80,7 +80,9 @@
 					up: {
 						auto: true,
 						contentrefresh: tempJson.common.loading[config.reqSys],
-						callback: pullupRefresh
+						callback: pullupRefresh,
+						contentinit: tempJson.common.upper[config.reqSys],
+						contentdown: tempJson.common.upper[config.reqSys]
 					}
 				}
 			});
