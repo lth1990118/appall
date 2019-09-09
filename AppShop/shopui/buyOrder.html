@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="css/loaders.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<style>
+
+		</style>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.back = function back() {
+				//首次按键，提示‘再按一次退出应用’
+				history.go(-1)
+			}
+		</script>
+		<script type="text/javascript">
+			$(window).load(function() {
+				$(".loading").addClass("loader-chanage")
+				$(".loading").fadeOut(300)
+			})
+		</script>
+	</head>
+	<!--loading页开始-->
+	<div class="loading">
+		<div class="loader">
+			<div class="loader-inner pacman">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<!--loading页结束-->
+	<body>
+		<header class="page-header">
+			<h3>去结算</h3>
+		</header>
+		<div class="mui-content">
+			<ul id="OA_task_1" class="mui-table-view">
+				<!-- <li class="mui-table-view-cell  mui-media">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="images/shopcar-ph01.png">
+						<div class="mui-media-body">
+							<dl>
+								<dt id="title">超级大品牌12321321323123123服装，现在买只要998</dt>
+								购买数量:
+								<span>123</span>
+								<dd id="price"><span>单价：</span>￥653.00<span>积分：</span>￥653.00</dd>
+								<h3 id="totalprice" style=""><span class="totalprice">123</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span
+										 class="totalinteg">12</span><span></h3>
+							</dl>
+						</div>
+					</div>
+				</li> -->
+			</ul>
+		</div>
+
+		<footer class="page-footer fixed-footer">
+			<div class="mui-input-row">
+				<label id="passwordLabel">支付密码</label>
+				<input id="password" type="password" class="mui-input-password" style="padding: 0px;" placeholder="请输入密码">
+			</div>
+			<div class="mui-button-row">
+				<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 12px 12px;font-weight: bolder;font-size: 16px;">支付<span style="color: red;" id="total"></span></button>
+			</div>
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="images/footer001.png" />
+						<p>首页</p>
+					</a>
+				</li>
+
+				<li class="active">
+					<a href="shopcar.html">
+						<img src="images/footer03.png" />
+						<p>购物车</p>
+					</a>
+				</li>
+				<!-- <li>
+					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
+			vertical-align: middle;margin: auto;line-height: 40px;">
+						<p style="margin-top: 0;">主页</p>
+					</a>
+				</li> -->
+				<li>
+					<a href="assort.html">
+						<img src="images/footer002.png" />
+						<p>订单</p>
+					</a>
+				</li>
+				<li>
+					<a href="self.html">
+						<img src="images/footer004.png" />
+						<p>个人中心</p>
+					</a>
+				</li>
+			</ul>
+		</footer>
+
+
+	</body>
+	<script src="../js/app.js"></script>
+	<script src="../js/config.js"></script>
+	<script src="../js/data.js"></script>
+	<script src="../js/sha1.js"></script>
+	<script>
+		var userInfo = {};
+		$(function() {
+			userInfo = app.getSettings();			
+			var $OrderID=localStorage.getItem('$OrderID');
+			var $Isfinish=localStorage.getItem('$Isfinish');
+			console.log($Isfinish);
+			//alert($OrderID);
+			$('footer div').each(function(){
+					console.log(this.getAttribute('display'));
+					console.log($('footer div').length);
+					
+					this.setAttribute('display','none');
+					$(this).attr('display','none');
+				}
+			);
+			var data = {
+				"ReqSys": config.reqSys,
+				"ReqKey": userInfo.UserID,
+				"ReqPwd": userInfo.PwdTmp,
+				"ReqType": "ScOrderGet",
+				"ReqData": $OrderID
+			};
+			jqAjax(data, initPage);
+		});
+		mui('.mui-button-row').on('tap', '#submit', function() {			
+			var param={
+				"ReqSys": config.reqSys,
+				"ReqKey": userInfo.UserID,
+				"ReqPwd": userInfo.PwdTmp,
+				"ReqType": "ScOrderSubmit",
+				"ReqData": hex_sha1(mui('#password')[0].value)
+			};
+			jqAjax(param, msg);
+		});
+		function msg(data){
+			mui.toast("支付信息：" + data.RetInfo);
+			window.location.href="index.html";
+		}
+		mui('.mui-numbox').on('change', '.mui-input-numbox', function() {			
+			alert(mui($(this).parent()[0]).numbox().getValue());
+		});
+		var listPro={};
+		function initPage(data) {
+			console.log(JSON.stringify(data));
+			var contain = document.getElementById('OA_task_1');
+			console.log(contain);
+			contain.innerHTML = "";
+			var totalMoney=0;
+			var totalIntegral=0;
+			for(var i=0;i<data.RetData.ProdList.length;i++){
+				var li = document.createElement('li');
+				li.className = 'mui-table-view-cell mui-media';
+				var html='';
+				console.log(i);
+				html+='<div class="mui-slider-handle">';
+				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData.ProdList[i].PicMain+'"><div class="mui-media-body">';
+				html+='<dl>';
+				html+='<dt id="title">'+data.RetData.ProdList[i].ProdNo+':'+data.RetData.ProdList[i].ProdName+'</dt>';
+				html+='购买数量:<span>'+data.RetData.ProdList[i].ProdNum+'</span>';				
+				html+='<dd id="price"><span>金额：</span >'+data.RetData.ProdList[i].PPrice+'<span>&nbsp;积分：</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
+				//html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData.ProdList[i].PPrice+'</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span class="totalinteg">'+data.RetData.ProdList[i].PInteg+'</span><span></h3>';
+				html+='</dl>';
+				html+='</div></div>';
+				li.innerHTML = html;
+				contain.appendChild(li);
+				listPro["ProdID"+data.RetData.ProdList[i].ProdID]=data.RetData.ProdList[i];
+				console.log(data.RetData.ProdList[i].ProdID);
+				totalMoney+=data.RetData.ProdList[i].PPrice;
+				totalIntegral+=data.RetData.ProdList[i].PInteg;
+				console.log(JSON.stringify(listPro));
+			}
+// 			var money = document.getElementById('money');
+// 			money.innerHTML =totalMoney;
+// 			var integral = document.getElementById('integral');
+// 			integral.innerHTML = totalIntegral;
+			mui('#total')[0].innerHTML="(金额:"+totalMoney+"&nbsp;积分:"+totalIntegral+")";
+		}
+		
+		function jqAjax() {
+			var arg = arguments;
+			//alert(123);
+			$.ajax({
+				async: true, //表示请求是否异步处理
+				timeout: 50000,
+				type: "post", //请求类型
+				url: config.url, //请求的 URL地址
+				data: JSON.stringify(arg[0]),
+				contentType: "application/json",
+				dataType: "json", //返回的数据类型
+				success: function(data) {
+					console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据
+					//alert(JSON.stringify(data));
+					if (data.RetFlag < 0) {
+						mui.toast(data.RetInfo);
+						return;
+					} else {
+						if (typeof arg[1] === "function") {
+							//调用它，既然我们已经确定了它是可调用的
+							callback = arg[1];
+							callback(data);
+						}
+					}
+				},
+				error: function(data) {
+					console.log(JSON.stringify(data));
+					mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+				}
+			});
+		}
+	</script>
+	<!--App自定义的css-->
+	<link rel="stylesheet" type="text/css" href="../css/app.css" />
+	<script>
+		mui.init();
+		(function(mui) {
+			mui('#OA_task_1').on('tap', '.mui-slider-right .mui-btn', function(event) {
+				var elem = this;
+				var li = elem.parentNode.parentNode;
+				mui.confirm('确认删除该条记录？', 'eternal', btnArray, function(e) {
+					if (e.index == 0) {
+						var param = {
+							"ReqSys": config.reqSys,
+							"ReqKey": userInfo.UserID,
+							"ReqPwd": userInfo.PwdTmp,
+							"ReqType": "ScShopCartUp",
+							"ReqData": {
+								"ProdID": id, // 商品ID
+								"ProdNum": 0 // 商品数量，小于等于0时，表示删除，否则表示添加或修改
+							}
+						};
+						$.ajax({
+							async: true, //表示请求是否异步处理
+							timeout: 50000,
+							type: "post", //请求类型
+							url: config.url, //请求的 URL地址
+							data: JSON.stringify(param),
+							contentType: "application/json",
+							dataType: "json", //返回的数据类型
+							success: function(data) {
+								console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
+								if (data.RetFlag < 0) {
+									mui.toast(data.RetInfo);
+									return;
+								} else {
+									li.parentNode.removeChild(li);
+								}
+							},
+							error: function(data) {
+								console.log(JSON.stringify(data));
+								mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+							}
+						});
+					} else {
+						setTimeout(function() {
+							mui.swipeoutClose(li);
+						}, 0);
+					}
+				});
+			});
+			var btnArray = ['确认', '取消'];
+		})(mui);
+	</script>
+</html>
