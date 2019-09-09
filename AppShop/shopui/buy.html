@@ -48,28 +48,11 @@
 	<!--loading页结束-->
 	<body>
 		<header class="page-header">
-			<h3>去结算</h3>
+			<h3 id="header">去结算</h3>
 		</header>
 		<div class="mui-content">
 			<ul id="OA_task_1" class="mui-table-view">
-				<!-- <li class="mui-table-view-cell  mui-media">
-					<div class="mui-slider-right mui-disabled">
-						<a class="mui-btn mui-btn-red">删除</a>
-					</div>
-					<div class="mui-slider-handle">
-						<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="images/shopcar-ph01.png">
-						<div class="mui-media-body">
-							<dl>
-								<dt id="title">超级大品牌12321321323123123服装，现在买只要998</dt>
-								购买数量:
-								<span>123</span>
-								<dd id="price"><span>单价：</span>￥653.00<span>积分：</span>￥653.00</dd>
-								<h3 id="totalprice" style=""><span class="totalprice">123</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span
-										 class="totalinteg">12</span><span></h3>
-							</dl>
-						</div>
-					</div>
-				</li> -->
+				
 			</ul>
 		</div>
 
@@ -85,32 +68,26 @@
 				<li>
 					<a href="index.html">
 						<img src="images/footer001.png" />
-						<p>首页</p>
+						<p id="index">首页</p>
 					</a>
 				</li>
 
 				<li class="active">
 					<a href="shopcar.html">
 						<img src="images/footer03.png" />
-						<p>购物车</p>
+						<p id="shoppingCar">购物车</p>
 					</a>
 				</li>
-				<!-- <li>
-					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
-			vertical-align: middle;margin: auto;line-height: 40px;">
-						<p style="margin-top: 0;">主页</p>
-					</a>
-				</li> -->
 				<li>
 					<a href="assort.html">
 						<img src="images/footer002.png" />
-						<p>订单</p>
+						<p id="order">订单</p>
 					</a>
 				</li>
 				<li>
 					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>主页</p>
+						<p id="mainPage">主页</p>
 					</a>
 				</li>
 			</ul>
@@ -146,7 +123,7 @@
 			jqAjax(param, msg);
 		});
 		function msg(data){
-			mui.toast("支付信息：" + data.RetInfo);
+			mui.toast(data.RetInfo);
 			window.location.href="index.html";
 		}
 		mui('.mui-numbox').on('change', '.mui-input-numbox', function() {			
@@ -169,9 +146,9 @@
 				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData[i].PicMain+'"><div class="mui-media-body">';
 				html+='<dl>';
 				html+='<dt id="title">'+data.RetData[i].ProdNo+':'+data.RetData[i].ProdName+'</dt>';
-				html+='购买数量:<span>'+data.RetData[i].ProdNum+'</span>';				
-				html+='<dd id="price"><span>单价：</span >'+data.RetData[i].PPrice+'<span>&nbsp;积分：</span>'+data.RetData[i].PInteg+'</dd>';
-				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+=tempJson.shopui.shoppingCar.amount[config.reqSys]+'<span>'+data.RetData[i].ProdNum+'</span>';				
+				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
 				html+='</div></div>';
 				li.innerHTML = html;
 				contain.appendChild(li);
@@ -185,7 +162,7 @@
 // 			money.innerHTML =totalMoney;
 // 			var integral = document.getElementById('integral');
 // 			integral.innerHTML = totalIntegral;
-			mui('#total')[0].innerHTML="(金额:"+totalMoney+"&nbsp;积分:"+totalIntegral+")";
+			mui('#total')[0].innerHTML="("+tempJson.shopui.shoppingCar.price[config.reqSys]+":"+totalMoney+"&nbsp;"+tempJson.shopui.shoppingCar.integral[config.reqSys]+""+totalIntegral+")";
 		}
 		
 		function jqAjax() {
@@ -269,5 +246,21 @@
 			});
 			var btnArray = ['确认', '取消'];
 		})(mui);
+		
+		 $(document).ready(function(){	
+			config.reqSys=app.getLanguage().language;
+			initHTML();
+		});
+		function initHTML(){
+			$("#index").text(tempJson.shopui.footer.index[config.reqSys]);
+			$("#shoppingCar").text(tempJson.shopui.footer.shoppingCar[config.reqSys]);
+			$("#order").text(tempJson.shopui.footer.order[config.reqSys]);
+			$("#mainPage").text(tempJson.shopui.footer.mainPage[config.reqSys]);
+			
+			$("#header").text(tempJson.shopui.shoppingCar.header[config.reqSys]);
+			$("#submit").text(tempJson.shopui.shoppingCar.liquidation[config.reqSys]);
+			$("#passwordLabel").text(tempJson.shopui.shoppingCar.passwordLabel[config.reqSys]);			
+			$("#password").attr("placeholder",tempJson.shopui.shoppingCar.password[config.reqSys]);
+		}
 	</script>
 </html>

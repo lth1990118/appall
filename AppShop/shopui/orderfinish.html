@@ -40,7 +40,7 @@
 			<a class="icona" href="javascript:history.go(-1)">
 					<img src="images/left.png"/>
 				</a>
-			<h3 id="item3Label">已完成</h3>
+			<h3 id="header">已完成</h3>
 		</header>
 		<div>			
 			<div id="item3" class="mui-control-content mui-active">
@@ -65,18 +65,7 @@
 		<script src="../js/data.js"></script>
 		<script src="../js/app.js"></script>
 		<script>
-			function initHTML(){
-				$("#item3Label").text(tempJson.integral.item3Label[config.reqSys]);
-								
-				$("#date").text(tempJson.integral.date[config.reqSys]);				
-				$("#moneyList").text(tempJson.integral.moneyList[config.reqSys]);				
-				$("#desc").text(tempJson.integral.desc[config.reqSys]);				
-				
-			}
-			window.onload = function() {
-				config.reqSys=app.getLanguage().language;
-				//initHTML();
-			}
+			
 			mui.init({
 				swipeBack: true, //启用右滑关闭功能
 				pullRefresh: {
@@ -216,6 +205,17 @@
 					jqAjax(data, tempJson.msgBonus[config.reqSys], init);
 				});
 			})(mui);
+			 $(document).ready(function(){
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			});
+			function initHTML(){
+				$("#header").text(tempJson.shopui.assort.finish[config.reqSys]);
+				$("#shop").text(tempJson.shopui.assort.stores[config.reqSys]);
+				$("#money").text(tempJson.shopui.assort.money[config.reqSys]);				
+				$("#integ").text(tempJson.shopui.assort.Integration[config.reqSys]);
+				$("#date").text(tempJson.shopui.assort.datetime[config.reqSys]);				
+			}
 		</script>
 	</body>
 </html>

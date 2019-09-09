@@ -10,14 +10,31 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		 <script src="js/mui.min.js"></script>
+		 <script src="../js/data.js"></script>
+		  <script src="../js/config.js"></script>
+		  <script src="../js/app.js"></script>
 		<script type="text/javascript">
 			$(window).load(function() {
-				$(".loading").addClass("loader-chanage")
-				$(".loading").fadeOut(300)
+				$(".loading").addClass("loader-chanage");
+				$(".loading").fadeOut(300);
 			})
 			mui.back = function back() {
 				//首次按键，提示‘再按一次退出应用’
 				history.go(-1)
+			}
+			 $(document).ready(function(){
+				config.reqSys=app.getLanguage().language;
+				initHTML();
+			});
+			function initHTML(){
+				$("#header").text(tempJson.shopui.assort.header[config.reqSys]);
+				$("#finish").text(tempJson.shopui.assort.finish[config.reqSys]);
+				$("#unfinish").text(tempJson.shopui.assort.unfinish[config.reqSys]);
+				
+				$("#index").text(tempJson.shopui.footer.index[config.reqSys]);
+				$("#shoppingCar").text(tempJson.shopui.footer.shoppingCar[config.reqSys]);
+				$("#order").text(tempJson.shopui.footer.order[config.reqSys]);
+				$("#mainPage").text(tempJson.shopui.footer.mainPage[config.reqSys]);
 			}
 		</script>
 	</head>
@@ -39,47 +56,28 @@
 			<a class="icona" href="javascript:history.go(-1)">
 					<img src="images/left.png"/>
 			</a>
-			<h3>订单中心</h3>
+			<h3 id="header">订单中心</h3>
 			<a class="iconb" href="shopcar.html"></a>
 		</header>
 
 		<div class="contaniner fixed-contb">
 			<section class="self">
 				<dl>
-					<!-- <dt>
-						<a href="order.html">
-							<img src="images/self-icon.png" />
-							<b>全部订单</b>
-							<span><img src="images/right.png" /></span>
-						</a>
-					</dt> -->
 					<dd>
 						<ul>
 							<li>
 								<a href="orderUnfinish.html">
 									<img src="images/order-icon03.png"/>
-									<p>未完成</p>
+									<p id="unfinish">未完成</p>
 								</a>
 							</li>
 							<li>
 								<a href="orderfinish.html">
 									<img src="images/order-icon01.png"/>
-									<p>已完成</p>
+									<p id="finish">已完成</p>
 								</a>
 							</li>
 							
-							<!-- <li>
-								<a href="orderfour.html">
-									<img src="images/order-icon02.png" />
-									<p>待收货</p>
-								</a>
-							</li>
-							<li>
-								<a href="go-assess.html">
-									<img src="images/order-icon04.png" />
-									<p>待评价</p>
-								</a>
-							</li> -->
 						</ul>
 					</dd>
 				</dl>
@@ -91,14 +89,14 @@
 				<li>
 					<a href="index.html">
 						<img src="images/footer001.png" />
-						<p>首页</p>
+						<p id="index">首页</p>
 					</a>
 				</li>
 
 				<li>
 					<a href="shopcar.html">
 						<img src="images/footer003.png" />
-						<p>购物车</p>
+						<p id="shoppingCar">购物车</p>
 					</a>
 				</li>
 			<!-- 	<li >
@@ -110,13 +108,13 @@
 				<li class="active">
 					<a href="assort.html">
 						<img src="images/footer02.png" />
-						<p>订单</p>
+						<p id="order">订单</p>
 					</a>
 				</li>
 				<li>
 					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>主页</p>
+						<p  id="mainPage">主页</p>
 					</a>
 				</li>
 			</ul>

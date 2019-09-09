@@ -32,6 +32,23 @@
 				//首次按键，提示‘再按一次退出应用’
 				history.go(-1)
 			}
+			 $(document).ready(function(){
+				 config.reqSys=app.getLanguage().language;
+				initHTML();
+			});
+			function initHTML(){
+				$("#index").text(tempJson.shopui.footer.index[config.reqSys]);
+				$("#shoppingCar").text(tempJson.shopui.footer.shoppingCar[config.reqSys]);
+				$("#order").text(tempJson.shopui.footer.order[config.reqSys]);
+				$("#mainPage").text(tempJson.shopui.footer.mainPage[config.reqSys]);
+				
+				$("#searchTxt2").text(tempJson.shopui.index.searchTxt[config.reqSys]);
+				$("#searchTxt").attr("placeholder",tempJson.shopui.index.searchTxt[config.reqSys]);
+				$("#searchBtn").text(tempJson.shopui.index.searchBtn[config.reqSys]);
+				$("#hotWords").text(tempJson.shopui.index.hotWords[config.reqSys]);
+				$("#recent").text(tempJson.shopui.index.recent[config.reqSys]);
+				$("#clear").text(tempJson.shopui.index.clear[config.reqSys]);
+			}
 		</script>
 	</head>
 	<!--loading页开始-->
@@ -54,7 +71,7 @@
 			<div class="top-sch-box flex-col">
 				<div class="centerflex">
 					<i class="fdj iconfont icon-search"></i>
-					<div class="sch-txt"  id="searchTxt2" >搜索关键字 </div>
+					<div class="sch-txt"  id="searchTxt2" >搜索关键字</div>
 					<span class="shaomiao"><i class="iconfont icon-saoma"></i></span>
 				</div>
 			</div>
@@ -75,13 +92,13 @@
 								<input class="sch-input mui-input-clear" type="text" name="" id="searchTxt" placeholder="搜索关键字" />
 							</div>
 						</div>
-						<a class="mui-btn mui-btn-primary sch-submit" >搜索</a>
+						<a class="mui-btn mui-btn-primary sch-submit" id="searchBtn">搜索</a>
 					</div>
 					<div class="scroll-wrap">
 						<div class="mui-scroll">
 							<div class="sch-cont">
 								<div class="section ui-border-b">
-									<div class="tit"><i class="iconfont icon-hot"></i>热门搜索</div>
+									<div class="tit"><i class="iconfont icon-hot" id="hotWords">热门搜索</i></div>
 									<div class="tags">
 										<!-- <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
 										<span class="tag actice">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
@@ -89,7 +106,7 @@
 									</div>
 								</div>
 								<div class="section">
-									<div class="tit"><i class="iconfont icon-time"></i>最近搜索</div>
+									<div class="tit"><i class="iconfont icon-time" id="recent">最近搜索</i></div>
 									<div class="tags">
 										<!-- <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
 										<span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
@@ -98,7 +115,7 @@
 								</div>
 							</div>
 							<div class="sch-clear">
-								<a href="javascript:void"><i class="iconfont icon-shanchu"></i>清除搜索历史</a>
+								<a href="javascript:void"><i class="iconfont icon-shanchu" id="clear">清除搜索历史</i></a>
 							</div>
 						</div>
 					</div>
@@ -117,34 +134,26 @@
 				<li class="active">
 					<a href="index.html">
 						<img src="images/footer01.png" />
-						<p>首页</p>
+						<p id="index">首页</p>
 					</a>
 				</li>
 				<li>
 					<a href="shopcar.html">
 						<img src="images/footer003.png" />
-						<p>购物车</p>
+						<p id="shoppingCar">购物车</p>
 					</a>
 				</li>
-
-				<!-- <li>
-					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
-    vertical-align: middle;margin: auto;line-height: 40px;">
-						<p style="margin-top: 0;">主页</p>
-					</a>
-				</li> -->
-
 				<li>
 					<a href="assort.html">
 						<img src="images/footer002.png" />
-						<p>订单</p>
+						<p id="order">订单</p>
 					</a>
 				</li>
 
 				<li>
 					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>主页</p>
+						<p id="mainPage">主页</p>
 					</a>
 				</li>
 			</ul>
@@ -265,7 +274,7 @@
 								var html="<a href=\"detail.html?id="+data.RetData[i].ProdID+"\">";
 								html+="<img src=\""+config.urlPicRoot +data.RetData[i].PicMain+"\" />";
 								html+="<p>"+data.RetData[i].ProdName+"</p>";
-								html+="<b>"+data.RetData[i].PPrice+"</b><middle>积分 "+data.RetData[i].PInteg+"</middle></a>";
+								html+="<b>"+data.RetData[i].PPrice+"</b><middle>"+tempJson.shopui.shoppingCar.integral[config.reqSys]+data.RetData[i].PInteg+"</middle></a>";
 								li.innerHTML=html;
 								
 								//console.log(contain);

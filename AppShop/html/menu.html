@@ -58,7 +58,7 @@
 							<a class="mui-navigate-right" data-href="html/bind.html" id="bind">绑定信息</a>
 							</li>
 							<li class="mui-table-view-cell">
-							<a class="mui-navigate-right" data-href="html/shoporder.html" id="bind">商城订单</a>
+							<a class="mui-navigate-right" data-href="html/shoporder.html" id="shoporder">商城订单</a>
 							</li>			
 							<li class="mui-table-view-cell">
 							<a class="mui-navigate-right" data-href="exit" id="exit">退出</a>
@@ -86,6 +86,8 @@
 				$("#info").text(tempJson.menu.info[config.reqSys]);
 				$("#exit").text(tempJson.menu.exit[config.reqSys]);
 				$("#bind").text(tempJson.menu.bind[config.reqSys]);
+				$("#integral").text(tempJson.menu.integral[config.reqSys]);
+				$("#shoporder").text(tempJson.menu.shoporder[config.reqSys]);
 				
 				$("#submit").text(tempJson.common.submit[config.reqSys]);
 			}

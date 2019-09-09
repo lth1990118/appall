@@ -263,6 +263,11 @@ var tempJson = {
 			EN:"Agent",
 			FR:"Agent"
 		},
+		shopui:{
+			CN:"商城",
+			EN:"shop",
+			FR:"shop"
+		},
 		sale:{
 			CN:"销售",
 			EN:"Sale",
@@ -552,6 +557,58 @@ var tempJson = {
 			FR:"Level"
 		}
 	},
+	shoporder:{
+		item3Label:{
+			CN:"商城订单",
+			EN:"order",
+			FR:"ordre"
+		},
+		makesure:{
+			CN:"确认交货",
+			EN:"confirmation of delivery",
+			FR:"confirmation de livraison"
+		},
+		searchTxt:{
+			CN:"请输入查询订单ID",
+			EN:"please enter order id",
+			FR:"Entrez la commande id"
+		},
+		nomessage:{
+			CN:"没有该订单ID信息",
+			EN:"invalid order ID",
+			FR:"commandes non valides id"
+		},
+		orderid:{
+			CN:"订单ID",
+			EN:"order id",
+			FR:"ordre id"
+		},
+		stores:{
+			CN:"门店",
+			EN:"stores",
+			FR:"magasin"
+		},
+		money:{
+			CN:"金额",
+			EN:"amount",
+			FR:"montant"
+		},
+		integral:{
+			CN:"积分",
+			EN:"integral",
+			FR:"integral"
+		},
+		status:{
+			CN:"状态",
+			EN:"status",
+			FR:"état"
+		},
+		detail:{
+			CN:"订单明细",
+			EN:"detail",
+			FR:"clair"
+		}
+	},	
 	purchase:{
 		item1Label:{
 			CN:"我的采购",
@@ -1022,7 +1079,7 @@ var tempJson = {
 		
 		item3Label:{
 			CN:"积分记录",
-			EN:"Integral record",
+			EN:"integral record",
 			FR:"portefeuille"
 		},
 		date:{
@@ -1032,8 +1089,8 @@ var tempJson = {
 		},
 		moneyList:{
 			CN:"积分",
-			EN:"Mount",
-			FR:"Montant"
+			EN:"integral",
+			FR:"integral"
 		},
 		desc:{
 			CN:"说明",
@@ -1136,6 +1193,161 @@ var tempJson = {
 			CN:"上拉显示更多",
 			EN:"Pull-up shows more",
 			FR:"Upper-pull display"
+		}
+	}
+	,shopui:{
+		footer:{
+			index:{
+				CN:"首页",
+				EN:"home",
+				FR:"page d'accueil"
+			}
+			,shoppingCar:{
+				CN:"购物车",
+				EN:"shopping car",
+				FR:"shopping car"
+			}
+			,order:{
+				CN:"订单",
+				EN:"order",
+				FR:"Commandes"
+			}
+			,mainPage:{
+				CN:"主页",
+				EN:"main Page",
+				FR:"main Page"
+			}			
+		},
+		assort:{
+			header:{
+				CN:"订单中心",
+				EN:"order center",
+				FR:"centre de commande"
+			},
+			finish:{
+				CN:"已完成",
+				EN:"finish",
+				FR:"chevés"
+			},
+			unfinish:{
+				CN:"未完成",
+				EN:"unfinished",
+				FR:"Non achevé"
+			},
+			stores:{
+				CN:"门店",
+				EN:"stores",
+				FR:"magasin"
+			},
+			money:{
+				CN:"金额",
+				EN:"money",
+				FR:"montant"
+			},
+			Integration:{
+				CN:"积分",
+				EN:"integral",
+				FR:"Integration"
+			},
+			datetime:{
+				CN:"时间",
+				EN:"datetime",
+				FR:"Temps"
+			}
+		},
+		index:{
+			searchTxt:{
+				CN:"搜索关键字",
+				EN:"search keywords",
+				FR:"recherche de mots clés"
+			},
+			searchBtn:{
+				CN:"搜索",
+				EN:"search",
+				FR:"recherche"
+			},
+			hotWords:{
+				CN:"热门搜索",
+				EN:"hot words",
+				FR:"hot search"
+			},
+			recent:{
+				CN:"最近搜索",
+				EN:"recent search",
+				FR:"recherche récente"
+			},
+			clear:{
+				CN:"清楚搜索历史",
+				EN:"clear",
+				FR:"effacer"
+			}
+		},
+		shoppingCar:{
+			header:{
+				CN:"购物车",
+				EN:"shopping car",
+				FR:"shopping car"
+			},			
+			liquidation:{
+				CN:"去结算",
+				EN:"settlement",
+				FR:"liquidation"
+			},
+			passwordLabel:{
+				CN:"支付密码",
+				EN:"password",
+				FR:"passe"
+			},
+			password:{
+				CN:"请输入密码",
+				EN:"password",
+				FR:"passe"
+			},
+			pay:{
+				CN:"支付",
+				EN:"pay",
+				FR:"pay"
+			},
+			clear:{
+				CN:"清楚搜索历史",
+				EN:"clear",
+				FR:"effacer"
+			},
+			deletes:{
+				CN:"删除",
+				EN:"delete",
+				FR:"supprimé"
+			},
+			amount:{
+				CN:"购买数量",
+				EN:"amount",
+				FR:"nombre"
+			},
+			price:{
+				CN:"单价:",
+				EN:"price:",
+				FR:"price:"
+			},
+			integral:{
+				CN:"积分:",
+				EN:"integral:",
+				FR:"integral:"
+			},
+			totalintegral:{
+				CN:"总积分:",
+				EN:"total integral:",
+				FR:"total integral:"
+			},
+			makesure:{
+				CN:"确认删除该条记录？",
+				EN:"Confirm deletion of the record?",
+				FR:"Confirmation de la suppression?"
+			},
+			addShopCar:{
+				CN:"加入购物车",
+				EN:"Add to cart",
+				FR:"Ralliez - vous à la voiture."
+			}
 		}
 	}
 }

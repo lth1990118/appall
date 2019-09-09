@@ -47,7 +47,7 @@
 	<!--loading页结束-->
 	<body>
 		<header class="page-header">
-			<h3>购物车</h3>
+			<h3 id="header">购物车</h3>
 		</header>
 		<div class="mui-content">
 			<ul id="OA_task_1" class="mui-table-view">
@@ -67,14 +67,14 @@
 				<li>
 					<a href="index.html">
 						<img src="images/footer001.png" />
-						<p>首页</p>
+						<p id="index">首页</p>
 					</a>
 				</li>
 
 				<li class="active">
 					<a href="shopcar.html">
 						<img src="images/footer03.png" />
-						<p>购物车</p>
+						<p id="shoppingCar">购物车</p>
 					</a>
 				</li>
 				<!-- <li>
@@ -86,13 +86,13 @@
 				<li>
 					<a href="assort.html">
 						<img src="images/footer002.png" />
-						<p>订单</p>
+						<p id="order">订单</p>
 					</a>
 				</li>
 				<li>
 					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>主页</p>
+						<p id="mainPage">主页</p>
 					</a>
 				</li>
 			</ul>
@@ -179,17 +179,17 @@
 				li.className = 'mui-table-view-cell mui-media';
 				var html='';
 				console.log(i);
-				html+='<div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div>';
+				html+='<div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red" id="delete">'+tempJson.shopui.shoppingCar.deletes[config.reqSys]+'</a></div>';
 				html+='<div class="mui-slider-handle">';
 				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData[i].PicMain+'"><div class="mui-media-body">';
 				html+='<dl>';
 				html+='<dt id="title">'+data.RetData[i].ProdNo+':'+data.RetData[i].ProdName+'</dt>';
-				html+='购买数量:<div class="mui-numbox" data-numbox-min="1">';
+				html+=tempJson.shopui.shoppingCar.amount[config.reqSys]+'<div class="mui-numbox" data-numbox-min="1">';
 				html+='<button class="mui-btn mui-btn-numbox-minus" type="button" disabled>-</button>';
 				html+='<input class="mui-input-numbox" type="number" data-prodid="'+data.RetData[i].ProdID+'" value="'+data.RetData[i].ProdNum+'"/>';
 				html+='<button class="mui-btn mui-btn-numbox-plus" type="button">+</button></div>';
-				html+='<dd id="price"><span>单价：</span >'+data.RetData[i].PPrice+'<span>&nbsp;积分：</span>'+data.RetData[i].PInteg+'</dd>';
-				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
 				html+='</div></div>';
 				li.innerHTML = html;
 				contain.appendChild(li);
@@ -249,7 +249,7 @@
 				var li = elem.parentNode.parentNode;
 				var id=li.getAttribute("data-prodid");
 				
-				mui.confirm('确认删除该条记录？', 'eternal', btnArray, function(e) {
+				mui.confirm(tempJson.shopui.shoppingCar.makesure[config.reqSys], 'eternal', btnArray, function(e) {
 					console.log(id);
 					
 					if (e.index == 0) {
@@ -292,7 +292,20 @@
 					}
 				});
 			});
-			var btnArray = ['确认', '取消'];
+			var btnArray = [tempJson.common.submit[config.reqSys], tempJson.common.cancel[config.reqSys]];
 		})(mui);
+		 $(document).ready(function(){
+			 config.reqSys=app.getLanguage().language;
+			initHTML();
+		});
+		function initHTML(){
+			$("#index").text(tempJson.shopui.footer.index[config.reqSys]);
+			$("#shoppingCar").text(tempJson.shopui.footer.shoppingCar[config.reqSys]);
+			$("#order").text(tempJson.shopui.footer.order[config.reqSys]);
+			$("#mainPage").text(tempJson.shopui.footer.mainPage[config.reqSys]);
+			
+			$("#header").text(tempJson.shopui.shoppingCar.header[config.reqSys]);
+			$("#submit").text(tempJson.shopui.shoppingCar.liquidation[config.reqSys]);
+		}
 	</script>
 </html>

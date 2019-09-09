@@ -75,7 +75,7 @@
 						<input id="status"  type="text" class="mui-input" placeholder="" readonly>
 					</div>
 					<div class="mui-row" style="text-align: center;background-color: #007AFF;color: #fff;">
-						<label>订单明细</label>						
+						<label id="detail">订单明细</label>						
 					</div>
 					<ul id="OA_task_1" class="mui-table-view">
 						
@@ -91,22 +91,19 @@
 		<script src="../js/app.js"></script>
 		<script>
 			function initHTML(){
-// 				$("#item3Label").text(tempJson.integral.item3Label[config.reqSys]);
-// 				
-// 				$("#payUserID2Label").text(tempJson.integral.payUserID2Label[config.reqSys]);
-// 				$("#payUserID2").attr("placeholder",tempJson.integral.payUserID2[config.reqSys]);
-// 				$("#payUserCode2Label").text(tempJson.integral.payUserCode2Label[config.reqSys]);
-// 				$("#payUserCode2").attr("placeholder",tempJson.integral.payUserCode2[config.reqSys]);
-// 				$("#money2Label").text(tempJson.integral.money2Label[config.reqSys]);
-// 				$("#money2").attr("placeholder",tempJson.integral.money2[config.reqSys]);
-// 				$("#password2Label").text(tempJson.integral.password2Label[config.reqSys]);
-// 				$("#password2").attr("placeholder",tempJson.integral.password2[config.reqSys]);
-// 				
-// 				$("#date").text(tempJson.integral.date[config.reqSys]);				
-// 				$("#moneyList").text(tempJson.integral.moneyList[config.reqSys]);				
-// 				$("#desc").text(tempJson.integral.desc[config.reqSys]);				
-// 				
-// 				$("#searchBtn").text(tempJson.common.submit[config.reqSys]);
+				$("#item3Label").text(tempJson.shoporder.item3Label[config.reqSys]);
+				// $("#searchTxt").text(tempJson.shoporder.searchTxt[config.reqSys]);
+				
+				$("#orderIDLabel").text(tempJson.shoporder.orderid[config.reqSys]);
+				$("#integLabel").text(tempJson.shoporder.integral[config.reqSys]);
+				$("#statusLabel").text(tempJson.shoporder.status[config.reqSys]);
+				$("#moneyLabel").text(tempJson.shoporder.money[config.reqSys]);
+				$("#shopLabel").text(tempJson.shoporder.stores[config.reqSys]);
+				$("#detail").text(tempJson.shoporder.detail[config.reqSys]);
+				
+				$("#searchBtn").text(tempJson.common.submit[config.reqSys]);
+				$("#searchTxt").attr("placeholder",tempJson.shoporder.searchTxt[config.reqSys]);
+				$("#submit2").text(tempJson.shoporder.makesure[config.reqSys]);
 			}
 			window.onload = function() {
 				config.reqSys=app.getLanguage().language;
@@ -248,7 +245,7 @@
 							console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据
 							document.getElementById('submit2').setAttribute("enabled", true);
 							if(data.RetData==null){
-								mui.toast("没有该订单ID信息");
+								mui.toast(tempJson.shoporder.nomessage[config.reqSys]);
 								return;
 							}
 							if (data.RetFlag < 0) {
@@ -270,9 +267,9 @@
 									html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData.ProdList[i].PicMain+'">';
 									html+='<div class="mui-media-body"><dl style="margin: 0px;">';
 									html+='<dt id="title">['+data.RetData.ProdList[i].ProdNo+']'+data.RetData.ProdList[i].ProdName+'</dt>';
-									html+='购买数量:';
+									html+=tempJson.shopui.shoppingCar.amount[config.reqSys];
 									html+='<label>'+data.RetData.ProdList[i].ProdNum+'</label>';
-									html+='<dd id="price"><span>单价：</span>'+data.RetData.ProdList[i].PPrice+'<span>积分：</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
+									html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span>'+data.RetData.ProdList[i].PPrice+'<span>'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
 									html+='</dl></div></div>';
 									li.innerHTML = html;
 									contain.appendChild(li);

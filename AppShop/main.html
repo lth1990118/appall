@@ -135,7 +135,7 @@
 				<span class="mui-tab-label" style="border: 1px solid #002752; border-radius: 50%;">商城</span>
 			</a> -->
 			<a class="mui-tab-item" href="shopui" style="border: 2px solid #ccc;border-radius: 50%;;line-height: 46px;">						
-								<span>商城</span>
+								<span id="shopui">商城</span>
 			</a>
 			<a class="mui-tab-item" href="html/bonus.html">
 				<span class="mui-icon-extra mui-icon-extra-prech"></span>
@@ -223,11 +223,13 @@
 				$("#LeftCashLabel").text(tempJson.main.LeftCashLabel[config.reqSys]);
 				$("#UserLevelLabel").text(tempJson.main.UserLevelLabel[config.reqSys]);
 				$("#LeftSellLabel").text(tempJson.main.LeftSellLabel[config.reqSys]);
+				$("#shopui").text(tempJson.main.shopui[config.reqSys]);
 
 				$("#agent").text(tempJson.main.agent[config.reqSys]);
 				$("#sale").text(tempJson.main.sale[config.reqSys]);
 				$("#bonus").text(tempJson.main.bonus[config.reqSys]);
 				$("#menu").text(tempJson.main.menu[config.reqSys]);
+				$("#shopui").text(tempJson.main.shopui[config.reqSys]);
 
 				$("#camera").text(tempJson.main.camera[config.reqSys]);
 				$("#picture").text(tempJson.main.picture[config.reqSys]);
