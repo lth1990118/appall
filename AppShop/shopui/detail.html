@@ -47,11 +47,11 @@
 			<section class="detail">
 				<figure class="swiper-container">
 					<ul class="swiper-wrapper" id="imgContain">
-						<li class="swiper-slide">
+						<!-- <li class="swiper-slide">
 							<a href="#">
 								<img src="images/detail-ban02.png" />
 							</a>
-						</li>
+						</li> -->
 						<!-- 	<li class="swiper-slide">
 							<a href="#">
 								<img src="images/detail-ban01.png" />
@@ -80,10 +80,11 @@
 						</div> -->
 					</dt>
 					<dd>
-						<b>￥</b><b id="money"></b>
+						<b></b><b id="money"></b>
 						<!-- <del>￥139</del> -->
 						<!-- <input type="button" value="￥10.00" readonly /> -->
 						<small>+</small><small id="jf"></small><small>积分</small>
+						<h4 id="explain"></h4>
 					</dd>
 				</dl>
 
@@ -331,46 +332,52 @@
 					"ReqType": "ScProdGet",
 					"ReqData": id
 				};
-				jqAjax(data,initPage);
-				
+				jqAjax(data, initPage);
+
 				$('#addShopCar').on('click', function() {
 					var param = {
 						"ReqSys": config.reqSys,
 						"ReqKey": userInfo.UserID,
 						"ReqPwd": userInfo.PwdTmp,
 						"ReqType": "ScShopCartUp",
-						"ReqData":   {
-							"ProdID": id,  // 商品ID
-							"ProdNum": 1     // 商品数量，小于等于0时，表示删除，否则表示添加或修改
+						"ReqData": {
+							"ProdID": id, // 商品ID
+							"ProdNum": 1 // 商品数量，小于等于0时，表示删除，否则表示添加或修改
 						}
-					};				
-					jqAjax(param,msg)
+					};
+					jqAjax(param, msg)
 				});
 			});
-			function msg(data){
-				mui.toast("添加购物车："+data.RetInfo);
+
+			function msg(data) {
+				mui.toast("添加购物车：" + data.RetInfo);
+				window.location.href="shopcar.html";
 			}
-			function initPage(data){
+
+			function initPage(data) {
 				console.log(JSON.stringify(data));
-				
+
 				var contain = document.getElementById('imgContain');
 				contain.innerHTML = "";
 				var li = document.createElement('li');
 				li.className = 'swiper-slide';
-				
+
 				var html = "<a href=\"#\">";
-				html += "<img src=\"" + data.RetData[0].PicMain + "\" />";
+				html += "<img src=\"" + config.urlPicRoot +data.RetData[0].PicMain + "\" />";
 				html += "</a>";
 				li.innerHTML = html;
 				contain.appendChild(li);
-				
+
 				var money = document.getElementById('money');
 				money.innerHTML = data.RetData[0].PPrice;
 				var title = document.getElementById('title');
-				title.innerHTML = data.RetData[0].PExplain;
+				title.innerHTML = '['+data.RetData[0].ProdNo+']'+data.RetData[0].ProdName;
 				var jf = document.getElementById('jf');
 				jf.innerHTML = data.RetData[0].PInteg;
+				var explain = document.getElementById('explain');
+				explain.innerHTML = data.RetData[0].PExplain;
 			}
+
 			function jqAjax() {
 				var arg = arguments;
 				$.ajax({

@@ -11,101 +11,40 @@
       <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	   <script src="js/mui.min.js"></script>
 	 
-     <script type="text/javascript">
-   	$(window).load(function() {
-   		$(".loading").addClass("loader-chanage")
-   		$(".loading").fadeOut(300)
-   	})
-   	mui.back = function back() {
-   		//首次按键，提示‘再按一次退出应用’
-   		history.go(-1)
-   	}
-    </script>
-</head>
-<!--loading页开始-->
-<div class="loading">
-	<div class="loader">
-        <div class="loader-inner pacman">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-	</div>
-</div>
-<!--loading页结束-->
-<body>
-	<!--<header class="self-header">
-		<figure><img src="images/self-tou.png"/></figure>
-		<dl>
-			<dt>瑾晨</dt>
-			<dd>
-				<img src="images/self-header.png"/>
-				<span>5684</span>
-				<span>炒饭大湿</span>
-			</dd>
-		</dl>
-		<button>签到</button>
-	</header>-->
-
-	<div class="p-top  clearfloat">
-		<a href="personal.html">
-			<div class="tu">
-				<img src="img/touxiang.png"/>
-			</div>
-			<p class="name">Guoguo</p>
-		</a>
-		<div class="p-bottom p-bottom1 clearfloat">
-			<ul class="clearfloat">
-				<a href="#">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的佣金</p>
-						<p class="price">0.00</p>
-					</li>
-				</a>
-				<a href="#">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的积分</p>
-						<p class="price">0</p>
-					</li>
-				</a>
-				<a href="#">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的足迹</p>
-						<p class="price">0</p>
-					</li>
-				</a>
-			</ul>
-			<!-- <ul class="clearfloat">
-				<a href="fx-center1.html">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的佣金</p>
-						<p class="price">0.00</p>
-					</li>
-				</a>
-				<a href="#">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的积分</p>
-						<p class="price">0</p>
-					</li>
-				</a>
-				<a href="#">
-					<li class="box-s">
-						<span class="opa6"></span>
-						<p class="bt">我的足迹</p>
-						<p class="price">0</p>
-					</li>
-				</a>
-			</ul> -->
-		</div>
-	</div>
-	
+    <div class="p-top  clearfloat">
+    	<a href="#">
+    		<div class="tu">
+    			<img id="head-img" src="img/touxiang.png"/>
+    		</div>
+    		<p class="name" id="UserName">Guoguo</p>
+    	</a>
+    	<div class="p-bottom p-bottom1 clearfloat">
+    		<ul class="clearfloat">
+    			<a href="#">
+    				<li class="box-s">
+    					<span class="opa6"></span>
+    					<p class="bt">收入</p>
+    					<p class="price" id="SumBonus">0</p>
+    				</li>
+    			</a>
+    			<a href="#">
+    				<li class="box-s">
+    					<span class="opa6"></span>
+    					<p class="bt">余额</p>
+    					<p class="price" id="LeftCash">0</p>
+    				</li>
+    			</a>
+    			<a href="#">
+    				<li class="box-s">
+    					<span class="opa6"></span>
+    					<p class="bt">验证码</p>
+    					<p class="price" id="VerifyCode">0</p>
+    				</li>
+    			</a>
+    		</ul>
+    		
+    	</div>
+    </div>
 	<div class="contaniner fixed-contb">
 		<section class="self">
 			<dl>
@@ -221,12 +160,12 @@
 					<p>购物车</p>
 				</a>
 			</li>
-			<li>
+			<!-- <li>
 					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
 			vertical-align: middle;margin: auto;line-height: 40px;">
 						<p style="margin-top: 0;">主页</p>
 					</a>
-			</li>
+			</li> -->
 			<li>
 				<a href="assort.html">
 					<img src="images/footer002.png"/>
@@ -237,7 +176,7 @@
 			<li class="active">
 				<a href="self.html">
 					<img src="images/footer04.png"/>
-					<p>个人中心</p>
+					<p>主页</p>
 				</a>
 			</li>
 		</ul>

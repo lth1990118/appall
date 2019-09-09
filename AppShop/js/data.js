@@ -30,7 +30,7 @@ var tempJson = {
 		FR:"succès！"
 	},
 	msgBonusForOther: {
-		CN:"转账申请提交成功！",
+		CN:"积分转出成功！",
 		EN:"success",
 		FR:"succès！"
 	},
@@ -483,6 +483,16 @@ var tempJson = {
 			CN:"我的钱包",
 			EN:"Wallet",
 			FR:"Mon portefeuille"
+		},
+		integral:{
+			CN:"我的积分",
+			EN:"Integral",
+			FR:"Integration"
+		},
+		shoporder:{
+			CN:"商城订单",
+			EN:"Order",
+			FR:"Ordre"
 		},
 		myTeam:{
 			CN:"我的团队",
@@ -962,6 +972,75 @@ var tempJson = {
 			FR:"Note"
 		}
 	},	
+	integral:{
+		
+		item2Label:{
+			CN:"积分转出",
+			EN:"Integral",
+			FR:"Virement"
+		},
+		payUserID2Label:{
+			CN:"转入代理ID",
+			EN:"Agent ID",
+			FR:"Agent ID"
+		},
+		payUserID2:{
+			CN:"请输入转入代理ID",
+			EN:"Agent ID",
+			FR:"Identificateur d 'agent"
+		},
+		payUserCode2Label:{
+			CN:"代理验证码",
+			EN:"Validate",
+			FR:"Validat"
+		},
+		payUserCode2:{
+			CN:"请输入代理验证码",
+			EN:"Validate",
+			FR:"Code d 'authentification Proxy"
+		},
+		money2Label:{
+			CN:"转出积分",
+			EN:"Integral",
+			FR:"Montant"
+		},
+		money2:{
+			CN:"请输入转出积分",
+			EN:"Integral",
+			FR:"Montant"
+		},
+		password2Label:{
+			CN:"支付密码",
+			EN:"Password",
+			FR:"password"
+		},
+		password2:{
+			CN:"请输入支付密码",
+			EN:"password for pay",
+			FR:"password for pay"
+		},
+		
+		item3Label:{
+			CN:"积分记录",
+			EN:"Integral record",
+			FR:"portefeuille"
+		},
+		date:{
+			CN:"日期",
+			EN:"Date",
+			FR:"Date"
+		},
+		moneyList:{
+			CN:"积分",
+			EN:"Mount",
+			FR:"Montant"
+		},
+		desc:{
+			CN:"说明",
+			EN:"Description",
+			FR:"Note"
+		}
+	},
 	common:{
 		submit:{
 			CN:"提交",

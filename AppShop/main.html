@@ -214,6 +214,7 @@
 			var activeTab = subpages[0];
 
 			function initHTML() {
+				console.log("initHTML");
 				$("#header").text(tempJson.main.header[config.reqSys]);
 				$("#UserNameLabel").text(tempJson.main.UserNameLabel[config.reqSys]);
 				$("#UserIDLabel").text(tempJson.main.UserIDLabel[config.reqSys]);
@@ -233,18 +234,28 @@
 				$("#cancel").text(tempJson.main.cancel[config.reqSys]);
 			}
 			window.onload = function() {
+				console.log("onload");
+// 				config.reqSys = app.getLanguage().language;
+// 				initHTML();
+// 				userInfo = app.getSettings();
+// 				console.log(JSON.stringify(userInfo));
+// 				init();
+			}
+			 $(document).ready(function(){
+				console.log("document ready");
 				config.reqSys = app.getLanguage().language;
 				initHTML();
 				userInfo = app.getSettings();
 				console.log(JSON.stringify(userInfo));
 				init();
-			}
+			});
 			var currentWebview;
 			var subpage_style = {
 				top: '150px',
 				bottom: '50px'
 			}
 			mui.plusReady(function() {
+				console.log("plusReady");
 				if (!self.userInfo.UserID) {
 					mui.openWindow({
 						url: 'login.html',
@@ -270,7 +281,8 @@
 				tabChange(targetTab);
 			})
 
-			function tabChange() {
+			function tabChange() {				
+				console.log("tabChange");
 				console.log(JSON.stringify(arguments));
 				var targetTab = arguments[0];
 				var isBack = arguments[1];
@@ -340,6 +352,7 @@
 			var userInfo = {};
 
 			function init() {
+				console.log("init");
 				mui('#UserID')[0].innerHTML = userInfo.UserID;
 				mui('#UserName')[0].innerHTML = userInfo.UserName;
 				mui('#LeftSell')[0].innerHTML = userInfo.SumStock;
@@ -357,6 +370,7 @@
 			}
 
 			function refresh() {
+				console.log("refresh");
 				if (userInfo == null || userInfo.UserID == null) {
 					return;
 				}
@@ -383,7 +397,7 @@
 						if (data.RetFlag < 0) {
 							console.log(data.RetInfo);
 						} else {
-
+							console.log("refresh ajax");
 							var option = data.RetData[0];
 							console.log(JSON.stringify(option));
 							userInfo.UserID = option.UserID;
@@ -409,7 +423,8 @@
 			var meta = document.getElementById("refresh");
 			setInterval(refresh, parseInt(meta.content) * 1000);
 
-			function player() { //播放音乐 
+			function player() { //播放音乐
+				console.log("player");
 				var s = plus.audio.createPlayer("MP3/voice.mp3");
 				var num = s.getDuration(); //获取音频总长度number 
 				setTimeout(function() { //延时获取，否则可能没有返回长度 
@@ -422,7 +437,8 @@
 
 				});
 			}
-			(function($, doc) {
+			(function($, doc) {				
+				console.log("function");
 				window.addEventListener('refresh', refresh);
 
 			})(mui, document);

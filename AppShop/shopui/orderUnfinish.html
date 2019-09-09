@@ -1,117 +1,236 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="css/loaders.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/loading.css"/>
-    <link rel="stylesheet" type="text/css" href="css/base.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-      <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	  <script src="js/mui.min.js"></script>
-	  <script type="text/javascript">
-	 	 
-	 		  mui.back = function back() {
-	 			//首次按键，提示‘再按一次退出应用’
-	 			history.go(-1)
-	 		  }
-	 </script>
-    <script type="text/javascript">
-    	$(window).load(function(){
-    		$(".loading").addClass("loader-chanage")
-    		$(".loading").fadeOut(300)
-    	})
-    </script>
-</head>
-<!--loading页开始-->
-<div class="loading">
-	<div class="loader">
-        <div class="loader-inner pacman">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-	</div>
-</div>
-<!--loading页结束-->
-<body>
-	<header class="top-header fixed-header">
-		<a class="icona" href="javascript:history.go(-1)">
-				<img src="images/left.png"/>
-			</a>
-		<h3>未完成</h3>
-			<a class="iconb" href="shopcar.html">
-			</a>
-	</header>
-	
-	<div class="contaniner fixed-conta">
-		<section class="order">
-			<dl>
-				<dt>
-					<time>2015-11-15 22:55:59</time>
-					<span>待发货</span>
-				</dt>
-				<ul>
-					<a href="detail.html">
-						<figure><img src="images/classify-ph03.png"/></figure>
-						<li>
-							<p>超级大品牌服装，现在够级大品牌服装，现在够买只要998</p>
-							<small>颜色：经典绮丽款</small>
-							<span>尺寸：XL</span>
-							<b>￥32.00</b>
-							<strong>×3</strong>
-						</li>
-					</a>
-				</ul>
-				<dd>
-					<h3>商品总额</h3>
-					<i>￥98.00</i>
-				</dd>
-				<dd>
-					<input type="button" value="确认收货" class="order-que"/>
-					<input type="button" value="查看物流" onclick="javascript:location.href='wuliu.html'" />
-					<input type="button" value="取消订单" />
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>
-					<time>2015-11-15 22:55:59</time>
-					<span>待发货</span>
-				</dt>
-				<ul>
-					<a href="detail.html">
-						<figure><img src="images/classify-ph03.png"/></figure>
-						<li>
-							<p>超级大品牌服装，现在够级大品牌服装，现在够买只要998</p>
-							<small>颜色：经典绮丽款</small>
-							<span>尺寸：XL</span>
-							<b>￥32.00</b>
-							<strong>×3</strong>
-						</li>
-					</a>
-				</ul>
-				<dd>
-					<h3>商品总额</h3>
-					<i>￥98.00</i>
-				</dd>
-				<dd>
-					<input type="button" value="确认收货" class="order-que"/>
-					<input type="button" value="查看物流" onclick="javascript:location.href='wuliu.html'" />
-					<input type="button" value="取消订单" />
-					
-					
-				</dd>
-			</dl>
-		</section>
-	</div>
-	
-	
-	
-	
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>myBonus</title>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/config.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/sha1.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />	 
+		<link href="../css/icons-extra.css" rel="stylesheet" />
+		  <link rel="stylesheet" type="text/css" href="css/loaders.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/loading.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<style type="text/css">
+			.mui-scroll-wrapper {
+				top: 40px
+			}
 
-</body>
+			.title {
+				text-align: center;
+				padding: 10px;
+				color: #040505;
+				font-weight: bolder;
+			}
+
+			ul li {
+				text-align: center;
+				border: 1px solid #ccc ;
+				margin-bottom: 5px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<header class="top-header">	
+			<a class="icona" href="javascript:history.go(-1)">
+					<img src="images/left.png"/>
+				</a>
+			<h3 id="item3Label">未完成</h3>
+		</header>
+		<div>			
+			<div id="item3" class="mui-control-content mui-active">
+				<div class="title">
+					<div class="mui-row">
+						<div class="mui-col-xs-3"  id="shop">门店</div>
+						<div class="mui-col-xs-2"  id="money">金额</div>
+						<div class="mui-col-xs-3" id="integ">积分</div>
+						<div class="mui-col-xs-4" id="date">时间</div>
+					</div>
+				</div>
+				<div id="scroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="contain2" class="mui-table-view">
+							<!-- <li class="mui-table-view-cell">
+								<div class="mui-row">
+									<div class="mui-col-xs-3">
+										<b>123</b>
+									</div>
+									<div class="mui-col-xs-2">
+										<b>123</b>
+									</div>
+									<div class="mui-col-xs-3">
+										<b>123</b>
+									</div>
+									<div class="mui-col-xs-4">
+										<b>123</b>
+									</div>
+								</div>
+							</li> -->
+						
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/data.js"></script>
+		<script src="../js/app.js"></script>
+		<script>
+			function initHTML(){
+				$("#item3Label").text(tempJson.integral.item3Label[config.reqSys]);
+								
+				$("#date").text(tempJson.integral.date[config.reqSys]);				
+				$("#moneyList").text(tempJson.integral.moneyList[config.reqSys]);				
+				$("#desc").text(tempJson.integral.desc[config.reqSys]);				
+				
+			}
+			window.onload = function() {
+				config.reqSys=app.getLanguage().language;
+				//initHTML();
+			}
+			mui.init({
+				swipeBack: true, //启用右滑关闭功能
+				pullRefresh: {
+					container: '#scroll',
+					up: {
+						auto: true,
+						contentrefresh: tempJson.common.loading[config.reqSys],
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			function pullupRefresh() {
+			
+				setTimeout(function() {
+					mui('#scroll').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+					if (flag) {
+						console.log(tempJson.msgNoData[config.reqSys]);
+						mui.toast(tempJson.msgNoData[config.reqSys]);					
+						return;
+					}
+					bonusList();
+				}, 1500);
+			}
+			var pageIndex = 0;
+			var flag = false;
+			function itemClick(){
+				mui('#contain2').on('tap', 'li', function() {
+					//alert(this.getAttribute("data-orderid"));
+					localStorage.setItem('$OrderID', this.getAttribute("data-orderid"));
+					localStorage.setItem('$Isfinish', 0);
+					window.location.href="buyOrderfinish.html";
+				});
+			}
+			function bonusList() {
+				var userInfo = app.getSettings();
+				var data = {
+					"ReqSys": config.reqSys,
+					"ReqKey": userInfo.UserID,
+					"ReqPwd": userInfo.PwdTmp,
+					"ReqType": "ScOrderSel_40",
+					"ReqData": pageIndex
+				};
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(data),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据	
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+						} else {
+							if (data.RetFlag < pageIndex * 10) {
+								flag = true;
+							}
+							if (data.RetData.length == 0) {
+								flag = true;
+								if (pageIndex > 1) {
+									mui.toast(tempJson.msgNoData[config.reqSys]);
+								}
+								return;
+							}
+							var BonusIncomeData = [];
+							if (data.RetData.length == 0) {
+								mui.toast(tempJson.msgNoData[config.reqSys]);
+								return;
+							}
+							var table = document.getElementById('contain2');
+							for (var i = 0; i < data.RetData.length; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								li.setAttribute("data-orderid",data.RetData[i].OrderID);
+								var div = document.createElement('div');
+								div.className = 'mui-row';
+								var titleHtml = "";
+
+								titleHtml += '	<div class="mui-col-xs-3">' +
+									'		<b>' + data.RetData[i].ShopName + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-2">' +
+									'		<b>' + data.RetData[i].PayMoney + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-3">' +
+									'		<b>' + data.RetData[i].PayInteg + '</b>' +
+									'	</div>';
+								titleHtml += '	<div class="mui-col-xs-4">' +
+									'		<b>' + data.RetData[i].CreateTime + '</b>' +
+									'	</div>';
+
+								div.innerHTML = titleHtml;
+								li.appendChild(div);
+								table.appendChild(li);
+							}
+							itemClick();
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast(tempJson.common.error[config.reqSys]+"(BonusSel)");
+					}
+				});
+				pageIndex++;
+			}
+
+
+			(function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条
+
+				});
+
+				var userInfo = app.getSettings();
+				document.getElementById("scroll").style.height = window.innerHeight - 80 + "px";
+
+				mui('#item1').off('tap', '#submit');
+				mui('#item1').on('tap', '#submit', function() {
+					if(mui('#money')[0].value==''||mui('#password')[0].value==''){
+						mui.toast(tempJson.common.lessMsg[config.reqSys]);
+						return;
+					}
+					var data = {
+						"ReqSys": config.reqSys,
+						"ReqKey": userInfo.UserID,
+						"ReqPwd": userInfo.PwdTmp,
+						"ReqType": "CashAdd",
+						"ReqData": {
+							"CashM": mui('#money')[0].value,
+							"PwdPay": hex_sha1(mui('#password')[0].value),
+							"EUserID": 0,
+							"EUserVC": 0
+						}
+					};
+					jqAjax(data, tempJson.msgBonus[config.reqSys], init);
+				});
+			})(mui);
+		</script>
+	</body>
 </html>

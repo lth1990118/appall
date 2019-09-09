@@ -106,88 +106,9 @@
 			</div>
 
 			<section class="list">
-				<!-- <nav>
-					<ul>
-						<li>
-							<a href="#">
-								<span>全部</span>
-							</a>
-						</li>
-						<li class="list-active">
-							<a href="#">
-								<span>销量</span>
-								<img src="images/up-red.png" />
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span>价格</span>
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<span>评价</span>
-							</a>
-						</li>
-					</ul>
-				</nav> -->
+				
 				<ul class="wall" id="contain">
-					<!-- <li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><middle>积分 538</middle>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph01.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li>
-					<li class="pic">
-						<a href="detail.html">
-							<img src="images/list-ph02.png" />
-							<p>韩版青少年休闲修身长袖紧身衬衫</p>
-							<b>￥58</b><del>￥538</del>
-						</a>
-					</li> -->
+				
 				</ul>
 			</section>
 		</div>
@@ -206,12 +127,12 @@
 					</a>
 				</li>
 
-				<li>
+				<!-- <li>
 					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
     vertical-align: middle;margin: auto;line-height: 40px;">
 						<p style="margin-top: 0;">主页</p>
 					</a>
-				</li>
+				</li> -->
 
 				<li>
 					<a href="assort.html">
@@ -221,9 +142,9 @@
 				</li>
 
 				<li>
-					<a href="self.html">
+					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>个人中心</p>
+						<p>主页</p>
 					</a>
 				</li>
 			</ul>
@@ -342,9 +263,9 @@
 								var li = document.createElement('li');
 								li.className = 'pic';
 								var html="<a href=\"detail.html?id="+data.RetData[i].ProdID+"\">";
-								html+="<img src=\""+data.RetData[i].PicMain+"\" />";
+								html+="<img src=\""+config.urlPicRoot +data.RetData[i].PicMain+"\" />";
 								html+="<p>"+data.RetData[i].ProdName+"</p>";
-								html+="<b>￥"+data.RetData[i].PPrice+"</b><middle>积分 "+data.RetData[i].PInteg+"</middle></a>";
+								html+="<b>"+data.RetData[i].PPrice+"</b><middle>积分 "+data.RetData[i].PInteg+"</middle></a>";
 								li.innerHTML=html;
 								
 								//console.log(contain);

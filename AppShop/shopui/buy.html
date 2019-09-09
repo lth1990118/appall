@@ -3,24 +3,34 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-		<meta name="format-detection" content="telephone=no" />
-		<title>男装专区</title>
+		<title>购物车</title>
 		<link rel="stylesheet" type="text/css" href="css/loaders.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/loading.css" />
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		
+		<style>
+			li a p{
+				margin: 0px;
+			}
+			.page-footer ul {				
+				height: 4em;
+			}
+		</style>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/mui.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.back = function back() {
+				//首次按键，提示‘再按一次退出应用’
+				history.go(-1)
+			}
+		</script>
 		<script type="text/javascript">
 			$(window).load(function() {
 				$(".loading").addClass("loader-chanage")
 				$(".loading").fadeOut(300)
 			})
-			mui.back = function back() {
-				//首次按键，提示‘再按一次退出应用’
-				history.go(-1)
-			}
 		</script>
 	</head>
 	<!--loading页开始-->
@@ -37,156 +47,227 @@
 	</div>
 	<!--loading页结束-->
 	<body>
-		<header class="top-header fixed-header">
-			<a class="icona" href="javascript:history.go(-1)">
-				<img  src="images/detail-left.png" />
-			</a>
+		<header class="page-header">
 			<h3>去结算</h3>
-			<a class="iconb" href="shopcar.html">
-			</a>
 		</header>
-
-		<div class="contaniner fixed-cont">
-			<section class="to-buy">
-				<!-- <header>
-					<div class="now">
-						<span><img src="images/map-icon.png" /></span>
-						<dl>
-							<dt>
-								<b>瑾晨</b>
-								<strong>13035059860</strong>
-							</dt>
-							<dd>安徽省合肥市XXXXXXXX</dd>
-							<p>其他地址</p>
-						</dl>
+		<div class="mui-content">
+			<ul id="OA_task_1" class="mui-table-view">
+				<!-- <li class="mui-table-view-cell  mui-media">
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
 					</div>
-
-					<div class="to-now">
-						<div class="tonow">
-							<label for="tonow" onselectstart="return false"></label>
-							<input type="checkbox" id="tonow" />
+					<div class="mui-slider-handle">
+						<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="images/shopcar-ph01.png">
+						<div class="mui-media-body">
+							<dl>
+								<dt id="title">超级大品牌12321321323123123服装，现在买只要998</dt>
+								购买数量:
+								<span>123</span>
+								<dd id="price"><span>单价：</span>￥653.00<span>积分：</span>￥653.00</dd>
+								<h3 id="totalprice" style=""><span class="totalprice">123</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span
+										 class="totalinteg">12</span><span></h3>
+							</dl>
 						</div>
-						<dl>
-							<dt>
-								<b>瑾晨</b>
-								<strong>13035059860</strong>
-							</dt>
-							<dd>安徽省合肥市XXXXXXXX</dd>
-						</dl>
-						<h3><a href="go-address.html"><img src="images/write.png" /></a></h3>
 					</div>
-				</header> -->
-				<div class="buy-list">
-					<ul>
-						<a href="detail.html">
-							<figure>
-								<img id="img" src="" />
-							</figure>
-							<li>
-								<h3 id="title"></h3>
-								<!-- <span>
-									颜色：经典绮丽款
-									<br />
-									尺寸：M
-								</span> -->
-								<b id="money"></b>
-								<small>×1</small>
-							</li>
-						</a>
-					</ul>
-					<dl>
-						<dd>
-							<span>运费</span>
-							<small><del>包邮</del></small>
-						</dd>
-						<dd>
-							<span>商品总额</span>
-							<small id="moneyTotal"></small>
-						</dd>
-						<!--<dt>
-							<textarea rows="4" placeholder="给卖家留言（50字以内）"></textarea>
-						</dt> -->
-					</dl>
-				</div>
-
-			</section>
-			<!--底部不够-->
-			<div style="margin-bottom: 9%;"></div>
+				</li> -->
+			</ul>
 		</div>
 
-		<footer class="buy-footer fixed-footer">
-			<p>
-				<small>总金额</small>
-				<b id="moneyTotal2"></b>
-			</p>
+		<footer class="page-footer fixed-footer">
+			<div class="mui-input-row">
+				<label id="passwordLabel">支付密码</label>
+				<input id="password" type="password" class="mui-input-password" style="padding: 0px;" placeholder="请输入密码">
+			</div>
+			<div class="mui-button-row">
+				<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="margin-bottom:0px; padding: 12px 12px;font-weight: bolder;font-size: 16px;">支付<span style="color: red;" id="total"></span></button>
+			</div>
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="images/footer001.png" />
+						<p>首页</p>
+					</a>
+				</li>
 
-			<input type="button" id="submitBtn" value="去付款" />
+				<li class="active">
+					<a href="shopcar.html">
+						<img src="images/footer03.png" />
+						<p>购物车</p>
+					</a>
+				</li>
+				<!-- <li>
+					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
+			vertical-align: middle;margin: auto;line-height: 40px;">
+						<p style="margin-top: 0;">主页</p>
+					</a>
+				</li> -->
+				<li>
+					<a href="assort.html">
+						<img src="images/footer002.png" />
+						<p>订单</p>
+					</a>
+				</li>
+				<li>
+					<a href="../main.html">
+						<img src="images/footer004.png" />
+						<p>主页</p>
+					</a>
+				</li>
+			</ul>
 		</footer>
 
-		<script type="text/javascript">
-// 			$(".to-now .tonow label").on('touchstart', function() {
-// 				if ($(this).hasClass('ton')) {
-// 					$(".to-now .tonow label").removeClass("ton")
-// 				} else {
-// 					$(".to-now .tonow label").addClass("ton")
-// 				}
-// 			})
-		</script>
-<script src="../js/app.js"></script>
-		<script src="../js/config.js"></script>
-		<script src="../js/data.js"></script>
-		<script>
-			var userInfo = {};
-			$(function() {
-				userInfo = app.getSettings();
-				var id = localStorage.getItem("$ProdID");
-				var data = {
-					"ReqSys": config.reqSys,
-					"ReqKey": userInfo.UserID,
-					"ReqPwd": userInfo.PwdTmp,
-					"ReqType": "ScProdGet",
-					"ReqData": id
-				};
-				queryPro(data);
-			});
 
-			function queryPro(data) {
-				$.ajax({
-					async: true, //表示请求是否异步处理
-					timeout: 50000,
-					type: "post", //请求类型
-					url: config.url, //请求的 URL地址
-					data: JSON.stringify(data),
-					contentType: "application/json",
-					dataType: "json", //返回的数据类型
-					success: function(data) {
-						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
-						if (data.RetFlag < 0) {
-							mui.toast(data.RetInfo);
-							return;
-						} else {
-							console.log(data);
-							var img = document.getElementById('img');
-							img.setAttribute("src",data.RetData[0].PicMain)
-							
-							var money = document.getElementById('money');
-							money.innerHTML=data.RetData[0].PPrice;
-							var moneyTotal = document.getElementById('moneyTotal');
-							moneyTotal.innerHTML=data.RetData[0].PPrice;
-							var moneyTotal2 = document.getElementById('moneyTotal2');
-							moneyTotal2.innerHTML=data.RetData[0].PPrice;
-							var title = document.getElementById('title');
-							title.innerHTML=data.RetData[0].PExplain;
-							
+	</body>
+	<script src="../js/app.js"></script>
+	<script src="../js/config.js"></script>
+	<script src="../js/data.js"></script>
+	<script src="../js/sha1.js"></script>
+	<script>
+		var userInfo = {};
+		$(function() {
+			userInfo = app.getSettings();
+			var data = {
+				"ReqSys": config.reqSys,
+				"ReqKey": userInfo.UserID,
+				"ReqPwd": userInfo.PwdTmp,
+				"ReqType": "ScShopCartGet",
+				"ReqData": null
+			};
+			jqAjax(data, initPage);
+		});
+		mui('.mui-button-row').on('tap', '#submit', function() {			
+			var param={
+				"ReqSys": config.reqSys,
+				"ReqKey": userInfo.UserID,
+				"ReqPwd": userInfo.PwdTmp,
+				"ReqType": "ScOrderSubmit",
+				"ReqData": hex_sha1(mui('#password')[0].value)
+			};
+			jqAjax(param, msg);
+		});
+		function msg(data){
+			mui.toast("支付信息：" + data.RetInfo);
+			window.location.href="index.html";
+		}
+		mui('.mui-numbox').on('change', '.mui-input-numbox', function() {			
+			//alert(mui($(this).parent()[0]).numbox().getValue());
+		});
+		var listPro={};
+		function initPage(data) {
+			console.log(JSON.stringify(data));
+			var contain = document.getElementById('OA_task_1');
+			console.log(contain);
+			contain.innerHTML = "";
+			var totalMoney=0;
+			var totalIntegral=0;
+			for(var i=0;i<data.RetData.length;i++){
+				var li = document.createElement('li');
+				li.className = 'mui-table-view-cell mui-media';
+				var html='';
+				console.log(i);
+				html+='<div class="mui-slider-handle">';
+				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData[i].PicMain+'"><div class="mui-media-body">';
+				html+='<dl>';
+				html+='<dt id="title">'+data.RetData[i].ProdNo+':'+data.RetData[i].ProdName+'</dt>';
+				html+='购买数量:<span>'+data.RetData[i].ProdNum+'</span>';				
+				html+='<dd id="price"><span>单价：</span >'+data.RetData[i].PPrice+'<span>&nbsp;积分：</span>'+data.RetData[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+='</div></div>';
+				li.innerHTML = html;
+				contain.appendChild(li);
+				listPro["ProdID"+data.RetData[i].ProdID]=data.RetData[i];
+				console.log(data.RetData[i].ProdID);
+				totalMoney+=data.RetData[i].ProdMoney;
+				totalIntegral+=data.RetData[i].ProdInteg;
+				console.log(JSON.stringify(listPro));
+			}
+// 			var money = document.getElementById('money');
+// 			money.innerHTML =totalMoney;
+// 			var integral = document.getElementById('integral');
+// 			integral.innerHTML = totalIntegral;
+			mui('#total')[0].innerHTML="(金额:"+totalMoney+"&nbsp;积分:"+totalIntegral+")";
+		}
+		
+		function jqAjax() {
+			var arg = arguments;
+			$.ajax({
+				async: true, //表示请求是否异步处理
+				timeout: 50000,
+				type: "post", //请求类型
+				url: config.url, //请求的 URL地址
+				data: JSON.stringify(arg[0]),
+				contentType: "application/json",
+				dataType: "json", //返回的数据类型
+				success: function(data) {
+					console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
+					if (data.RetFlag < 0) {
+						mui.toast(data.RetInfo);
+						return;
+					} else {
+						if (typeof arg[1] === "function") {
+							//调用它，既然我们已经确定了它是可调用的
+							callback = arg[1];
+							callback(data);
 						}
-					},
-					error: function(data) {
-						console.log(JSON.stringify(data));
-						mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+					}
+				},
+				error: function(data) {
+					console.log(JSON.stringify(data));
+					mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+				}
+			});
+		}
+	</script>
+	<!--App自定义的css-->
+	<link rel="stylesheet" type="text/css" href="../css/app.css" />
+	<script>
+		mui.init();
+		(function(mui) {
+			mui('#OA_task_1').on('tap', '.mui-slider-right .mui-btn', function(event) {
+				var elem = this;
+				var li = elem.parentNode.parentNode;
+				mui.confirm('确认删除该条记录？', 'eternal', btnArray, function(e) {
+					if (e.index == 0) {
+						var param = {
+							"ReqSys": config.reqSys,
+							"ReqKey": userInfo.UserID,
+							"ReqPwd": userInfo.PwdTmp,
+							"ReqType": "ScShopCartUp",
+							"ReqData": {
+								"ProdID": id, // 商品ID
+								"ProdNum": 0 // 商品数量，小于等于0时，表示删除，否则表示添加或修改
+							}
+						};
+						$.ajax({
+							async: true, //表示请求是否异步处理
+							timeout: 50000,
+							type: "post", //请求类型
+							url: config.url, //请求的 URL地址
+							data: JSON.stringify(param),
+							contentType: "application/json",
+							dataType: "json", //返回的数据类型
+							success: function(data) {
+								console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
+								if (data.RetFlag < 0) {
+									mui.toast(data.RetInfo);
+									return;
+								} else {
+									li.parentNode.removeChild(li);
+								}
+							},
+							error: function(data) {
+								console.log(JSON.stringify(data));
+								mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+							}
+						});
+					} else {
+						setTimeout(function() {
+							mui.swipeoutClose(li);
+						}, 0);
 					}
 				});
-			}
-			
-		</script>
-	</body>
+			});
+			var btnArray = ['确认', '取消'];
+		})(mui);
+	</script>
 </html>

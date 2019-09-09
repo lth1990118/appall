@@ -10,7 +10,12 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
 		<style>
-			
+			li a p{
+				margin: 0px;
+			}
+			.page-footer ul {				
+				height: 4em;
+			}
 		</style>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/mui.min.js"></script>
@@ -46,62 +51,17 @@
 		</header>
 		<div class="mui-content">
 			<ul id="OA_task_1" class="mui-table-view">
-				<li class="mui-table-view-cell  mui-media">
-					<div class="mui-slider-right mui-disabled">
-						<a class="mui-btn mui-btn-red">删除</a>
-					</div>
-					<div class="mui-slider-handle">
-						<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="images/shopcar-ph01.png">
-						<div class="mui-media-body">
-							<dl>
-								<dt id="title">超级大品牌服装，现在买只要998</dt>
-								购买数量:
-								<div class="mui-numbox" data-numbox-min='1' >
-									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-									<input class="mui-input-numbox" type="number" value="1"/>
-									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-								</div>					
-								<dd id="price"><span>单价：</span>￥653.00</dd>
-								<h3 id="totalprice" style="">￥653.00</h3>
-							</dl>
-						</div>
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 
-		<!-- <div class="contaniner fixed-contb">
-			<section class="shopcar">
-				<figure style="margin: 0px;"><img src="images/shopcar-ph01.png" /></figure>
-				<dl>
-					<dt id="title">超级大品牌服装，现在买只要998</dt>
-					购买数量:
-					<div class="mui-numbox" data-numbox-min='1' >
-						<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-						<input class="mui-input-numbox" type="number" value="1"/>
-						<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-					</div>					
-					<dd id="price"><span>单价：</span>￥653.00</dd>
-					<h3 id="totalprice" style="">￥653.00</h3>
-					<small><img src="images/shopcar-icon01.png"/></small>
-				</dl>
-			</section>
-
-			<div style="margin-bottom: 16%;"></div>
-		</div> -->
-		<script type="text/javascript">
-			$(".shopcar-checkbox label").on('touchstart', function() {
-				if ($(this).hasClass('shopcar-checkd')) {
-					$(".shopcar-checkbox label").removeClass("shopcar-checkd")
-				} else {
-					$(".shopcar-checkbox label").addClass("shopcar-checkd")
-				}
-			})
-		</script>
 		<footer class="page-footer fixed-footer">
-			<div class="shop-go">
-				<b>合计：￥108.90</b>
-				<span><a href="buy.html">去结算（2）</a></span>
+			<!-- <div class="shop-go">
+				<b style="width:70%" ><label id="money">￥108.90</label><label style="font-size: 12px;color: red;">&nbsp;总积分：<label id="integral"></label></label></b>
+				<span style="width:100%" id="btn"><a href="buy.html">去结算</a></span>
+			</div> -->
+			<div class="mui-button-row">
+				<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="padding: 12px 12px;font-weight: bolder;font-size: 16px;margin-bottom:0px ;">去结算</button>
 			</div>
 			<ul>
 				<li>
@@ -117,12 +77,12 @@
 						<p>购物车</p>
 					</a>
 				</li>
-				<li>
+				<!-- <li>
 					<a href="../main.html" style="    border: 3px solid #ccc;border-radius: 50%;text-align: center;
 			vertical-align: middle;margin: auto;line-height: 40px;">
 						<p style="margin-top: 0;">主页</p>
 					</a>
-				</li>
+				</li> -->
 				<li>
 					<a href="assort.html">
 						<img src="images/footer002.png" />
@@ -130,9 +90,9 @@
 					</a>
 				</li>
 				<li>
-					<a href="self.html">
+					<a href="../main.html">
 						<img src="images/footer004.png" />
-						<p>个人中心</p>
+						<p>主页</p>
 					</a>
 				</li>
 			</ul>
@@ -147,18 +107,26 @@
 		var userInfo = {};
 		$(function() {
 			userInfo = app.getSettings();
-			var id = getQueryVariable("id");
-			localStorage.setItem('$ProdID', id)
 			var data = {
 				"ReqSys": config.reqSys,
 				"ReqKey": userInfo.UserID,
 				"ReqPwd": userInfo.PwdTmp,
-				"ReqType": "ScProdGet",
-				"ReqData": id
+				"ReqType": "ScShopCartGet",
+				"ReqData": null
 			};
 			jqAjax(data, initPage);
-
-			$('#addShopCar').on('click', function() {
+		});
+		mui('.mui-button-row').on('tap', '#submit', function() {			
+			window.location.href="buy.html";
+		});
+		function txtChange(){
+			mui('.mui-numbox').on('change', '.mui-input-numbox', function() {
+// 				alert(mui($(this).parent()[0]).numbox().getValue());
+// 				alert(JSON.stringify(listPro["ProdID"+this.getAttribute("data-prodid")]));
+// 				alert(mui($(this).parent()[0]).numbox().getValue()*listPro["ProdID"+this.getAttribute("data-prodid")].PPrice);				
+				var $this=this;
+				var userInfo = app.getSettings();
+				var id = this.getAttribute("data-prodid");
 				var param = {
 					"ReqSys": config.reqSys,
 					"ReqKey": userInfo.UserID,
@@ -166,32 +134,79 @@
 					"ReqType": "ScShopCartUp",
 					"ReqData": {
 						"ProdID": id, // 商品ID
-						"ProdNum": 1 // 商品数量，小于等于0时，表示删除，否则表示添加或修改
+						"ProdNum": mui($(this).parent()[0]).numbox().getValue() // 商品数量，小于等于0时，表示删除，否则表示添加或修改
 					}
 				};
+				$.ajax({
+					async: true, //表示请求是否异步处理
+					timeout: 50000,
+					type: "post", //请求类型
+					url: config.url, //请求的 URL地址
+					data: JSON.stringify(param),
+					contentType: "application/json",
+					dataType: "json", //返回的数据类型
+					success: function(data) {
+						console.log(JSON.stringify(data)); //在控制台打印服务器端返回的数据						
+						if (data.RetFlag < 0) {
+							mui.toast(data.RetInfo);
+							return;
+						} else {
+							mui('.mui-media-body .totalprice')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PPrice;
+							mui('.mui-media-body .totalinteg')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PInteg;
+						}
+					},
+					error: function(data) {
+						console.log(JSON.stringify(data));
+						mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
+					}
+				});
 			});
+		}
+		mui('.mui-numbox').on('change', '.mui-input-numbox', function() {			
+			alert(mui($(this).parent()[0]).numbox().getValue());
 		});
-
+		var listPro={};
 		function initPage(data) {
 			console.log(JSON.stringify(data));
-
-			var contain = document.getElementById('imgContain');
+			var contain = document.getElementById('OA_task_1');
+			console.log(contain);
 			contain.innerHTML = "";
-			var li = document.createElement('li');
-			li.className = 'swiper-slide';
-
-			var html = "<a href=\"#\">";
-			html += "<img src=\"" + data.RetData[0].PicMain + "\" />";
-			html += "</a>";
-			li.innerHTML = html;
-			contain.appendChild(li);
-
-			var money = document.getElementById('money');
-			money.innerHTML = data.RetData[0].PPrice;
-			var title = document.getElementById('title');
-			title.innerHTML = data.RetData[0].PExplain;
-			var jf = document.getElementById('jf');
-			jf.innerHTML = data.RetData[0].PInteg;
+			var totalMoney=0;
+			var totalIntegral=0;
+			for(var i=0;i<data.RetData.length;i++){
+				var li = document.createElement('li');
+				li.setAttribute("data-prodid",data.RetData[i].ProdID);
+				li.className = 'mui-table-view-cell mui-media';
+				var html='';
+				console.log(i);
+				html+='<div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div>';
+				html+='<div class="mui-slider-handle">';
+				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData[i].PicMain+'"><div class="mui-media-body">';
+				html+='<dl>';
+				html+='<dt id="title">'+data.RetData[i].ProdNo+':'+data.RetData[i].ProdName+'</dt>';
+				html+='购买数量:<div class="mui-numbox" data-numbox-min="1">';
+				html+='<button class="mui-btn mui-btn-numbox-minus" type="button" disabled>-</button>';
+				html+='<input class="mui-input-numbox" type="number" data-prodid="'+data.RetData[i].ProdID+'" value="'+data.RetData[i].ProdNum+'"/>';
+				html+='<button class="mui-btn mui-btn-numbox-plus" type="button">+</button></div>';
+				html+='<dd id="price"><span>单价：</span >'+data.RetData[i].PPrice+'<span>&nbsp;积分：</span>'+data.RetData[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">总积分:<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+='</div></div>';
+				li.innerHTML = html;
+				contain.appendChild(li);
+				mui('.mui-numbox').numbox(); 
+				listPro["ProdID"+data.RetData[i].ProdID]=data.RetData[i];
+				console.log(data.RetData[i].ProdID);
+				totalMoney+=data.RetData[i].ProdMoney;
+				totalIntegral+=data.RetData[i].ProdInteg;
+				console.log(JSON.stringify(listPro));
+			}		
+			//mui.init();
+			txtChange();
+// 			var money = document.getElementById('money');
+// 			money.innerHTML =totalMoney;
+// 			var integral = document.getElementById('integral');
+// 			integral.innerHTML = totalIntegral;
+			
 		}
 		
 		function jqAjax() {
@@ -232,7 +247,11 @@
 			mui('#OA_task_1').on('tap', '.mui-slider-right .mui-btn', function(event) {
 				var elem = this;
 				var li = elem.parentNode.parentNode;
+				var id=li.getAttribute("data-prodid");
+				
 				mui.confirm('确认删除该条记录？', 'eternal', btnArray, function(e) {
+					console.log(id);
+					
 					if (e.index == 0) {
 						var param = {
 							"ReqSys": config.reqSys,
@@ -243,7 +262,7 @@
 								"ProdID": id, // 商品ID
 								"ProdNum": 0 // 商品数量，小于等于0时，表示删除，否则表示添加或修改
 							}
-						};						
+						};
 						$.ajax({
 							async: true, //表示请求是否异步处理
 							timeout: 50000,
@@ -265,9 +284,8 @@
 								console.log(JSON.stringify(data));
 								mui.toast(tempJson.common.error[config.reqSys] + "（" + data.ReqType + "）");
 							}
-						});			
-					} 
-					else {
+						});
+					} else {
 						setTimeout(function() {
 							mui.swipeoutClose(li);
 						}, 0);
