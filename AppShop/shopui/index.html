@@ -182,6 +182,10 @@
 				$('.wall').jaliswall({
 					item: '.pic'
 				});
+				$('.pic img').each(function(){
+					var $this=this;
+					$this.height=$this.width;
+				});
 			}
 		</script>
 		<script>

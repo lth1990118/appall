@@ -244,9 +244,14 @@ var tempJson = {
 			FR:"Revenu"
 		},
 		LeftCashLabel:{
-			CN:"余额",
+			CN:"金额",
 			EN:"Balance",
 			FR:"Solde"
+		},
+		IntegralLabel:{
+			CN:"积分",
+			EN:"Integral",
+			FR:"Integral"
 		},
 		UserLevelLabel:{
 			CN:"级别",
@@ -1304,7 +1309,7 @@ var tempJson = {
 				FR:"passe"
 			},
 			password:{
-				CN:"请输入密码",
+				CN:"请输入支付密码",
 				EN:"password",
 				FR:"passe"
 			},

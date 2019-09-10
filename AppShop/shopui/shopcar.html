@@ -51,7 +51,46 @@
 		</header>
 		<div class="mui-content">
 			<ul id="OA_task_1" class="mui-table-view">
-				
+				<!-- <li>
+				<div class="mui-slider-right mui-disabled">
+					<a class="mui-btn mui-btn-red" id="delete"></a>
+				</div>
+				<div class="mui-slider-handle">
+					<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="">
+				<div class="mui-media-body">
+				<dl>
+					<dt id="title"></dt>
+					<div class="mui-numbox" data-numbox-min="1">
+					<button class="mui-btn mui-btn-numbox-minus" type="button" disabled>-</button>
+						<input class="mui-input-numbox" type="number" data-prodid="'+data.RetData[i].ProdID+'" value="1"/>
+					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button></div>';
+					<dd id="price"><span></span ><span>&nbsp</span></dd>
+					<h3 id="totalprice" style="" >
+						<span class="totalprice"></span>&nbsp;
+						<span style="font-size:12px;color:red">
+						<span class="totalinteg"></span><span></h3></dl>
+				</div></div>
+				</li>
+				<li>
+				<div class="mui-slider-right mui-disabled">
+					<a class="mui-btn mui-btn-red" id="delete"></a>
+				</div>
+				<div class="mui-slider-handle">
+					<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="">
+				<div class="mui-media-body">
+				<dl>
+					<dt id="title"></dt>
+					<div class="mui-numbox" data-numbox-min="1">
+					<button class="mui-btn mui-btn-numbox-minus" type="button" disabled>-</button>
+						<input class="mui-input-numbox" type="number" data-prodid="'+data.RetData[i].ProdID+'" value="1"/>
+					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button></div>';
+					<dd id="price"><span></span ><span>&nbsp</span></dd>
+					<h3 id="totalprice" style="" >
+						<span class="totalprice"></span>&nbsp;
+						<span style="font-size:12px;color:red">
+						<span class="totalinteg"></span><span></h3></dl>
+				</div></div>
+				</li> -->
 			</ul>
 		</div>
 
@@ -151,8 +190,10 @@
 							mui.toast(data.RetInfo);
 							return;
 						} else {
-							mui('.mui-media-body .totalprice')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PPrice;
-							mui('.mui-media-body .totalinteg')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PInteg;
+							console.log($($this).parent()[0].innerHTML);
+							mui($($this).parent()[0]).numbox().setValue(mui($($this).parent()[0]).numbox().getValue());
+							$($this).parent().parent().find('.totalprice')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PPrice;
+							$($this).parent().parent().find('.totalinteg')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PInteg;
 						}
 					},
 					error: function(data) {
@@ -163,7 +204,8 @@
 			});
 		}
 		mui('.mui-numbox').on('change', '.mui-input-numbox', function() {			
-			alert(mui($(this).parent()[0]).numbox().getValue());
+			//alert(mui($(this).parent()[0]).numbox().getValue());
+			console.log($(this).parent());
 		});
 		var listPro={};
 		function initPage(data) {

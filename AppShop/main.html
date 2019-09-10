@@ -47,7 +47,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title" id="header">会员主页</h1>
-			
+
 		</header>
 		<ul class="mui-table-view mui-table-view-chevron self-content">
 			<li class="mui-table-view-cell mui-media">
@@ -90,16 +90,16 @@
 							</div>
 							<div class="mui-row">
 								<div class="mui-col-xs-3">
-									<p class='mui-ellipsis' id="SumBonusLabel">收入:</p>
-								</div>
-								<div class="mui-col-xs-3">
-									<b id='SumBonus'></b>
-								</div>
-								<div class="mui-col-xs-3">
-									<p class='mui-ellipsis' id="LeftCashLabel">余额:</p>
+									<p class='mui-ellipsis' id="LeftCashLabel">金额:</p>
 								</div>
 								<div class="mui-col-xs-3">
 									<b id='LeftCash'></b>
+								</div>
+								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis' id="IntegralLabel">积分:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='Integral'></b>
 								</div>
 							</div>
 							<div class="mui-row">
@@ -123,7 +123,8 @@
 		</ul>
 
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" href="html/agent.html">
+			
+			<a class="mui-tab-item" href="html/agent.html">
 				<span class="mui-icon-extra mui-icon-extra-peoples"></span>
 				<span class="mui-tab-label" id="agent">代理</span>
 			</a>
@@ -131,17 +132,17 @@
 				<span class="mui-icon-extra mui-icon-extra-cart"></span>
 				<span class="mui-tab-label" id="sale">销售</span>
 			</a>
-		<!-- 	<a class="mui-tab-item" href="shopui/index.html">
+			<!-- 	<a class="mui-tab-item" href="shopui/index.html">
 				<span class="mui-tab-label" style="border: 1px solid #002752; border-radius: 50%;">商城</span>
 			</a> -->
-			<a class="mui-tab-item" href="shopui" style="border: 2px solid #ccc;border-radius: 50%;;line-height: 46px;">						
-								<span id="shopui">商城</span>
+			<a class="mui-tab-item" href="shopui" style="border: 2px solid #ccc;border-radius: 50%;;line-height: 46px;">
+				<span id="shopui">商城</span>
 			</a>
 			<a class="mui-tab-item" href="html/bonus.html">
 				<span class="mui-icon-extra mui-icon-extra-prech"></span>
 				<span class="mui-tab-label" id="bonus">钱包</span>
 			</a>
-			<a class="mui-tab-item" href="html/menu.html">
+			<a class="mui-tab-item mui-active" href="html/menu.html">
 				<span class="mui-icon-extra mui-icon-extra-class"></span>
 				<span class="mui-tab-label" id="menu">菜单</span>
 			</a>
@@ -211,7 +212,7 @@
 			var subpages = ['html/agent.html', 'html/sale.html',
 				'html/bonus.html', 'html/menu.html'
 			];
-			var activeTab = subpages[0];
+			var activeTab = subpages[3];
 
 			function initHTML() {
 				console.log("initHTML");
@@ -219,8 +220,9 @@
 				$("#UserNameLabel").text(tempJson.main.UserNameLabel[config.reqSys]);
 				$("#UserIDLabel").text(tempJson.main.UserIDLabel[config.reqSys]);
 				$("#VerifyCodeLabel").text(tempJson.main.VerifyCodeLabel[config.reqSys]);
-				$("#SumBonusLabel").text(tempJson.main.SumBonusLabel[config.reqSys]);
+				// $("#SumBonusLabel").text(tempJson.main.SumBonusLabel[config.reqSys]);
 				$("#LeftCashLabel").text(tempJson.main.LeftCashLabel[config.reqSys]);
+				$("#IntegralLabel").text(tempJson.main.IntegralLabel[config.reqSys]);
 				$("#UserLevelLabel").text(tempJson.main.UserLevelLabel[config.reqSys]);
 				$("#LeftSellLabel").text(tempJson.main.LeftSellLabel[config.reqSys]);
 				$("#shopui").text(tempJson.main.shopui[config.reqSys]);
@@ -237,19 +239,20 @@
 			}
 			window.onload = function() {
 				console.log("onload");
-// 				config.reqSys = app.getLanguage().language;
-// 				initHTML();
-// 				userInfo = app.getSettings();
-// 				console.log(JSON.stringify(userInfo));
-// 				init();
+				// 				config.reqSys = app.getLanguage().language;
+				// 				initHTML();
+				// 				userInfo = app.getSettings();
+				// 				console.log(JSON.stringify(userInfo));
+				// 				init();
 			}
-			 $(document).ready(function(){
+			$(document).ready(function() {
 				console.log("document ready");
 				config.reqSys = app.getLanguage().language;
 				initHTML();
 				userInfo = app.getSettings();
 				console.log(JSON.stringify(userInfo));
 				init();
+				refresh();
 			});
 			var currentWebview;
 			var subpage_style = {
@@ -283,7 +286,7 @@
 				tabChange(targetTab);
 			})
 
-			function tabChange() {				
+			function tabChange() {
 				console.log("tabChange");
 				console.log(JSON.stringify(arguments));
 				var targetTab = arguments[0];
@@ -300,10 +303,10 @@
 					plus.webview.currentWebview().close();
 					return;
 				}
-				if(targetTab == "shopui"){
-					window.location.href="shopui/index.html";
+				if (targetTab == "shopui") {
+					window.location.href = "shopui/index.html";
 					plus.webview.close(activeTab);
-					 return;
+					return;
 				}
 				if (targetTab == activeTab) {
 					return;
@@ -359,7 +362,8 @@
 				mui('#UserName')[0].innerHTML = userInfo.UserName;
 				mui('#LeftSell')[0].innerHTML = userInfo.SumStock;
 				mui('#LeftCash')[0].innerHTML = userInfo.SumSurplus; //SumSurplus
-				mui('#SumBonus')[0].innerHTML = userInfo.SumIncome;
+				//mui('#Integral')[0].innerHTML = userInfo.SumIncome;
+				mui('#Integral')[0].innerHTML = userInfo.IntegSurplus;
 				//mui('#SumBuy')[0].innerHTML = userInfo.SumBuy;
 				mui('#UserLevel')[0].innerHTML = userInfo.UserLevel;
 
@@ -372,6 +376,7 @@
 			}
 
 			function refresh() {
+				
 				console.log("refresh");
 				if (userInfo == null || userInfo.UserID == null) {
 					return;
@@ -405,7 +410,7 @@
 							userInfo.UserID = option.UserID;
 							userInfo.UserName = option.UserName;
 							userInfo.SumStock = option.SumStock;
-							userInfo.SumIncome = option.SumIncome;
+							userInfo.IntegSurplus = option.IntegSurplus;
 							userInfo.SumBonus = option.SumBonus;
 							userInfo.SumSurplus = option.SumSurplus;
 							userInfo.UserLevel = option.UserLevel;
@@ -439,7 +444,7 @@
 
 				});
 			}
-			(function($, doc) {				
+			(function($, doc) {
 				console.log("function");
 				window.addEventListener('refresh', refresh);
 
