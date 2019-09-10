@@ -245,7 +245,7 @@ var tempJson = {
 		},
 		LeftCashLabel:{
 			CN:"金额",
-			EN:"Balance",
+			EN:"Money",
 			FR:"Solde"
 		},
 		IntegralLabel:{
@@ -1300,6 +1300,11 @@ var tempJson = {
 			},			
 			liquidation:{
 				CN:"去结算",
+				EN:"to pay",
+				FR:"Régler"
+			},
+			pay:{
+				CN:"支付",
 				EN:"settlement",
 				FR:"liquidation"
 			},
@@ -1310,8 +1315,8 @@ var tempJson = {
 			},
 			password:{
 				CN:"请输入支付密码",
-				EN:"password",
-				FR:"passe"
+				EN:"payment password",
+				FR:"Mot de passe"
 			},
 			pay:{
 				CN:"支付",

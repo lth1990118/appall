@@ -62,7 +62,10 @@
 				<input id="password" type="password" class="mui-input-password" style="padding: 0px;" placeholder="请输入密码">
 			</div>
 			<div class="mui-button-row">
-				<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="margin-bottom:0px; padding: 12px 12px;font-weight: bolder;font-size: 16px;">支付<span style="color: red;" id="total"></span></button>
+				<button id="submit" type="button" class=" mui-btn-block mui-btn mui-btn-blue" style="margin-bottom:0px; padding: 12px 12px;font-weight: bolder;font-size: 16px;">
+					<label id="pay">支付</label>
+					<label style="color: red;" id="total">&nbsp;</label>
+				</button>				
 			</div>
 			<ul>
 				<li>
@@ -107,7 +110,7 @@
 				"ReqSys": config.reqSys,
 				"ReqKey": userInfo.UserID,
 				"ReqPwd": userInfo.PwdTmp,
-				"ReqType": "ScShopCartGet",
+				"ReqType": "ScShopCartToOrder",
 				"ReqData": null
 			};
 			jqAjax(data, initPage);
@@ -135,34 +138,27 @@
 			var contain = document.getElementById('OA_task_1');
 			console.log(contain);
 			contain.innerHTML = "";
-			var totalMoney=0;
-			var totalIntegral=0;
-			for(var i=0;i<data.RetData.length;i++){
+			for(var i=0;i<data.RetData.ProdList.length;i++){
 				var li = document.createElement('li');
 				li.className = 'mui-table-view-cell mui-media';
 				var html='';
 				console.log(i);
 				html+='<div class="mui-slider-handle">';
-				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData[i].PicMain+'"><div class="mui-media-body">';
+				html+='<img class="mui-media-object mui-pull-left" style="line-height: 100px;max-width: 100px;height: 100px;" src="'+config.urlPicRoot +data.RetData.ProdList[i].PicMain+'"><div class="mui-media-body">';
 				html+='<dl>';
-				html+='<dt id="title">'+data.RetData[i].ProdNo+':'+data.RetData[i].ProdName+'</dt>';
-				html+=tempJson.shopui.shoppingCar.amount[config.reqSys]+':&nbsp;<span>'+data.RetData[i].ProdNum+'</span>';				
-				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData[i].PInteg+'</dd>';
-				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+='<dt id="title">'+data.RetData.ProdList[i].ProdNo+':'+data.RetData.ProdList[i].ProdName+'</dt>';
+				html+=tempJson.shopui.shoppingCar.amount[config.reqSys]+':&nbsp;<span>'+data.RetData.ProdList[i].ProdNum+'</span>';				
+				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData.ProdList[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData.ProdList[i].PPrice*data.RetData.ProdList[i].ProdNum+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData.ProdList[i].PInteg*data.RetData.ProdList[i].ProdNum+'</span><span></h3></dl>';
 				html+='</div></div>';
 				li.innerHTML = html;
 				contain.appendChild(li);
-				listPro["ProdID"+data.RetData[i].ProdID]=data.RetData[i];
-				console.log(data.RetData[i].ProdID);
-				totalMoney+=data.RetData[i].ProdMoney;
-				totalIntegral+=data.RetData[i].ProdInteg;
+				listPro["ProdID"+data.RetData.ProdList[i].ProdID]=data.RetData.ProdList[i];
+				console.log(data.RetData.ProdList[i].ProdID);
+				
 				console.log(JSON.stringify(listPro));
 			}
-// 			var money = document.getElementById('money');
-// 			money.innerHTML =totalMoney;
-// 			var integral = document.getElementById('integral');
-// 			integral.innerHTML = totalIntegral;
-			mui('#total')[0].innerHTML="("+tempJson.shopui.shoppingCar.price[config.reqSys]+":"+totalMoney+"&nbsp;"+tempJson.shopui.shoppingCar.integral[config.reqSys]+""+totalIntegral+")";
+			mui('#total')[0].innerHTML="("+tempJson.shopui.shoppingCar.price[config.reqSys]+""+data.RetData.PayMoney+"&nbsp;"+tempJson.shopui.shoppingCar.integral[config.reqSys]+""+data.RetData.PayInteg+")";
 		}
 		
 		function jqAjax() {
@@ -257,8 +253,8 @@
 			$("#order").text(tempJson.shopui.footer.order[config.reqSys]);
 			$("#mainPage").text(tempJson.shopui.footer.mainPage[config.reqSys]);
 			
-			$("#header").text(tempJson.shopui.shoppingCar.header[config.reqSys]);
-			$("#submit").text(tempJson.shopui.shoppingCar.liquidation[config.reqSys]);
+			$("#header").text(tempJson.shopui.shoppingCar.liquidation[config.reqSys]);
+			$("#pay").text(tempJson.shopui.shoppingCar.pay[config.reqSys]);
 			$("#passwordLabel").text(tempJson.shopui.shoppingCar.passwordLabel[config.reqSys]);			
 			$("#password").attr("placeholder",tempJson.shopui.shoppingCar.password[config.reqSys]);
 		}
