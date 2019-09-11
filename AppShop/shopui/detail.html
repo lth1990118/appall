@@ -78,7 +78,7 @@
 					</dt>
 					<dd>
 						<b></b><b id="money"></b>
-						<small>+</small><small id="jf"></small><small id="integral">积分</small>
+						<small></small><small id="integral">积分</small><small id="jf"></small>
 						<h4 id="explain"></h4>
 					</dd>
 				</dl>
@@ -203,7 +203,7 @@
 				contain.appendChild(li);
 
 				var money = document.getElementById('money');
-				money.innerHTML = data.RetData[0].PPrice;
+				money.innerHTML = tempJson.common.flag[config.reqSys]+data.RetData[0].PPrice;
 				var title = document.getElementById('title');
 				title.innerHTML = '['+data.RetData[0].ProdNo+']'+data.RetData[0].ProdName;
 				var jf = document.getElementById('jf');

@@ -148,8 +148,8 @@
 				html+='<dl>';
 				html+='<dt id="title">'+data.RetData.ProdList[i].ProdNo+':'+data.RetData.ProdList[i].ProdName+'</dt>';
 				html+=tempJson.shopui.shoppingCar.amount[config.reqSys]+':&nbsp;<span>'+data.RetData.ProdList[i].ProdNum+'</span>';				
-				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData.ProdList[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
-				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData.ProdList[i].PPrice*data.RetData.ProdList[i].ProdNum+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData.ProdList[i].PInteg*data.RetData.ProdList[i].ProdNum+'</span><span></h3></dl>';
+				html+='<dd id="price"><span>'+tempJson.common.flag[config.reqSys]+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData.ProdList[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData.ProdList[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+tempJson.common.flag[config.reqSys]+data.RetData.ProdList[i].PPrice*data.RetData.ProdList[i].ProdNum+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData.ProdList[i].PInteg*data.RetData.ProdList[i].ProdNum+'</span><span></h3></dl>';
 				html+='</div></div>';
 				li.innerHTML = html;
 				contain.appendChild(li);

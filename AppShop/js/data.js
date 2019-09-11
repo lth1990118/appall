@@ -245,7 +245,7 @@ var tempJson = {
 		},
 		LeftCashLabel:{
 			CN:"金额",
-			EN:"Money",
+			EN:"Balance",
 			FR:"Solde"
 		},
 		IntegralLabel:{
@@ -1203,6 +1203,11 @@ var tempJson = {
 			CN:"上拉显示更多",
 			EN:"Pull-up shows more",
 			FR:"Upper-pull display"
+		},
+		flag:{
+			CN:"$",
+			EN:"$",
+			FR:"$"
 		}
 	}
 	,shopui:{

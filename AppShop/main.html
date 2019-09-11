@@ -90,17 +90,18 @@
 							</div>
 							<div class="mui-row">
 								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis' id="SumBonusLabel">收入:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='SumBonus'></b>
+								</div>
+								<div class="mui-col-xs-3">
 									<p class='mui-ellipsis' id="LeftCashLabel">金额:</p>
 								</div>
 								<div class="mui-col-xs-3">
 									<b id='LeftCash'></b>
 								</div>
-								<div class="mui-col-xs-3">
-									<p class='mui-ellipsis' id="IntegralLabel">积分:</p>
-								</div>
-								<div class="mui-col-xs-3">
-									<b id='Integral'></b>
-								</div>
+								
 							</div>
 							<div class="mui-row">
 								<div class="mui-col-xs-3">
@@ -110,11 +111,17 @@
 									<b id='UserLevel'></b>
 								</div>
 								<div class="mui-col-xs-3">
+									<p class='mui-ellipsis' id="IntegralLabel">积分:</p>
+								</div>
+								<div class="mui-col-xs-3">
+									<b id='Integral'></b>
+								</div>
+								<!-- <div class="mui-col-xs-3">
 									<p class='mui-ellipsis' id="LeftSellLabel">库存:</p>
 								</div>
 								<div class="mui-col-xs-3">
 									<b id='LeftSell'></b>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -123,7 +130,7 @@
 		</ul>
 
 		<nav class="mui-bar mui-bar-tab">
-			
+
 			<a class="mui-tab-item" href="html/agent.html">
 				<span class="mui-icon-extra mui-icon-extra-peoples"></span>
 				<span class="mui-tab-label" id="agent">代理</span>
@@ -220,11 +227,11 @@
 				$("#UserNameLabel").text(tempJson.main.UserNameLabel[config.reqSys]);
 				$("#UserIDLabel").text(tempJson.main.UserIDLabel[config.reqSys]);
 				$("#VerifyCodeLabel").text(tempJson.main.VerifyCodeLabel[config.reqSys]);
-				// $("#SumBonusLabel").text(tempJson.main.SumBonusLabel[config.reqSys]);
+				$("#SumBonusLabel").text(tempJson.main.SumBonusLabel[config.reqSys]);
 				$("#LeftCashLabel").text(tempJson.main.LeftCashLabel[config.reqSys]);
 				$("#IntegralLabel").text(tempJson.main.IntegralLabel[config.reqSys]);
 				$("#UserLevelLabel").text(tempJson.main.UserLevelLabel[config.reqSys]);
-				$("#LeftSellLabel").text(tempJson.main.LeftSellLabel[config.reqSys]);
+				//$("#LeftSellLabel").text(tempJson.main.LeftSellLabel[config.reqSys]);
 				$("#shopui").text(tempJson.main.shopui[config.reqSys]);
 
 				$("#agent").text(tempJson.main.agent[config.reqSys]);
@@ -360,9 +367,9 @@
 				console.log("init");
 				mui('#UserID')[0].innerHTML = userInfo.UserID;
 				mui('#UserName')[0].innerHTML = userInfo.UserName;
-				mui('#LeftSell')[0].innerHTML = userInfo.SumStock;
+				//mui('#LeftSell')[0].innerHTML = userInfo.SumStock;
 				mui('#LeftCash')[0].innerHTML = userInfo.SumSurplus; //SumSurplus
-				//mui('#Integral')[0].innerHTML = userInfo.SumIncome;
+				mui('#SumBonus')[0].innerHTML = userInfo.SumIncome;
 				mui('#Integral')[0].innerHTML = userInfo.IntegSurplus;
 				//mui('#SumBuy')[0].innerHTML = userInfo.SumBuy;
 				mui('#UserLevel')[0].innerHTML = userInfo.UserLevel;
@@ -376,7 +383,7 @@
 			}
 
 			function refresh() {
-				
+
 				console.log("refresh");
 				if (userInfo == null || userInfo.UserID == null) {
 					return;

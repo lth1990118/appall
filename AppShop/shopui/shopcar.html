@@ -192,7 +192,7 @@
 						} else {
 							console.log($($this).parent()[0].innerHTML);
 							mui($($this).parent()[0]).numbox().setValue(mui($($this).parent()[0]).numbox().getValue());
-							$($this).parent().parent().find('.totalprice')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PPrice;
+							$($this).parent().parent().find('.totalprice')[0].innerHTML=tempJson.common.flag[config.reqSys]+mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PPrice;
 							$($this).parent().parent().find('.totalinteg')[0].innerHTML=mui($($this).parent()[0]).numbox().getValue()*listPro["ProdID"+$this.getAttribute("data-prodid")].PInteg;
 						}
 					},
@@ -230,8 +230,8 @@
 				html+='<button class="mui-btn mui-btn-numbox-minus" type="button" disabled>-</button>';
 				html+='<input class="mui-input-numbox" type="number" data-prodid="'+data.RetData[i].ProdID+'" value="'+data.RetData[i].ProdNum+'"/>';
 				html+='<button class="mui-btn mui-btn-numbox-plus" type="button">+</button></div>';
-				html+='<dd id="price"><span>'+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData[i].PInteg+'</dd>';
-				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
+				html+='<dd id="price"><span>'+tempJson.common.flag[config.reqSys]+tempJson.shopui.shoppingCar.price[config.reqSys]+'</span >'+data.RetData[i].PPrice+'<span>&nbsp;'+tempJson.shopui.shoppingCar.integral[config.reqSys]+'</span>'+data.RetData[i].PInteg+'</dd>';
+				html+='<h3 id="totalprice" style="" ><span class="totalprice">'+tempJson.common.flag[config.reqSys]+data.RetData[i].ProdMoney+'</span>&nbsp;<span style="font-size:12px;color:red">'+tempJson.shopui.shoppingCar.totalintegral[config.reqSys]+'<span class="totalinteg">'+data.RetData[i].ProdInteg+'</span><span></h3></dl>';
 				html+='</div></div>';
 				li.innerHTML = html;
 				contain.appendChild(li);

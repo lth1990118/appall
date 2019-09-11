@@ -278,7 +278,7 @@
 								var html="<a href=\"detail.html?id="+data.RetData[i].ProdID+"\">";
 								html+="<img src=\""+config.urlPicRoot +data.RetData[i].PicMain+"\" />";
 								html+="<p>"+data.RetData[i].ProdName+"</p>";
-								html+="<b>"+data.RetData[i].PPrice+"</b><middle>"+tempJson.shopui.shoppingCar.integral[config.reqSys]+data.RetData[i].PInteg+"</middle></a>";
+								html+="<b>"+tempJson.common.flag[config.reqSys]+data.RetData[i].PPrice+"</b><middle>"+tempJson.shopui.shoppingCar.integral[config.reqSys]+data.RetData[i].PInteg+"</middle></a>";
 								li.innerHTML=html;
 								
 								//console.log(contain);
