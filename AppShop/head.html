@@ -31,13 +31,13 @@
 		</header>
 		<div class="mui-content">
 			<div id="imgBox">
-				<img id="userImage_id" width="300" height="300" src="http://apitest.yzj1999.com/ico/def.jpg"/>
+				<img id="userImage_id" width="300" height="300" src="http://apitest.yzj1999.com/ico/def.jpg" />
 			</div>
 			<table align="center">
 				<tr>
-					<td style="padding:2px 5px;"><button type="button"  id="scaleX_id" class="mui-btn mui-btn-green toolbutton">左右变换</button></td>
-					<td style="padding:2px 5px;"><button type="button"  id="scaleY_id" class="mui-btn mui-btn-green toolbutton">上下变换</button></td>
-					<td style="padding:2px 5px;"><button type="button"  id="rotateMax_id" class="mui-btn mui-btn-green toolbutton">旋转90°</button></td>
+					<td style="padding:2px 5px;"><button type="button" id="scaleX_id" class="mui-btn mui-btn-green toolbutton">左右变换</button></td>
+					<td style="padding:2px 5px;"><button type="button" id="scaleY_id" class="mui-btn mui-btn-green toolbutton">上下变换</button></td>
+					<td style="padding:2px 5px;"><button type="button" id="rotateMax_id" class="mui-btn mui-btn-green toolbutton">旋转90°</button></td>
 				</tr>
 				<tr>
 					<td colspan="3" style="padding:5px 5px;"><button type="button" id="confirm_id" class="mui-btn mui-btn-primary mui-btn-block toolbutton">确定并保存</button>
@@ -52,30 +52,37 @@
 		<script type="text/javascript" src="js/plugins/jquery-3.1.1.slim.min.js"></script>
 		<script type="text/javascript" src="js/plugins/cropper/js/cropper.min.js"></script>
 		<script src="js/config.js"></script>
-			<script src="js/app.js"></script>
-			<script src="js/data.js"></script>		
+		<script src="js/app.js"></script>
+		<script src="js/data.js"></script>
 		<script src="js/app.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			function initHTML(){
+			function initHTML() {
+				console.log("initHTML1");
 				$("#header").text(tempJson.head.header[config.reqSys]);
-				$("#scaleX_id").text(tempJson.head.scaleX_id[config.reqSys]);				
+				$("#scaleX_id").text(tempJson.head.scaleX_id[config.reqSys]);
 				$("#scaleY_id").text(tempJson.head.scaleY_id[config.reqSys]);
 				$("#rotateMax_id").text(tempJson.head.rotateMax_id[config.reqSys]);
 				$("#confirm_id").text(tempJson.head.confirm_id[config.reqSys]);
-			
+				console.log("initHTML2");
 			}
 			window.onload = function() {
-				config.reqSys=app.getLanguage().language;
+				console.log("onload1");
+				config.reqSys = app.getLanguage().language;
 				initHTML();
+				initLoad();
+				console.log("onload2");
 			}
 			mui.init();
-			var userInfo={};
-			mui.plusReady(function() {
+			var userInfo = {};
+
+			function initLoad() {
+				console.log("initLoad1");
 				userInfo = app.getSettings();
-				plus.navigator.setStatusBarBackground("#007aff");
-				var self = plus.webview.currentWebview();
-				console.log(self.src);
-				$('#userImage_id').attr("src", self.src);
+				console.log(JSON.stringify(userInfo));
+// 				plus.navigator.setStatusBarBackground("#007aff");
+// 				var self = plus.webview.currentWebview();
+
+				$('#userImage_id').attr("src", config.urlPicRoot + userInfo.UserIco);
 				console.log($('#userImage_id').attr("src"));
 				document.getElementById("moreMenus").addEventListener("tap", function() {
 					var editButtons = new Array();
@@ -105,7 +112,7 @@
 				document.getElementById("scaleX_id").addEventListener("tap", function() {
 					window._scaleX = window._scaleX * -1;
 					$("#userImage_id").cropper("scaleX", window._scaleX);
-
+				
 				});
 				document.getElementById("scaleY_id").addEventListener("tap", function() {
 					window._scaleY = window._scaleY * -1;
@@ -134,8 +141,13 @@
 				});
 				//初始化裁切组件
 				initImageCropper();
-			});
-
+				console.log("initLoad2");
+			}
+// 			mui.plusReady(function() {
+// 
+// 				
+// 			});
+// 
 			//拍照
 			function captureImage() {
 				var cmr = plus.camera.getCamera(2);
@@ -166,7 +178,7 @@
 					type: "post",
 					data: {
 						imgDatas: image,
-						UserID:userInfo.UserID
+						UserID: userInfo.UserID
 					},
 					success: function(data) {
 						console.log(JSON.stringify(data));
@@ -230,16 +242,17 @@
 					plus.runtime.openFile(path);
 				}
 			}
-			
-			 mui.init({ beforeback: function() {　　
-			 //获得父页面的webview 
-				 var main = plus.webview.currentWebview().opener();　　 
-				 //触发父页面的自定义事件(refresh),从而进行刷新 
-				 mui.fire(main, 'refresh'); 
-				 //返回true,继续页面关闭逻辑 
-				 return true; 
-			 }
-			 });
+
+			mui.init({
+				beforeback: function() {
+					//获得父页面的webview 
+					var main = plus.webview.currentWebview().opener();
+					//触发父页面的自定义事件(refresh),从而进行刷新 
+					mui.fire(main, 'refresh');
+					//返回true,继续页面关闭逻辑 
+					return true;
+				}
+			});
 		</script>
 	</body>
 </html>

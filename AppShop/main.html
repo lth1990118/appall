@@ -22,8 +22,8 @@
 			padding-right: 20px;
 		}
 		#parent {
-			height: 80px;
-			width:80px;
+			/* height: 80px;
+			width:80px; */
 			
 			 background-position:center;
 			 background-repeat:no-repeat;
@@ -34,9 +34,12 @@
 		}
 		
 		 #head-img {
-			height: 80px;
-			width:80px;
-			max-width: 80px;
+			height: 60px;
+			width:60px;
+			max-width: 60px; 
+			background-position:center;
+			background-repeat:no-repeat;
+			 background-size:contain;	
 			vertical-align: middle;
 			text-align: center;
 			/* border: #2AC845 solid; */
@@ -55,7 +58,7 @@
 					<div class="mui-row">
 						<div class="mui-col-xs-3">
 							<div id="parent">
-								<a><img class="mui-media-object head-img" id="head-img" src="http://apitest.yzj1999.com/ico/def.jpg"></a>
+								<a><img class="mui-media-object head-img" id="head-img" src="images/head.png"></a>
 							</div>
 
 						</div>
@@ -101,7 +104,7 @@
 								<div class="mui-col-xs-3">
 									<b id='LeftCash'></b>
 								</div>
-								
+
 							</div>
 							<div class="mui-row">
 								<div class="mui-col-xs-3">
@@ -209,12 +212,15 @@
 			mui.init();
 			mui('#parent').on('tap', 'img', function() {
 				//mui.toast(this.src);
+				console.log("main1");
 				mui.openWindow({
 					url: 'head.html',
 					extras: { //新窗口的额外扩展参数,可用来处理页面间传值  
 						src: this.src //$(this).css('background-image').replace('url(', '').replace(')', '')
 					},
 				});
+				//window.open("head.html");
+				console.log("main2");
 			});
 			var subpages = ['html/agent.html', 'html/sale.html',
 				'html/bonus.html', 'html/menu.html'
@@ -425,6 +431,7 @@
 							userInfo.VerifyCode = option.VerifyCode;
 							userInfo.UserIco = option.UserIco;
 							userInfo.MoneyFlag = option.MoneyFlag || 0; //1;
+							app.setSettings(userInfo);
 							init();
 						}
 					},

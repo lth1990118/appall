@@ -110,15 +110,15 @@
 				mui('#item1').off('tap', '#submit');
 				mui('#item1').on('tap', '#submit', function() {
 					console.log("submit");
-					if(mui('#BankName')[0].value=''){
+					if(mui('#BankName')[0].value==''){
 						mui.toast(tempJson.bind.BankNameValidate[config.reqSys]);
 						return;
 					}
-					if(mui('#BAccountCode')[0].value=''){
+					if(mui('#BAccountCode')[0].value==''){
 						mui.toast(tempJson.bind.BAccountCodeValidate[config.reqSys]);
 						return;
 					}
-					if(mui('#BAccountName')[0].value=''){
+					if(mui('#BAccountName')[0].value==''){
 						mui.toast(tempJson.bind.BAccountNameValidate[config.reqSys]);
 						return;
 					}
@@ -147,11 +147,12 @@
 
 				mui('#item2').off('tap', '#submit2');
 				mui('#item2').on('tap', '#submit2', function() {
-					if(mui('#ZxUserNo')[0].value=''){
+					
+					if(mui('#ZxUserNo')[0].value==''){
 						mui.toast(tempJson.bind.ZxUserNoValidate[config.reqSys]);
 						return;
 					}
-					if(mui('#ZxUserName')[0].value=''){
+					if(mui('#ZxUserName')[0].value==''){
 						mui.toast(tempJson.bind.ZxUserNameValidate[config.reqSys]);
 						return;
 					}
@@ -162,9 +163,10 @@
 						"ReqType": "UserZx",
 						"ReqData": {
 							"ZxUserNo": mui('#ZxUserNo')[0].value,
-							"ZxUserName": hex_sha1(mui('#ZxUserName')[0].value)
+							"ZxUserName": mui('#ZxUserName')[0].value
 						}
 					};
+					console.log(mui('#ZxUserNo')[0].value);
 					jqAjax(data, tempJson.msgBindZX[config.reqSys], init2);
 				});
 
