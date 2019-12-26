@@ -309,11 +309,14 @@
 				}
 				if (targetTab == "exit") {
 					app.setSettings({});
+					plus.webview.currentWebview().close();
 					mui.openWindow({
 						url: 'login.html',
-						id: 'login.html'
-					});
-					plus.webview.currentWebview().close();
+						id: 'login.html',
+						waiting:{
+						  autoShow:false
+						}
+					});					
 					return;
 				}
 				if (targetTab == "shopui") {
